@@ -11,21 +11,27 @@ import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
 import Discounts from "../../components/sections/Discounts.js";
+import Placeholder from "../../components/Placeholder.js";
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
+const placeHolder = (msg) => (
+  <main>
+    <ButtonNav back="customers" />
+    <div
+      style={{ height: "100%", width: "100%" }}
+      className="flex-center-center"
+    >
+      {msg}
+    </div>
+  </main>
+);
 
 const CustomerPage = () => {
   const { id } = useRouter().query;
   let globalId = `gid://shopify/Customer/${id}`;
-
-  const [firebaseData, firebaseLoading, firebaseError] = useDocumentOnce(
-    firestore.doc("users/matthew.wolfe5@gmail.com")
-  );
-
-  console.log("firebaseData: ", firebaseData);
 
   let data = {
     customer: {
@@ -59,7 +65,7 @@ const CustomerPage = () => {
         },
       ],
       displayName: "Katherine Forrest",
-      email: "bowerbirdandfriends@yahoo.com",
+      email: "matthew.wolfe5@gmail.com@yahoo.com",
       firstName: "Katherine",
       hasNote: false,
       hasTimelineComment: false,
@@ -412,7 +418,17 @@ const CustomerPage = () => {
     },
   };
 
-  console.log(data);
+  //Firebase Query
+  const [firebaseData, firebaseLoading, firebaseError] = useDocumentOnce(
+    firestore.doc(`users/${data.customer.email}`)
+  );
+  if (firebaseLoading)
+    <Placeholder>
+      <Loader />
+    </Placeholder>;
+  if (firebaseError) <Placeholder>{firebaseError.message}</Placeholder>;
+
+  console.log("firebaseData: ", firebaseData);
 
   let matafieldsArr = data.customer.metafields.edges;
   let ordersArr = data.customer.orders.edges;

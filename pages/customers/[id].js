@@ -11,6 +11,7 @@ import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
 import Discounts from "../../components/sections/Discounts.js";
+import Placeholder from "../../components/Placeholder.js";
 
 const GET_CUSTOMER = gql`
   query getCustomer($id: ID!) {
@@ -123,41 +124,27 @@ const CustomerPage = () => {
   const { id } = useRouter().query;
   let globalId = `gid://shopify/Customer/${id}`;
 
+  //Shopify Query
   const { loading, error, data } = useQuery(GET_CUSTOMER, {
     fetchPolicy: "no-cache",
     variables: { id: globalId },
   });
+  if (loading)
+    <Placeholder>
+      <Loader />
+    </Placeholder>;
+  if (error) <Placeholder>{error.message}</Placeholder>;
 
-  if (loading) {
-    return (
-      <main>
-        <ButtonNav back="customers" />
-        <div
-          style={{ height: "100%", width: "100%" }}
-          className="flex-center-center"
-        >
-          <Loader />
-        </div>
-      </main>
-    );
-  }
-  if (error) {
-    return (
-      <main>
-        <ButtonNav back="customers" />
-        <div
-          style={{ height: "100%", width: "100%" }}
-          className="flex-center-center"
-        >
-          {error.message}
-        </div>
-      </main>
-    );
-  }
-
+  //Firebase Query
   const [firebaseData, firebaseLoading, firebaseError] = useDocumentOnce(
     firestore.doc(`users/${data.customer.email}`)
   );
+  if (firebaseLoading)
+    <Placeholder>
+      <Loader />
+    </Placeholder>;
+  if (firebaseError) <Placeholder>{firebaseError.message}</Placeholder>;
+
   console.log("data: ", data);
   console.log("firebaseData: ", firebaseData);
 
