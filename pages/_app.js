@@ -9,6 +9,8 @@ import "@shopify/polaris/dist/styles.css";
 import translations from "@shopify/polaris/locales/en.json";
 import ClientRouter from "../components/ClientRouter";
 
+import "../style/global.css";
+
 const client = new ApolloClient({
   uri: `${process.env.HOST}/api/shopify/admin/2020-10/graphql`,
   fetch: fetch,
@@ -16,6 +18,9 @@ const client = new ApolloClient({
     credentials: "include",
   },
 });
+
+console.log("The Host is: ", process.env.HOST);
+
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
