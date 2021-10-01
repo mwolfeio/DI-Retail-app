@@ -1,5 +1,7 @@
 import React from "react";
 
+import ButtonNav from "./ButtonNav.js";
+
 export default function SpecialPage(props) {
   return (
     <main>

@@ -130,20 +130,24 @@ const CustomerPage = () => {
     variables: { id: globalId },
   });
   if (loading)
-    <Placeholder>
-      <Loader />
-    </Placeholder>;
-  if (error) <Placeholder>{error.message}</Placeholder>;
+    return (
+      <Placeholder>
+        <Loader />
+      </Placeholder>
+    );
+  if (error) return <Placeholder>{error.message}</Placeholder>;
 
   //Firebase Query
   const [firebaseData, firebaseLoading, firebaseError] = useDocumentOnce(
     firestore.doc(`users/${data.customer.email}`)
   );
   if (firebaseLoading)
-    <Placeholder>
-      <Loader />
-    </Placeholder>;
-  if (firebaseError) <Placeholder>{firebaseError.message}</Placeholder>;
+    return (
+      <Placeholder>
+        <Loader />
+      </Placeholder>
+    );
+  if (firebaseError) return <Placeholder>{firebaseError.message}</Placeholder>;
 
   console.log("data: ", data);
   console.log("firebaseData: ", firebaseData);
