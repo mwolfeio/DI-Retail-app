@@ -1,4 +1,4 @@
-import { useState, Fragment } from "react";
+import { useState } from "react";
 import { firestore } from "../../lib/firebase";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
@@ -14,18 +14,14 @@ const WishlistWrapper = ({ email, shop }) => {
   };
 
   return (
-    <section style={{ margin: "24px 0 0 0" }}>
+    <section>
       <SectionHeader
         add={{ display: false }}
         status={open}
         minimize={toggleOpen}
         title={`Wishlist`}
       />
-      {open && (
-        <div className="card-container ">
-          <Wishlist email={email} shop={shop} />
-        </div>
-      )}
+      {open && <Wishlist email={email} shop={shop} />}
     </section>
   );
 };
@@ -39,19 +35,18 @@ const Wishlist = ({ email, shop }) => {
   if (loading) return <Loader />;
   if (error) return <div>{error.message}</div>;
 
-  return;
-  snapshot.empty ? (
+  return snapshot.empty ? (
     <div className="card-container">
       <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
         <b>No items in wishlist</b>
       </div>
     </div>
   ) : (
-    <Fragment>
+    <div className="card-container ">
       {snapshot.map((item) => (
         <WishlistItem item={item.data()} />
       ))}
-    </Fragment>
+    </div>
   );
 };
 
