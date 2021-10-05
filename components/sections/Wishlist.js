@@ -1,95 +1,58 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
+import { firestore } from "../../lib/firebase";
+import { useDocumentOnce } from "react-firebase-hooks/firestore";
+
 import SectionHeader from "./SectionHeader.js";
-import Link from "next/link";
+import WishlistItem from "./WishlistItem";
+import Loader from "../Loader.js";
 
-var formatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
-
-const CustomerPage = (props) => {
+const WishlistWrapper = ({ email, shop }) => {
   const [open, setOpen] = useState(true);
   const toggleOpen = () => {
+    console.log("clicked");
     setOpen(!open);
   };
+
   return (
     <section style={{ margin: "24px 0 0 0" }}>
       <SectionHeader
         add={{ display: false }}
         status={open}
         minimize={toggleOpen}
-        title={`Products (${props.items.length})`}
+        title={`Wishlist`}
       />
-      {open ? (
+      {open && (
         <div className="card-container ">
-          {props.items &&
-            props.items.map((item) => {
-              let product = item.node;
-              let url = product.product ? product.product.onlineStoreUrl : "";
-              let id = product.product
-                ? product.product.id.replace("gid://shopify/Product/", "")
-                : "";
-              let img =
-                product.variant && product.variant.image
-                  ? product.variant.image.src
-                  : product.image
-                  ? product.image.src
-                  : "https://i.stack.imgur.com/y9DpT.jpg";
-
-              console.log("product: ", product);
-              return (
-                <Link href={`/products/${id}`}>
-                  <div className="card orders-page-product-card">
-                    <img src={img} />
-                    <div>
-                      <h2>{product.title}</h2>
-                      <p className="subtitle">
-                        SKU: {product.sku} • {product.variantTitle} •{" "}
-                        {product.vendor}
-                      </p>
-                      <div className="flex-center-left">
-                        <a target="_blank" href={url}>
-                          <button
-                            style={{
-                              height: "28px",
-                              padding: "0 12px",
-                              marginLeft: "-12px",
-                            }}
-                            className="text-button"
-                          >
-                            View
-                          </button>
-                        </a>
-                        <a
-                          target="_blank"
-                          href={`https://di-wholesale.myshopify.com/admin/products/${id}`}
-                        >
-                          <button
-                            style={{ height: "28px", padding: "0 12px" }}
-                            className="text-button"
-                          >
-                            Edit
-                          </button>
-                        </a>
-                      </div>
-                    </div>
-                    <p style={{ color: "#b0b7c3" }}>
-                      {formatter.format(product.originalUnitPrice)} ×{" "}
-                      {product.quantity}
-                    </p>
-                    <p>
-                      <b>{formatter.format(product.originalTotal)}</b>
-                    </p>
-                  </div>
-                </Link>
-              );
-            })}
+          <Wishlist email={email} shop={shop} />
         </div>
-      ) : (
-        ""
       )}
     </section>
   );
 };
 
-export default CustomerPage;
+const Wishlist = ({ email, shop }) => {
+  //Firebase Query
+  const [snapshot, loading, error] = useDocumentOnce(
+    firestore.collection(`stores/${shop}/wishlists`).where("user", "==", email)
+  );
+
+  if (loading) return <Loader />;
+  if (error) return <div>{error.message}</div>;
+
+  return;
+  snapshot.empty ? (
+    <div className="card-container">
+      <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
+        <b>No items in wishlist</b>
+      </div>
+    </div>
+  ) : (
+    <Fragment>
+      {snapshot.map((item) => (
+        <WishlistItem item={item.data()} />
+      ))}
+    </Fragment>
+  );
+};
+
+export default WishlistWrapper;

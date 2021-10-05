@@ -9,6 +9,7 @@ import Link from "next/link";
 import ButtonNav from "../../components/ButtonNav.js";
 import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
+import Wishlist from "../../components/sections/Wishlist.js";
 import Orders from "../../components/sections/Orders.js";
 import Discounts from "../../components/sections/Discounts.js";
 import Placeholder from "../../components/Placeholder.js";
@@ -520,6 +521,7 @@ const CustomerPage = () => {
           email={"matthew.wolfe5@gmail.com"}
           interests={{ test: 1, test2: 4, test5: 6 }}
         />
+        <Wishlist email={"matthew.wolfe5@gmail.com"} shop="design-ideas" />
         <Orders fields={ordersArr} />
         <MatafieldSection fields={matafieldsArr} customerId={globalId} />
         <section className="disabled">Wishlist</section>

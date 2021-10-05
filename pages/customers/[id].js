@@ -11,6 +11,7 @@ import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
 import Interests from "../../components/sections/Interests.js";
+import Wishlist from "../../components/sections/Wishlist.js";
 import Discounts from "../../components/sections/Discounts.js";
 import Placeholder from "../../components/Placeholder.js";
 
@@ -222,7 +223,7 @@ const CustomerPage = () => {
           </div>
         </section>
         <Interests email={email} interests={interests} />
-        <Wishlist email={email} />
+        <Wishlist email={email} shop={shop} />
         <Orders fields={ordersArr} />
         <MatafieldSection
           fields={matafieldsArr}
