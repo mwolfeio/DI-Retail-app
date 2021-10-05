@@ -18,12 +18,7 @@ const GET_CUSTOMENTS = gql`
     $rev: Boolean!
   ) {
     shop {
-      domains {
-        host
-        url
-      }
-      url
-      storefrontUrl
+      id
     }
     customers(
       first: $first
@@ -79,12 +74,12 @@ const GET_CUSTOMENTS = gql`
 `;
 
 const translateStore = (storeName) => {
-  let key = storeName.replace("https://", "").replace("-", "").replace(".", "");
+  let key = id_ + storeName.replace("gid://shopify/Shop/", "");
   console.log("key: ", key);
   let shopTranslator = {
-    designideasltdmyshopifycom: "design-ideas",
-    texturehomemyshopifycom: "texxture-home",
-    larrytraversostoremyshopifycom: "larry-traverso",
+    id_44390383768: "design-ideas",
+    id_34498510987: "texxture-home",
+    id_56025776295: "larry-traverso",
   };
   return shopTranslator[key];
 };
@@ -182,7 +177,7 @@ const SpecialPage = ({}) => {
         return (
           <CustomerList
             index={i}
-            shop={translateStore(data.shop.url)}
+            shop={translateStore(data.shop.id)}
             customer={{
               id: id,
               gid: cus.node.id,
