@@ -93,7 +93,7 @@ const CustomerPage = ({ id, index, store }) => {
         <div>
           <h2 style={{ lineHeight: "22px" }}>{product.title}</h2>
           <p className="subtitle">
-            SKU: {variant.node.sku} • ID: {id}
+            SKU: {variant.sku} • ID: {id}
           </p>
 
           <div

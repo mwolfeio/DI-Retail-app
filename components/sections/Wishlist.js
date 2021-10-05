@@ -10,6 +10,8 @@ import Loader from "../Loader.js";
 
 const WishlistWrapper = ({ email, shop }) => {
   const [open, setOpen] = useState(true);
+
+  //functions
   const toggleOpen = () => {
     console.log("clicked");
     setOpen(!open);
