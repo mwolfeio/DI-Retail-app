@@ -12,6 +12,7 @@ import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
 import Discounts from "../../components/sections/Discounts.js";
 import Placeholder from "../../components/Placeholder.js";
+import Interests from "../../components/sections/Interests.js";
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -509,6 +510,10 @@ const CustomerPage = () => {
         <Discounts
           name={`${data.customer.firstName} ${data.customer.lastName}`}
           discountObj={{ value: 5 }}
+        />
+        <Interests
+          email={"matthew.wolfe5@gmail.com"}
+          interests={{ test: 1, test2: 4, test5: 6 }}
         />
         <Orders fields={ordersArr} />
         <MatafieldSection fields={matafieldsArr} customerId={globalId} />

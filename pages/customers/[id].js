@@ -10,6 +10,7 @@ import ButtonNav from "../../components/ButtonNav.js";
 import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
+import Interests from "../../components/sections/Interests.js";
 import Discounts from "../../components/sections/Discounts.js";
 import Placeholder from "../../components/Placeholder.js";
 
@@ -154,6 +155,7 @@ const CustomerPage = () => {
 
   let matafieldsArr = data.customer.metafields.edges;
   let ordersArr = data.customer.orders.edges;
+  let interestsArr = firebaseData.data() ? firebaseData.data().interests : {};
 
   return (
     <main>
@@ -215,6 +217,7 @@ const CustomerPage = () => {
             </div>
           </div>
         </section>
+        <Interests email={email} interests={interests} />
         <Orders fields={ordersArr} />
         <MatafieldSection
           fields={matafieldsArr}
