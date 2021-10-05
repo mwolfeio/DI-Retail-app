@@ -36,7 +36,11 @@ const Wishlist = ({ email, shop }) => {
   if (error) return <div>{error.message}</div>;
 
   let idArr = [];
-  snapshot.forEach((doc) => doc.data() && idArr.push(doc.data().productId));
+  console.log("snapshot: ", snapshot);
+  snapshot.forEach((doc) => {
+    console.log("doc.data(): ", doc.data());
+    if (doc.exists) idArr.push(doc.data().prodcutId);
+  });
 
   console.log("idArr: ", idArr);
   return snapshot.empty ? (
