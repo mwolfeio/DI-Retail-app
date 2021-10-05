@@ -31,7 +31,14 @@ export default function SpecialPage(props) {
         ) : (
           ""
         )}
-        <MoreButton />
+
+        {props.dropDown && (
+          <MoreButton>
+            {props.dropDown.map((lineItem) => (
+              <span onClick={() => props.dropDown.func()}>Delete</span>
+            ))}
+          </MoreButton>
+        )}
       </div>
     </div>
   );

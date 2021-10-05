@@ -18,6 +18,10 @@ var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
+const refreshPage = () => {
+  useRouter().reload(window.location.pathname);
+};
+
 const placeHolder = (msg) => (
   <main>
     <ButtonNav back="customers" />
@@ -451,6 +455,7 @@ const CustomerPage = () => {
           globalId: globalId,
           varified: true,
         }}
+        dropDown={[{ name: "refresh", func: refreshPage }]}
       />
       <div style={{ width: "100%" }}>
         <section className="clear">

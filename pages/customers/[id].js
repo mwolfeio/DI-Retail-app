@@ -120,6 +120,9 @@ var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
+const refreshPage = () => {
+  useRouter().reload(window.location.pathname);
+};
 
 const CustomerPage = () => {
   const { id, email, shop } = useRouter().query;
@@ -167,6 +170,7 @@ const CustomerPage = () => {
           globalId: globalId,
           varifiedObj: {},
         }}
+        dropDown={[{ name: "refresh", func: refreshPage }]}
       />
       <div style={{ width: "100%" }}>
         <section className="clear">
