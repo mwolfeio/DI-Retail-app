@@ -14,6 +14,7 @@ import Orders from "../../components/sections/Orders.js";
 import Discounts from "../../components/sections/Discounts.js";
 import Placeholder from "../../components/Placeholder.js";
 import Interests from "../../components/sections/Interests.js";
+import Alerts from "../../components/sections/Alerts.js";
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -522,6 +523,8 @@ const CustomerPage = () => {
           interests={{ test: 1, test2: 4, test5: 6 }}
         />
         <Wishlist email={"matthew.wolfe5@gmail.com"} shop="design-ideas" />
+
+        <Alerts email={"matthew.wolfe5@gmail.com"} shop="design-ideas" />
         <Orders fields={ordersArr} />
         <MatafieldSection fields={matafieldsArr} customerId={globalId} />
         <section className="disabled">Wishlist</section>

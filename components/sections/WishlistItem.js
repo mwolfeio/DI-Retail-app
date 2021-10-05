@@ -53,7 +53,7 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 
 //component
-const CustomerPage = ({ id, index, store }) => {
+const CustomerPage = ({ id, index, shop, ref }) => {
   const [active, setActive] = useState(true);
   if (!active) return <div></div>;
 
@@ -67,7 +67,7 @@ const CustomerPage = ({ id, index, store }) => {
     e.preventDefault();
     e.stopPropagation();
     console.log("removing");
-    await firestore.doc(`stores/${shop}/wishlists/${id}`).delete();
+    await firestore.doc(`stores/${shop}/${ref}/${id}`).delete();
     setActive(false);
   };
 

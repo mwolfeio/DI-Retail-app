@@ -23,7 +23,7 @@ const WishlistWrapper = ({ email, shop }) => {
         add={{ display: false }}
         status={open}
         minimize={toggleOpen}
-        title={`Wishlist`}
+        title={`Alerts`}
       />
       {open && <Wishlist email={email} shop={shop} />}
     </section>
@@ -33,7 +33,7 @@ const WishlistWrapper = ({ email, shop }) => {
 const Wishlist = ({ email, shop }) => {
   //Firebase Query
   const [snapshot, loading, error] = useDocumentOnce(
-    firestore.collection(`stores/${shop}/wishlists`).where("user", "==", email)
+    firestore.collection(`stores/${shop}/alerts`).where("user", "==", email)
   );
 
   if (loading) return <Loader />;
@@ -50,7 +50,7 @@ const Wishlist = ({ email, shop }) => {
   return snapshot.empty ? (
     <div className="card-container">
       <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
-        <b>No items in wishlist</b>
+        <b>No Alerts</b>
       </div>
     </div>
   ) : (

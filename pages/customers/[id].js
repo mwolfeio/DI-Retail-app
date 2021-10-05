@@ -14,6 +14,7 @@ import Interests from "../../components/sections/Interests.js";
 import Wishlist from "../../components/sections/Wishlist.js";
 import Discounts from "../../components/sections/Discounts.js";
 import Placeholder from "../../components/Placeholder.js";
+import Alerts from "../../components/sections/Alerts.js";
 
 const GET_CUSTOMER = gql`
   query getCustomer($id: ID!) {
@@ -224,16 +225,15 @@ const CustomerPage = () => {
         </section>
         <Interests email={email} interests={interests} />
         <Wishlist email={email} shop={shop} />
+        <Alerts email={email} shop={shop} />
         <Orders fields={ordersArr} />
         <MatafieldSection
           fields={matafieldsArr}
           type="customer"
           globalId={globalId}
         />
-        <section className="disabled">Wishlist</section>
-        <section className="disabled">Interests</section>
+
         <section className="disabled">Reviews</section>
-        <section className="disabled">Alerts</section>
         <section className="disabled">Rewards</section>
       </div>
     </main>
