@@ -2,6 +2,13 @@ module.exports = {
   env: {
     API_KEY: process.env.SHOPIFY_API_KEY,
     HOST: process.env.HOST,
+    FIREBASE_API_KEY: process.env.FIREBASE_API_KEY,
+    AUTHDOMAIN: process.env.AUTHDOMAIN,
+    PROJECTID: process.env.PROJECTID,
+    STORAGEBUCKET: process.env.STORAGEBUCKET,
+    MESSAGINGSENDERID: process.env.MESSAGINGSENDERID,
+    APPID: process.env.APPID,
+    MEASUREMENTID: process.env.MEASUREMENTID,
   },
 
   async redirects() {
