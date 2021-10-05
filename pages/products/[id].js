@@ -73,8 +73,13 @@ const GET_PRODUCT = gql`
       vendor
       tags
     }
+    shop {
+      url
+    }
   }
 `;
+
+//show how many alerts and wishlists product is in //// TODO:
 
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -184,7 +189,7 @@ const ProductPage = () => {
                   </button>
                 </a>
                 <a
-                  href={`https://di-wholesale.myshopify.com/admin/products/${id}`}
+                  href={`${data.shop.url}/admin/products/${id}`}
                   target="_blank"
                 >
                   <button className="text-button" style={{ height: "28px" }}>

@@ -7,8 +7,8 @@ import SectionHeader from "./SectionHeader.js";
 
 const sumValues = (obj) => Object.values(obj).reduce((a, b) => a + b);
 
-//Clear all interests
-// remove interest
+//Clear all interests  // TODO:
+// remove interest  // TODO:
 
 const Section = ({ interests, email }) => {
   const [open, setOpen] = useState(true);

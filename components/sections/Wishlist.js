@@ -6,6 +6,8 @@ import SectionHeader from "./SectionHeader.js";
 import WishlistItem from "./WishlistItem";
 import Loader from "../Loader.js";
 
+//Clear wishlist // TODO:
+
 const WishlistWrapper = ({ email, shop }) => {
   const [open, setOpen] = useState(true);
   const toggleOpen = () => {
@@ -51,8 +53,8 @@ const Wishlist = ({ email, shop }) => {
     </div>
   ) : (
     <div className="card-container ">
-      {idArr.map((productId) => (
-        <WishlistItem id={productId} />
+      {idArr.map((productId, i) => (
+        <WishlistItem id={productId} index={i} shop={shop} />
       ))}
     </div>
   );
