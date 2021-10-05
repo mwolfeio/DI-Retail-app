@@ -74,7 +74,7 @@ const GET_CUSTOMENTS = gql`
 `;
 
 const translateStore = (storeName) => {
-  storeName.replce("-", "").replace(".", "");
+  storeName.replace("-", "").replace(".", "");
   let shopTranslator = {
     designideasltdmyshopifycom: "design-ideas",
     texturehomemyshopifycom: "texxture-home",
