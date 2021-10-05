@@ -150,6 +150,7 @@ const CustomerPage = () => {
 
   console.log("data: ", data);
   console.log("firebaseData: ", firebaseData);
+  console.log("firebaseData data: ", firebaseData.data());
 
   let matafieldsArr = data.customer.metafields.edges;
   let ordersArr = data.customer.orders.edges;
@@ -173,7 +174,7 @@ const CustomerPage = () => {
                 {data.customer.firstName} {data.customer.lastName}
               </h1>
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                <i>{data.customer.defaultAddress.company}</i>
+                <i>interests</i>
               </h2>
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
@@ -188,39 +189,32 @@ const CustomerPage = () => {
           <div className="flex-top-btw">
             <div style={{ display: "table" }}>
               <h3>Email: {data.customer.email}</h3>
-              <h3>
-                Phone:{" "}
-                {data.customer.phone
-                  ? data.customer.phone
-                  : data.customer.defaultAddress.phone}
-              </h3>
+              <h3>Phone: {data.customer.phone}</h3>
 
               <h3 stule>Shopify id: {id.replace("$", "")}</h3>
             </div>
             <div style={{ textAlign: "right" }}>
               <h3 style={{ textAlign: "right" }}>
                 Billing Address:
-                <br />
-                {data.customer.defaultAddress.company}
-                <br />
-                {data.customer.defaultAddress.address1}
-                <br />
-                {data.customer.defaultAddress.address2}
-                {data.customer.defaultAddress.address2 && <br />}
-                {data.customer.defaultAddress.city},{" "}
-                {data.customer.defaultAddress.provinceCode}
-                <br />
-                {data.customer.defaultAddress.zip},{" "}
-                {data.customer.defaultAddress.country}
+                {data.customer.defaultAddress ? (
+                  <div>
+                    {data.customer.defaultAddress.address1}
+                    <br />
+                    {data.customer.defaultAddress.address2}
+                    {data.customer.defaultAddress.address2 && <br />}
+                    {data.customer.defaultAddress.city},{" "}
+                    {data.customer.defaultAddress.provinceCode}
+                    <br />
+                    {data.customer.defaultAddress.zip},{" "}
+                    {data.customer.defaultAddress.country}
+                  </div>
+                ) : (
+                  "No sddress on file"
+                )}
               </h3>
             </div>
           </div>
         </section>
-        <Discounts
-          name={`${data.customer.firstName} ${data.customer.lastName}`}
-          customerId={globalId}
-          tags={data.customer.tags ? data.customer.tags : []}
-        />
         <Orders fields={ordersArr} />
         <MatafieldSection
           fields={matafieldsArr}
