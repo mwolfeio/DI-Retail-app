@@ -121,10 +121,10 @@ var formatter = new Intl.NumberFormat("en-US", {
 });
 
 const CustomerPage = () => {
-  const { id, email } = useRouter().query;
+  const { id, email, shop } = useRouter().query;
   let globalId = `gid://shopify/Customer/${id}`;
 
-  console.log("email: ", email, " id: ", id);
+  console.log("email: ", email, " id: ", id, "shop: ", shop);
 
   //Shopify Query
   const { loading, error, data } = useQuery(GET_CUSTOMER, {
@@ -134,7 +134,7 @@ const CustomerPage = () => {
 
   //Firebase Query
   const [firebaseData, firebaseLoading, firebaseError] = useDocumentOnce(
-    firestore.doc(`users/${data.customer.email}`)
+    firestore.doc(`stores/${shop}/users/${email}`)
   );
 
   if (loading || firebaseLoading)

@@ -17,6 +17,9 @@ const GET_CUSTOMENTS = gql`
     $srt: CustomerSortKeys!
     $rev: Boolean!
   ) {
+    shop {
+      name
+    }
     customers(
       first: $first
       after: $after
@@ -69,6 +72,16 @@ const GET_CUSTOMENTS = gql`
     }
   }
 `;
+
+const translateStore = (storeName) => {
+  storeName.replce("-", "").replace(".", "");
+  let shopTranslator = {
+    designideasltdmyshopifycom: "design-ideas",
+    texturehomemyshopifycom: "texxture-home",
+    larrytraversostoremyshopifycom: "larry-traverso",
+  };
+  return shopTranslator[storeName];
+};
 
 const SpecialPage = ({}) => {
   const [results, setResults] = useState([]);
@@ -163,6 +176,7 @@ const SpecialPage = ({}) => {
         return (
           <CustomerList
             index={i}
+            shop={translateStore(data.shop.name)}
             customer={{
               id: id,
               gid: cus.node.id,
