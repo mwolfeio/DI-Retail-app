@@ -5,7 +5,7 @@ import SectionHeader from "./SectionHeader.js";
 import Link from "next/link";
 import Loader from "../Loader.js";
 
-const GET_CUSTOMER = gql`
+const GET_PRODUCT = gql`
   query getProduct($id: ID!) {
     product(id: $id) {
       id
