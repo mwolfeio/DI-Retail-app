@@ -56,7 +56,7 @@ const Wishlist = ({ email, shop }) => {
   ) : (
     <div className="card-container ">
       {idArr.map((productId, i) => (
-        <WishlistItem id={productId} ref={"wishlists"} index={i} shop={shop} />
+        <WishlistItem id={productId} dbRef="wishlists" index={i} shop={shop} />
       ))}
     </div>
   );

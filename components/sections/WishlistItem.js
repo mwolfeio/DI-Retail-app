@@ -53,7 +53,7 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 
 //component
-const CustomerPage = ({ id, index, shop, ref }) => {
+const CustomerPage = ({ id, index, shop, dbRef }) => {
   const [active, setActive] = useState(true);
   if (!active) return <div></div>;
 
