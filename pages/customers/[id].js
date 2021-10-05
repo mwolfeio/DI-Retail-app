@@ -155,7 +155,7 @@ const CustomerPage = () => {
 
   let matafieldsArr = data.customer.metafields.edges;
   let ordersArr = data.customer.orders.edges;
-  let interestsArr = firebaseData.data() ? firebaseData.data().interests : {};
+  let interests = firebaseData.data() ? firebaseData.data().interests : {};
 
   return (
     <main>
