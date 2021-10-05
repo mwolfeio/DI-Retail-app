@@ -35,6 +35,10 @@ const Wishlist = ({ email, shop }) => {
   if (loading) return <Loader />;
   if (error) return <div>{error.message}</div>;
 
+  console.log("snapshot: ", snapshot);
+  let idArr = [];
+  snapshot.forEach((doc) => doc.data() && idArr.push(doc.data().productId));
+
   return snapshot.empty ? (
     <div className="card-container">
       <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
@@ -43,8 +47,8 @@ const Wishlist = ({ email, shop }) => {
     </div>
   ) : (
     <div className="card-container ">
-      {snapshot.map((item) => (
-        <WishlistItem item={item.data()} />
+      {idArr.map((productId) => (
+        <WishlistItem id={productId} />
       ))}
     </div>
   );
