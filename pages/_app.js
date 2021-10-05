@@ -25,6 +25,7 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     const shopOrigin = pageProps.shopOrigin ?? Cookies.get("shopOrigin");
+    console.log("shopOrigin: ", shopOrigin);
     return (
       <AppProvider i18n={translations}>
         <Provider

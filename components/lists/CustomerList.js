@@ -23,7 +23,12 @@ let animationDelayCalc = (index) => {
 export default function SpecialPage(props) {
   console.log("CustomerList: ", props);
   return (
-    <Link href={`/customers/${props.customer.id}`} passHref>
+    <Link
+      href={{
+        pathname: `/customers/${props.customer.id}`,
+        query: { email: props.customer.email, id: props.customer.id },
+      }}
+    >
       <li
         className=""
         style={{ animationDelay: `${animationDelayCalc(props.index)}s` }}
@@ -68,6 +73,8 @@ export default function SpecialPage(props) {
     </Link>
   );
 }
+
+// <Link href={`/customers/${props.customer.email}~?#${props.customer.id}`} passHref>
 
 // <Varify
 //   cusId={props.customer.varified.id}

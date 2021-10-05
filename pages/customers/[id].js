@@ -121,41 +121,38 @@ var formatter = new Intl.NumberFormat("en-US", {
 });
 
 const CustomerPage = () => {
-  const { id } = useRouter().query;
+  const { id, email } = useRouter().query;
   let globalId = `gid://shopify/Customer/${id}`;
+
+  console.log("email: ", email, " id: ", id);
 
   //Shopify Query
   const { loading, error, data } = useQuery(GET_CUSTOMER, {
     fetchPolicy: "no-cache",
     variables: { id: globalId },
   });
-  if (loading)
-    return (
-      <Placeholder>
-        <Loader />
-      </Placeholder>
-    );
-  if (error) return <Placeholder>{error.message}</Placeholder>;
 
   //Firebase Query
   const [firebaseData, firebaseLoading, firebaseError] = useDocumentOnce(
     firestore.doc(`users/${data.customer.email}`)
   );
-  if (firebaseLoading)
+
+  if (loading || firebaseLoading)
     return (
       <Placeholder>
         <Loader />
       </Placeholder>
     );
-  if (firebaseError) return <Placeholder>{firebaseError.message}</Placeholder>;
+  if (error || firebaseError)
+    return (
+      <Placeholder>{error ? error.message : firebaseError.message}</Placeholder>
+    );
 
   console.log("data: ", data);
   console.log("firebaseData: ", firebaseData);
 
   let matafieldsArr = data.customer.metafields.edges;
   let ordersArr = data.customer.orders.edges;
-
-  // let varifiedCn = varifiedObj ? varifiedObj.node.value : false;
 
   return (
     <main>
