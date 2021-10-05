@@ -35,10 +35,10 @@ const Wishlist = ({ email, shop }) => {
   if (loading) return <Loader />;
   if (error) return <div>{error.message}</div>;
 
-  console.log("snapshot: ", snapshot);
   let idArr = [];
   snapshot.forEach((doc) => doc.data() && idArr.push(doc.data().productId));
 
+  console.log("idArr: ", idArr);
   return snapshot.empty ? (
     <div className="card-container">
       <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
