@@ -74,7 +74,7 @@ const GET_CUSTOMENTS = gql`
 `;
 
 const translateStore = (storeName) => {
-  let key = id_ + storeName.replace("gid://shopify/Shop/", "");
+  let key = "id_" + storeName.replace("gid://shopify/Shop/", "");
   console.log("key: ", key);
   let shopTranslator = {
     id_44390383768: "design-ideas",
