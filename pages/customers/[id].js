@@ -222,6 +222,7 @@ const CustomerPage = () => {
           </div>
         </section>
         <Interests email={email} interests={interests} />
+        <Wishlist email={email} />
         <Orders fields={ordersArr} />
         <MatafieldSection
           fields={matafieldsArr}

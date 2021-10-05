@@ -209,8 +209,8 @@ const Section = (props) => {
         minimize={toggleOpen}
         title={`Metafields (${fieldsArr.length})`}
       />
-      {open ? (
-        <div className="card-container">
+      {open && (
+        <div>
           {addCard && (
             <form onSubmit={submitHandler} className="card input-card">
               <div className="flex-center-btw">
@@ -308,49 +308,62 @@ const Section = (props) => {
             </form>
           )}
 
-          {fieldsArr.map((metafield) => {
-            let namespace = metafield.node.namespace;
-            let metafieldKey = metafield.node.key;
-
-            return (
-              <div className="card">
-                <div
-                  className="flex-center-btw"
-                  style={{ marginBottom: "8px" }}
-                >
-                  <p>
-                    <span className="subtitle" style={{ marginRight: "8px" }}>
-                      Namespace:{" "}
-                    </span>{" "}
-                    {namespace}{" "}
-                    <span
-                      className="subtitle"
-                      style={{ margin: " 0 8px 0 16px" }}
-                    >
-                      key:{" "}
-                    </span>
-                    {metafieldKey}
-                  </p>
-                  <div className="flex-center-center">
-                    <p className="subtitle">{metafield.node.valueType}</p>
-                    <MoreButton>
-                      <span onClick={() => deleteMetafield(metafield.node.id)}>
-                        Delete
-                      </span>
-                    </MoreButton>
-                  </div>
-                </div>
-                <MetafieldInput
-                  globalId={props.globalId}
-                  field={metafield.node}
-                  type={props.type}
-                />
+          {fieldsArr.length < 1 ? (
+            <div className="card-container">
+              <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
+                <b>No Metafields</b>
               </div>
-            );
-          })}
+            </div>
+          ) : (
+            <div className="card-container">
+              {fieldsArr.map((metafield) => {
+                let namespace = metafield.node.namespace;
+                let metafieldKey = metafield.node.key;
+
+                return (
+                  <div className="card">
+                    <div
+                      className="flex-center-btw"
+                      style={{ marginBottom: "8px" }}
+                    >
+                      <p>
+                        <span
+                          className="subtitle"
+                          style={{ marginRight: "8px" }}
+                        >
+                          Namespace:{" "}
+                        </span>{" "}
+                        {namespace}{" "}
+                        <span
+                          className="subtitle"
+                          style={{ margin: " 0 8px 0 16px" }}
+                        >
+                          key:{" "}
+                        </span>
+                        {metafieldKey}
+                      </p>
+                      <div className="flex-center-center">
+                        <p className="subtitle">{metafield.node.valueType}</p>
+                        <MoreButton>
+                          <span
+                            onClick={() => deleteMetafield(metafield.node.id)}
+                          >
+                            Delete
+                          </span>
+                        </MoreButton>
+                      </div>
+                    </div>
+                    <MetafieldInput
+                      globalId={props.globalId}
+                      field={metafield.node}
+                      type={props.type}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
-      ) : (
-        ""
       )}
     </section>
   );

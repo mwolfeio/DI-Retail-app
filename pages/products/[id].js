@@ -195,10 +195,10 @@ const ProductPage = () => {
             </div>
           </div>
           <div
-            style={{ height: "32px", marginTop: "8px" }}
+            style={{ height: "36px", marginTop: "8px", flexWrap: "wrap" }}
             className="flex-center-left"
           >
-            <p style={{ margin: "0 12px 0 0" }}>Tags:</p>
+            <p style={{ margin: "6px 12px 6px 0" }}>Tags:</p>
             {tagArr.map((tagTag) => {
               let strAr = tagTag.split("_");
               return (

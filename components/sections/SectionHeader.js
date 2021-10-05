@@ -14,7 +14,13 @@ const Section = (props) => {
         ) : (
           ""
         )}
-        <MoreButton />
+        {props.dropDown && (
+          <MoreButton>
+            {props.dropDown.map((lineItem) => (
+              <span onClick={() => props.dropDown.func()}>Delete</span>
+            ))}
+          </MoreButton>
+        )}
         <MinimizeButton status={props.status} func={props.minimize} />
       </div>
     </div>
