@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useQuery } from "react-apollo";
+import { gql } from "apollo-boost";
 import SectionHeader from "./SectionHeader.js";
 import Link from "next/link";
 import Loader from "../Loader.js";
