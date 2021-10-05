@@ -44,6 +44,8 @@ var formatter = new Intl.NumberFormat("en-US", {
 });
 
 const CustomerPage = ({ id }) => {
+  console.log("id: ", id);
+
   //Shopify Query
   const { loading, error, data } = useQuery(GET_PRODUCT, {
     variables: { id: `gid://shopify/Product/${id}` },
@@ -52,12 +54,15 @@ const CustomerPage = ({ id }) => {
   if (loading) return <Loader />;
   if (error) return <div>{error.message}</div>;
 
+  console.log("data: ", data);
+  console.log("product: ", data.product);
+
+  if (!data.product) return <div>Product does not exist</div>;
   let product = data.product;
   let img = product.image
     ? product.image.src
     : "https://i.stack.imgur.com/y9DpT.jpg";
 
-  console.log("product: ", product);
   return (
     <Link href={`/products/${id}`}>
       <div className="card orders-page-product-card">
