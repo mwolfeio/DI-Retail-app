@@ -26,7 +26,11 @@ export default function SpecialPage(props) {
     <Link
       href={{
         pathname: `/customers/${props.customer.id}`,
-        query: { email: props.customer.email, id: props.customer.id },
+        query: {
+          email: props.customer.email,
+          id: props.customer.id,
+          shop: props.shop,
+        },
       }}
     >
       <li
