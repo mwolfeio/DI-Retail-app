@@ -24,7 +24,7 @@ const GET_PRODUCT = gql`
       }
       totalInventory
       onlineStoreUrl
-      images(maxHeight: 100, maxWidth: 100) {
+      images(maxHeight: 100, maxWidth: 100, first: 1) {
         edges {
           node {
             src
@@ -59,9 +59,10 @@ const CustomerPage = ({ id }) => {
 
   if (!data.product) return <div>Product does not exist</div>;
   let product = data.product;
-  let img = product.image
-    ? product.image.src
-    : "https://i.stack.imgur.com/y9DpT.jpg";
+  let img =
+    product.images.edges.length > 0
+      ? product.images.edges[0].node.src
+      : "https://i.stack.imgur.com/y9DpT.jpg";
 
   return (
     <Link href={`/products/${id}`}>
