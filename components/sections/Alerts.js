@@ -31,7 +31,7 @@ const WishlistWrapper = ({ email, shop }) => {
     await batch.commit();
     setIdArr([]);
   };
-  const removeAlert = async (e, i) => {
+  const removeAlert = async (e, i, id) => {
     e.preventDefault();
     e.stopPropagation();
     console.log("deleting alert");

@@ -126,7 +126,7 @@ const CustomerPage = ({ id, removeAlert, index, shop }) => {
               </button>
             </a>
             <button
-              onClick={(e) => removeAlert(e, index)}
+              onClick={(e) => removeAlert(e, index, id)}
               style={{ height: "28px", padding: "0 12px", color: "#e4545d" }}
               className="text-button"
             >
