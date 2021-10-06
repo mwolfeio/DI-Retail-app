@@ -31,7 +31,7 @@ const WishlistWrapper = ({ email, shop }) => {
     await batch.commit();
     setIdArr([]);
   };
-  const deleteAlert = async (e, i) => {
+  const removeAlert = async (e, i) => {
     e.preventDefault();
     e.stopPropagation();
     console.log("deleting alert");
@@ -58,9 +58,11 @@ const WishlistWrapper = ({ email, shop }) => {
     );
 
   snapshot.forEach((doc) => {
+    console.log("adding Id");
     if (doc.exists) setIdArr([...idArr, doc.data().prodcutId]);
   });
 
+  console.log("new state idArr: ", idArr);
   return (
     <section>
       <SectionHeader
@@ -81,8 +83,8 @@ const WishlistWrapper = ({ email, shop }) => {
           {idArr.map((productId, i) => (
             <WishlistItem
               id={productId}
-              remove={deleteAlert}
               index={i}
+              remove={removeAlert}
               shop={shop}
             />
           ))}

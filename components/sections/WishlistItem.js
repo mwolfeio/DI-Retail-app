@@ -53,7 +53,7 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 
 //component
-const CustomerPage = ({ id, remove, index, shop }) => {
+const CustomerPage = ({ id, removeAlert, index, shop }) => {
   const [active, setActive] = useState(true);
   if (!active) return <div></div>;
 
@@ -126,7 +126,7 @@ const CustomerPage = ({ id, remove, index, shop }) => {
               </button>
             </a>
             <button
-              onClick={(e) => deleteAlert(e, index)}
+              onClick={(e) => removeAlert(e, index)}
               style={{ height: "28px", padding: "0 12px", color: "#e4545d" }}
               className="text-button"
             >
