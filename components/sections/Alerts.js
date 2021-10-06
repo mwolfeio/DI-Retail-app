@@ -48,7 +48,7 @@ const WishlistWrapper = ({ email, shop }) => {
 
   //useEffect
   useEffect(() => {
-    if (snapshot && snapshot.empty) return;
+    if (snapshot || snapshot.empty) return;
     snapshot.forEach((doc) => {
       console.log("adding object");
       if (doc.exists) setIdArr((idArr) => [...idArr, doc.data()]);
