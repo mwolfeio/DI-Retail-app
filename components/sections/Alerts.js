@@ -48,10 +48,11 @@ const WishlistWrapper = ({ email, shop }) => {
 
   //useEffect
   useEffect(() => {
-    if (snapshot || snapshot.empty) return;
+    if (loading || error) return;
     snapshot.forEach((doc) => {
       console.log("adding object");
-      if (doc.exists) setIdArr((idArr) => [...idArr, doc.data()]);
+      if (doc.exists && !idArr.includes(doc.data()))
+        setIdArr((idArr) => [...idArr, doc.data()]);
       // if (doc.exists && !idArr.includes(doc.data().prodcutId))
       //   setIdArr((idArr) => [...idArr, doc.data().prodcutId]);
     });
