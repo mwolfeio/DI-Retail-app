@@ -37,7 +37,7 @@ const WishlistWrapper = ({ email, shop }) => {
     e.preventDefault();
     e.stopPropagation();
 
-    let newArr = idArr;
+    let newArr = [...idArr];
     let removed = newArr.splice(i, 1);
     console.log("removing: ", removed[0].id);
 
@@ -66,7 +66,7 @@ const WishlistWrapper = ({ email, shop }) => {
           add={{ display: false }}
           status={open}
           minimize={toggleOpen}
-          title={`Wishlist`}
+          title={`Back-in-stock Alerts (0)`}
         />
         {loading ? <Loader /> : <div>{error.message}</div>}
       </section>
@@ -79,7 +79,7 @@ const WishlistWrapper = ({ email, shop }) => {
         add={{ display: false }}
         status={open}
         minimize={toggleOpen}
-        title={`Back in stock alerts`}
+        title={`Back-in-stock Alerts (${idArr.length})`}
         dropDown={[{ name: "clear List", func: clearAll }]}
       />
       {open &&
@@ -93,6 +93,7 @@ const WishlistWrapper = ({ email, shop }) => {
           <div className="card-container ">
             {idArr.map((alert, i) => (
               <WishlistItem
+                key={`${alert.id}-item`}
                 prodcutId={alert.prodcutId}
                 index={i}
                 shop={shop}
