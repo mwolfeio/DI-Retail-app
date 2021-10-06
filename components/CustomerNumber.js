@@ -8,6 +8,7 @@ import { gql } from "apollo-boost";
 import Loader from "./Loader.js";
 
 const Section = ({ pointsInt, email, shop }) => {
+  console.log("pointsInt: ", pointsInt);
   //State
   const [points, setPoints] = useState(pointsInt);
   const [loading, setLoading] = useState(false);
@@ -34,6 +35,11 @@ const Section = ({ pointsInt, email, shop }) => {
     setLoading(false);
   };
 
+  useEffect(() => {
+    console.log("running useEffect for: ", pointsInt);
+    setPoints(pointsInt);
+  }, [pointsInt]);
+
   //return component
   let needsSaving = points !== oldPoints;
   return (
@@ -49,7 +55,7 @@ const Section = ({ pointsInt, email, shop }) => {
             onChange={changeHandler}
             className="customer-number-input"
             type="number"
-            placeholder="No Customer #"
+            placeholder="No Points"
             value={points}
           />
           {needsSaving && (
