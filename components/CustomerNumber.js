@@ -42,7 +42,14 @@ const Section = ({ data }) => {
   let needsSaving = points !== oldPoints;
   return (
     <div className="flex-center-center">
-      <div style={{ position: "relative", height: "43px", width: "248px" }}>
+      <div
+        style={{
+          position: "relative",
+          height: "43px",
+          width: "16vw",
+          maxWidth: "248px",
+        }}
+      >
         <form
           className={`customer-number-wrapper  ${
             needsSaving ? "points-form-open" : ""
@@ -53,7 +60,7 @@ const Section = ({ data }) => {
             onChange={changeHandler}
             className="customer-number-input"
             type="number"
-            placeholder="No Points"
+            placeholder="0"
             value={points}
           />
           {needsSaving && (
@@ -72,6 +79,7 @@ const Section = ({ data }) => {
           )}
         </form>
       </div>
+      <h1 style={{ marginBottom: "0" }}>Points</h1>
     </div>
   );
 };

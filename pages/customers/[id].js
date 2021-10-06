@@ -162,7 +162,7 @@ const CustomerPage = () => {
   let matafieldsArr = data.customer.metafields.edges;
   let ordersArr = data.customer.orders.edges;
   let interests = firebaseData.data() ? firebaseData.data().interests : {};
-  let points = firebaseData.data() ? firebaseData.data().points : 0;
+  let points = firebaseData.data() ? firebaseData.data().points : "";
   let isMember = firebaseData.exists;
 
   return (
@@ -205,7 +205,7 @@ const CustomerPage = () => {
           </div>
           <div className="flex-top-btw customer-header-subsection">
             <div className="flex-center-right">
-              <h3 style={{ marginRight: "12px" }}>Recieves marketing: </h3>
+              <h3 style={{ marginRight: "12px" }}>Receives marketing: </h3>
               {data.customer.acceptsMarketing ? (
                 <svg
                   width="24"

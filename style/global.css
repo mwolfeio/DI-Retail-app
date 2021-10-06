@@ -205,6 +205,10 @@ button.submit-button {
 button.icon {
   padding: 9.5px;
 }
+button.icon svg {
+  height: 24px !important;
+  width: 24px !important;
+}
 
 button.icon {
   padding: 9.5px;
@@ -216,9 +220,18 @@ button.icon {
 
 button.disabled {
   opacity: 0.6;
+  cursor: default;
 }
 button.disabled:hover {
   box-shadow: none;
+  background: #fafbfc;
+  color: #b0b7c3;
+}
+
+.smll-divider {
+  height: 30px;
+  margin: 6.5px 16px;
+  border-right: 1px solid #b0b7c3;
 }
 
 /* INPUTS--------------------- */
@@ -236,6 +249,17 @@ select {
   color: #4e5d78;
   transition: 0.15s ease;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+  -webkit-appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
 input.input-error {
   border-color: #e4545d !important;
   background: #fff6f4 !important;
@@ -274,7 +298,7 @@ input.customer-number-input {
   color: #4e5d78;
   font-size: 22px;
   text-align: right;
-  width: 240px;
+  max-width: 240px;
 
   padding: 0 8px;
   border: 1px solid #f4f6f8;
@@ -439,7 +463,7 @@ li p.sortable:hover {
 }
 
 .membership-tag {
-  height: 20px;
+  height: 18px;
   margin-left: 8px;
   flex-wrap: nowrap;
   color: white;
@@ -447,7 +471,7 @@ li p.sortable:hover {
   border-radius: 10px;
   padding: 0 8px;
   font-size: 10px;
-  width: auto;
+  width: auto !important;
 }
 
 /* CARD LIST---------------------- */

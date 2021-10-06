@@ -59,10 +59,10 @@ const CustomerPage = () => {
         <section className="clear" style={{ marginBottom: "0" }}>
           <div className="flex-bottom-btw underline">
             <div style={{ textAlign: "left" }}>
-              <h1>Membership Program</h1>
+              <h1>Alerts</h1>
 
               <h2 className={`subtitle `} style={{ fontSize: "16px" }}>
-                <i>manage opportunities and customer points</i>
+                <i>Manage alert settings</i>
               </h2>
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
