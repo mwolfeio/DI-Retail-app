@@ -24,9 +24,10 @@ const WishlistWrapper = ({ email, shop }) => {
     console.log("clearing alerts");
     const batch = firestore.batch();
 
-    idArr.forEach((alert) =>
-      batch.delete(firestore.doc(`stores/${shop}/alerts/${alert.id}`))
-    );
+    idArr.forEach((alert) => {
+      console.log("clearing: ", alert);
+      batch.delete(firestore.doc(`stores/${shop}/alerts/${alert.id}`));
+    });
 
     await batch.commit();
     setIdArr([]);
@@ -34,16 +35,12 @@ const WishlistWrapper = ({ email, shop }) => {
   const removeAlert = async (e, i) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("deleting alert");
 
     let newArr = idArr;
     let removed = newArr.splice(i, 1);
+    console.log("removing: ", removed[0].id);
 
-    console.log("newArr", newArr);
-    console.log("removed", removed);
-
-    console.log("removing: ", `stores/${shop}/alerts/${removed.id}`);
-    await firestore.doc(`stores/${shop}/alerts/${removed.id}`).delete();
+    await firestore.doc(`stores/${shop}/alerts/${removed[0].id}`).delete();
 
     setIdArr(newArr);
   };
@@ -52,17 +49,15 @@ const WishlistWrapper = ({ email, shop }) => {
   useEffect(() => {
     if (loading || error) return;
     snapshot.forEach((doc) => {
-      if (doc.exists && !idArr.includes(doc.data())) {
+      if (doc.exists) {
         let snapshotObject = doc.data();
         snapshotObject.id = doc.id;
-        console.log("doc: ", doc);
-        console.log("snapshotObject: ", snapshotObject);
         setIdArr((idArr) => [...idArr, snapshotObject]);
       }
     });
   }, [snapshot]);
 
-  if (loading || error || idArr.length < 1)
+  if (loading || error)
     return (
       <section>
         <SectionHeader
@@ -71,7 +66,7 @@ const WishlistWrapper = ({ email, shop }) => {
           minimize={toggleOpen}
           title={`Wishlist`}
         />
-        {loading || idArr.length < 1 ? <Loader /> : <div>{error.message}</div>}
+        {loading ? <Loader /> : <div>{error.message}</div>}
       </section>
     );
 
