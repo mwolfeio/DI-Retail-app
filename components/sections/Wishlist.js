@@ -12,7 +12,7 @@ const WishlistWrapper = ({ email, shop }) => {
 
   //Firebase Queries
   const [snapshot, loading, error] = useDocumentOnce(
-    firestore.collection(`stores/${shop}/Wishlists`).where("user", "==", email)
+    firestore.collection(`stores/${shop}/wishlists`).where("user", "==", email)
   );
 
   //functions
@@ -21,11 +21,11 @@ const WishlistWrapper = ({ email, shop }) => {
     setOpen(!open);
   };
   const clearAll = async () => {
-    console.log("clearing Wishlists");
+    console.log("clearing wishlists");
     const batch = firestore.batch();
 
     idArr.forEach((Wishlist) =>
-      batch.delete(firestore.doc(`stores/${shop}/Wishlists/${Wishlist.id}`))
+      batch.delete(firestore.doc(`stores/${shop}/wishlists/${Wishlist.id}`))
     );
 
     await batch.commit();
@@ -41,7 +41,7 @@ const WishlistWrapper = ({ email, shop }) => {
 
     console.log("newArr: ", newArr);
     console.log("removed: ", removed);
-    await firestore.doc(`stores/${shop}/Wishlists/${removed.id}`).delete();
+    await firestore.doc(`stores/${shop}/wishlists/${removed.id}`).delete();
     console.log("completed successfully");
     setIdArr(newArr);
   };
@@ -84,7 +84,7 @@ const WishlistWrapper = ({ email, shop }) => {
       {open && snapshot.empty ? (
         <div className="card-container">
           <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
-            <b>No Wishlists</b>
+            <b>No wishlists</b>
           </div>
         </div>
       ) : (

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
 import { firestore } from "../../lib/firebase";
@@ -56,6 +56,7 @@ const formatter = new Intl.NumberFormat("en-US", {
 const CustomerPage = ({ productId, remove, index, shop }) => {
   const [stateId, setStateId] = useState(productId);
   // if (!active) return <div></div>;
+  console.log("stateId ", stateId);
 
   //Shopify Query
   const { loading, error, data } = useQuery(GET_PRODUCT, {
@@ -63,6 +64,7 @@ const CustomerPage = ({ productId, remove, index, shop }) => {
   });
 
   useEffect(() => {
+    console.log("running useEffect");
     setStateId(productId);
   }, [productId]);
 
