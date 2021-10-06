@@ -40,7 +40,9 @@ const Section = ({ shop }) => {
     );
 
     const resolved = await Promise.all(promises);
-    const finalArr = generateOpportunityArray(resolved[0], resolved[2]);
+    console.log("resolved: ", resolved);
+    const finalArr = generateOpportunityArray(resolved[0], resolved[1]);
+    console.log("finalArr: ", finalArr);
     setAllOportunites(resolved[0]);
     setOpportunites(finalArr);
   };
@@ -75,11 +77,12 @@ const Section = ({ shop }) => {
 
   const generateOpportunityArray = (allArr, activeArr) => {
     const finalArr = [];
-
+    console.log("allArr: ", allArr);
     allArr.forEach((item) => {
       let id = item.id;
       let index = activeArr.findIndex((x) => x.id === id);
 
+      console.log("index: ", index);
       if (index !== -1) {
         let activeItem = activeArr[index];
         activeItem.active = true;
@@ -90,6 +93,7 @@ const Section = ({ shop }) => {
       }
     });
 
+    console.log("finalArr: ", finalArr);
     return finalArr;
   };
   const UpdateOpportunityInArray = (add, item) => {
