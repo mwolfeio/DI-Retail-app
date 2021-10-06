@@ -30,6 +30,7 @@ const WishlistWrapper = ({ email, shop }) => {
     });
 
     await batch.commit();
+
     setIdArr([]);
   };
   const removeAlert = async (e, i) => {
@@ -42,6 +43,7 @@ const WishlistWrapper = ({ email, shop }) => {
 
     await firestore.doc(`stores/${shop}/alerts/${removed[0].id}`).delete();
 
+    console.log("success, now setting IdArr to: ", newArr);
     setIdArr(newArr);
   };
 
@@ -70,6 +72,7 @@ const WishlistWrapper = ({ email, shop }) => {
       </section>
     );
 
+  console.log("alerts array: ", idArr);
   return (
     <section>
       <SectionHeader
@@ -79,24 +82,25 @@ const WishlistWrapper = ({ email, shop }) => {
         title={`Back in stock alerts`}
         dropDown={[{ name: "clear List", func: clearAll }]}
       />
-      {open && snapshot.empty ? (
-        <div className="card-container">
-          <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
-            <b>No Alerts</b>
+      {open &&
+        (idArr.length < 1 ? (
+          <div className="card-container">
+            <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
+              <b>No Alerts</b>
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className="card-container ">
-          {idArr.map((alert, i) => (
-            <WishlistItem
-              prodcutId={alert.prodcutId}
-              index={i}
-              shop={shop}
-              remove={removeAlert}
-            />
-          ))}
-        </div>
-      )}
+        ) : (
+          <div className="card-container ">
+            {idArr.map((alert, i) => (
+              <WishlistItem
+                prodcutId={alert.prodcutId}
+                index={i}
+                shop={shop}
+                remove={removeAlert}
+              />
+            ))}
+          </div>
+        ))}
     </section>
   );
 };
