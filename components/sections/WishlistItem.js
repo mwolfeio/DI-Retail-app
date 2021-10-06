@@ -54,22 +54,17 @@ const formatter = new Intl.NumberFormat("en-US", {
 
 //component
 const CustomerPage = ({ productId, remove, index, shop }) => {
-  const [active, setActive] = useState(true);
-  if (!active) return <div></div>;
+  const [stateId, setStateId] = useState(productId);
+  // if (!active) return <div></div>;
 
   //Shopify Query
   const { loading, error, data } = useQuery(GET_PRODUCT, {
-    variables: { id: `gid://shopify/Product/${productId}` },
+    variables: { id: `gid://shopify/Product/${stateId}` },
   });
 
-  //delete wishlist
-  // const deleteItem = async (e) => {
-  //   e.preventDefault();
-  //   e.stopPropagation();
-  //   console.log("removing");
-  //   await firestore.doc(`stores/${shop}/${ref}/${id}`).delete();
-  //   setActive(false);
-  // };
+  useEffect(() => {
+    setStateId(productId);
+  }, [productId]);
 
   if (loading) return <Loader />;
   if (error) return <div>{error.message}</div>;
