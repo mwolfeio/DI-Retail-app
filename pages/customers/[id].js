@@ -244,7 +244,7 @@ const CustomerPage = () => {
                 disabled={data.customer.acceptsMarketing ? true : false}
                 style={{ marginLeft: "8px" }}
               >
-                Send last Merketing email
+                Resend last Merketing email
               </button>
               <button
                 className={` ${

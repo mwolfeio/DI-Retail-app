@@ -1,51 +1,43 @@
 import React from "react";
-import moment from "moment";
-import { useRouter } from "next/router";
+import { useQuery } from "react-apollo";
+import { gql } from "apollo-boost";
 
-import Link from "next/link";
 import ButtonNav from "../components/ButtonNav.js";
 import Loader from "../components/Loader.js";
-import MatafieldSection from "../components/sections/Metafields.js";
-import Orders from "../components/sections/Orders.js";
-import AddressCard from "../components/orderCards/AddressCard.js";
-import LineItems from "../components/sections/LineItems.js";
+import Opportunities from "../components/sections/Opportunities.js";
 
-var formatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
+const GET_SHOP = gql`
+  {
+    shop {
+      id
+    }
+  }
+`;
+
+const translateStore = (storeName) => {
+  let key = "id_" + storeName.replace("gid://shopify/Shop/", "");
+  let shopTranslator = {
+    id_44390383768: "design-ideas",
+    id_34498510987: "texxture-home",
+    id_56025776295: "larry-traverso",
+  };
+  return shopTranslator[key];
+};
 
 const CustomerPage = () => {
-  const { id } = useRouter().query;
-  console.log(id);
-  let globalId = `gid://shopify/Order/${id}`;
+  //Query
+  const { loading, error, data } = useQuery(GET_SHOP);
 
-  // if (loading) {
-  //   return (
-  //     <main>
-  //       <ButtonNav back="customers" />
-  //       <div
-  //         style={{ height: "100%", width: "100%" }}
-  //         className="flex-center-center"
-  //       >
-  //         <Loader />
-  //       </div>
-  //     </main>
-  //   );
-  // }
-  // if (error) {
-  //   return (
-  //     <main>
-  //       <ButtonNav back="customers" />
-  //       <div
-  //         style={{ height: "100%", width: "100%" }}
-  //         className="flex-center-center"
-  //       >
-  //         {error.message}
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  if (loading) return <Loader />;
+  if (error) return <div>{error.message}</div>;
+
+  // let data = {
+  //   shop: {
+  //     id: "graphql-admin",
+  //   },
+  // };
+
+  let shop = translateStore(data.shop.id);
 
   return (
     <main>
@@ -92,7 +84,7 @@ const CustomerPage = () => {
             </div>
           </div>
         </section>
-
+        <Opportunities shop="" />
         <section className="disabled">opportunities</section>
         <section className="disabled">Outstanding Codes</section>
         <section className="disabled">Members and points</section>

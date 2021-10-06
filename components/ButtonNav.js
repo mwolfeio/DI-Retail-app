@@ -23,9 +23,8 @@ export default function SpecialPage({ cnumb, dropDown }) {
           Back
         </button>
         <Link href="/">
-          <button>
+          <button className="icon">
             <Dash />
-            Dashboard
           </button>
         </Link>
         <div className="smll-divider" />
