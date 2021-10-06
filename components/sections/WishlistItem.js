@@ -53,8 +53,8 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 
 //component
-const CustomerPage = ({ productId, remove, index, shop }) => {
-  const [stateId, setStateId] = useState(productId);
+const CustomerPage = ({ prodcutId, remove, index, shop }) => {
+  const [stateId, setStateId] = useState(prodcutId);
   // if (!active) return <div></div>;
   console.log("stateId ", stateId);
 
@@ -64,9 +64,9 @@ const CustomerPage = ({ productId, remove, index, shop }) => {
   });
 
   useEffect(() => {
-    console.log("running useEffect for: ", productId);
-    setStateId(productId);
-  }, [productId]);
+    console.log("running useEffect for: ", prodcutId);
+    setStateId(prodcutId);
+  }, [prodcutId]);
 
   if (loading) return <Loader />;
   if (error) return <div>{error.message}</div>;
@@ -84,13 +84,13 @@ const CustomerPage = ({ productId, remove, index, shop }) => {
       : "https://i.stack.imgur.com/y9DpT.jpg";
 
   return (
-    <Link href={`/products/${productId}`}>
+    <Link href={`/products/${prodcutId}`}>
       <div className="card product-page-product-card">
         <img src={img} />
         <div>
           <h2 style={{ lineHeight: "22px" }}>{product.title}</h2>
           <p className="subtitle">
-            SKU: {variant.sku} • ID: {productId}
+            SKU: {variant.sku} • ID: {prodcutId}
           </p>
 
           <div className="flex-center-left">
@@ -112,7 +112,7 @@ const CustomerPage = ({ productId, remove, index, shop }) => {
             </a>
             <a
               target="_blank"
-              href={`${data.shop.url}/admin/products/${productId}`}
+              href={`${data.shop.url}/admin/products/${prodcutId}`}
               onClick={(e) => e.stopPropagation()}
             >
               <button

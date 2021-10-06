@@ -91,7 +91,7 @@ const WishlistWrapper = ({ email, shop }) => {
         <div className="card-container ">
           {idArr.map((alert, i) => (
             <WishlistItem
-              productId={alert.productId}
+              prodcutId={alert.prodcutId}
               index={i}
               shop={shop}
               remove={removeAlert}

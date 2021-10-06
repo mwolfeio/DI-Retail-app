@@ -91,11 +91,11 @@ const WishlistWrapper = ({ email, shop }) => {
         <div className="card-container ">
           {idArr.map((Wishlist, i) => {
             console.log("Wishlist: ", Wishlist);
-            console.log("Wishlist.productId: ", Wishlist.productId);
+            console.log("Wishlist.prodcutId: ", Wishlist.prodcutId);
             return (
               <WishlistItem
                 key={`${Wishlist.handle}-item`}
-                productId={Wishlist.productId}
+                prodcutId={Wishlist.prodcutId}
                 index={i}
                 shop={shop}
                 remove={removeWishlist}
