@@ -6,8 +6,8 @@ import MoreButton from "./MoreButton.js";
 import CustomerNumber from "./CustomerNumber.js";
 import { useRouter } from "next/router";
 
-export default function SpecialPage(props) {
-  // let link = props.back ? `/${props.back}` : "/";
+export default function SpecialPage({ cnumb, dropDown }) {
+  // let link = back ? `/${back}` : "/";
   const router = useRouter();
 
   return (
@@ -25,16 +25,12 @@ export default function SpecialPage(props) {
         </Link>
       </div>
       <div className="flex-center-right">
-        {props.cnumb && props.cnumb.text}
-        {props.cnumb && props.cnumb.display ? (
-          <CustomerNumber data={props.cnumb} />
-        ) : (
-          ""
-        )}
+        {cnumb && cnumb.text}
+        {cnumb && cnumb.display ? <CustomerNumber data={cnumb} /> : ""}
 
-        {props.dropDown && (
+        {dropDown && (
           <MoreButton>
-            {props.dropDown.map((lineItem) => (
+            {dropDown.map((lineItem) => (
               <span onClick={lineItem.func}>{lineItem.name}</span>
             ))}
           </MoreButton>

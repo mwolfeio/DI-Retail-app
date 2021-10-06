@@ -161,16 +161,16 @@ const CustomerPage = () => {
   let matafieldsArr = data.customer.metafields.edges;
   let ordersArr = data.customer.orders.edges;
   let interests = firebaseData.data() ? firebaseData.data().interests : {};
+  let points = firebaseData.data() ? firebaseData.data().points : 0;
 
   return (
     <main>
       <ButtonNav
-        back="customers"
         cnumb={{
-          display: false,
-          cnumbObj: {},
-          globalId: globalId,
-          varifiedObj: {},
+          display: true,
+          pointsInt: points,
+          email: email,
+          shop: shop,
         }}
         dropDown={[{ name: "refresh", func: refreshPage }]}
       />
@@ -182,7 +182,7 @@ const CustomerPage = () => {
                 {data.customer.firstName} {data.customer.lastName}
               </h1>
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                <i>interests</i>
+                <i>{data.customer.email}</i>
               </h2>
             </div>
             <div style={{ textAlign: "right" }} className="flex-right-column ">
@@ -192,34 +192,6 @@ const CustomerPage = () => {
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
                 <i>{data.customer.ordersCount} Orders</i>
               </h2>
-            </div>
-          </div>
-          <div className="flex-top-btw">
-            <div style={{ display: "table" }}>
-              <h3>Email: {data.customer.email}</h3>
-              <h3>Phone: {data.customer.phone}</h3>
-
-              <h3 stule>Shopify id: {id.replace("$", "")}</h3>
-            </div>
-            <div style={{ textAlign: "right" }}>
-              <h3 style={{ textAlign: "right" }}>
-                Billing Address:
-                {data.customer.defaultAddress ? (
-                  <div>
-                    {data.customer.defaultAddress.address1}
-                    <br />
-                    {data.customer.defaultAddress.address2}
-                    {data.customer.defaultAddress.address2 && <br />}
-                    {data.customer.defaultAddress.city},{" "}
-                    {data.customer.defaultAddress.provinceCode}
-                    <br />
-                    {data.customer.defaultAddress.zip},{" "}
-                    {data.customer.defaultAddress.country}
-                  </div>
-                ) : (
-                  "No sddress on file"
-                )}
-              </h3>
             </div>
           </div>
         </section>
@@ -248,3 +220,32 @@ export default CustomerPage;
 // <section className="disabled">Rewards</section>
 
 // /<h3>Jained {data.customer.lifetimeDuration} ago</h3>
+
+// <div className="flex-top-btw">
+//   <div style={{ display: "table" }}>
+//     <h3>Email: {data.customer.email}</h3>
+//     <h3>Phone: {data.customer.phone}</h3>
+//
+//     <h3 stule>Shopify id: {id.replace("$", "")}</h3>
+//   </div>
+//   <div style={{ textAlign: "right" }}>
+//     <h3 style={{ textAlign: "right" }}>
+//       Billing Address:
+//       {data.customer.defaultAddress ? (
+//         <div>
+//           {data.customer.defaultAddress.address1}
+//           <br />
+//           {data.customer.defaultAddress.address2}
+//           {data.customer.defaultAddress.address2 && <br />}
+//           {data.customer.defaultAddress.city},{" "}
+//           {data.customer.defaultAddress.provinceCode}
+//           <br />
+//           {data.customer.defaultAddress.zip},{" "}
+//           {data.customer.defaultAddress.country}
+//         </div>
+//       ) : (
+//         "No sddress on file"
+//       )}
+//     </h3>
+//   </div>
+// </div>
