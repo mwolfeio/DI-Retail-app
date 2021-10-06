@@ -31,6 +31,7 @@ const GET_CUSTOMENTS = gql`
         cursor
         node {
           id
+          acceptsMarketing
           firstName
           lastName
           email
@@ -239,13 +240,13 @@ const SpecialPage = ({}) => {
         <h1>Customers</h1>
         <p className="light">
           Search, sort and select a store customer from the list below to edit
-          things like customer number, metafields and membership points.
+          things like customer intersts, metafields and membership points.
         </p>
         <input
           onChange={debouncedChangeHandler}
           className="list-search"
           type="text"
-          placeholder="Enter customer's name, number, company or email..."
+          placeholder="Enter customer's name, address, or email..."
         />
         <ul className="large-list customer-list">
           <li className="list-header">
@@ -265,8 +266,8 @@ const SpecialPage = ({}) => {
               {direction("A", "Z")}
             </p>
 
-            <p style={{ justifySelf: "start" }}>Company</p>
-            <p>CN</p>
+            <p style={{ justifySelf: "start" }}>Address</p>
+            <p>Subscribed</p>
             <p
               onClick={() => {
                 if (sort == "ORDERS_COUNT") {

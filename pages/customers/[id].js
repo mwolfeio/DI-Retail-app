@@ -47,6 +47,7 @@ const GET_CUSTOMER = gql`
       displayName
       email
       firstName
+      marketingOptInLevel
       hasNote
       hasTimelineComment
       image {
