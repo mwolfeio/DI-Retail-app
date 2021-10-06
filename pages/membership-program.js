@@ -84,7 +84,7 @@ const CustomerPage = () => {
             </div>
           </div>
         </section>
-        <Opportunities shop="" />
+        <Opportunities shop="shop" />
         <section className="disabled">opportunities</section>
         <section className="disabled">Outstanding Codes</section>
         <section className="disabled">Members and points</section>
