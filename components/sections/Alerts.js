@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { firestore } from "../../lib/firebase";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
@@ -57,10 +57,15 @@ const WishlistWrapper = ({ email, shop }) => {
       </section>
     );
 
-  snapshot.forEach((doc) => {
-    console.log("adding Id");
-    if (doc.exists) setIdArr([...idArr, doc.data().prodcutId]);
-  });
+  useEffect(() => {
+    snapshot.forEach((doc) => {
+      console.log("adding Id");
+      if (doc.exists) {
+        let newElement = doc.data().prodcutId;
+        setIdArr((idArr) => [...idArr, newElement]);
+      }
+    });
+  }, []);
 
   console.log("new state idArr: ", idArr);
   return (
@@ -84,8 +89,8 @@ const WishlistWrapper = ({ email, shop }) => {
             <WishlistItem
               id={productId}
               index={i}
-              remove={removeAlert}
               shop={shop}
+              removeAlert={removeAlert}
             />
           ))}
         </div>
