@@ -5,14 +5,7 @@ import MetafieldInput from "./MetafieldInput.js";
 
 import MoreButton from "../MoreButton.js";
 
-// app.get("/opportunities", getOpportunityOptions);
-// app.get("/:store/opportunities", getOpportunities);
-// app.get("/:store/opportunities/:name", getOpportunity);
-// app.post("/:store/opportunities/:name", addOpportunity);
-// app.delete("/:store/opportunities/:name", removeOpportunity);
-
 const Section = ({ shop }) => {
-  console.log("from app: ", shop);
   const [open, setOpen] = useState(true);
   const [allOpportunites, setAllOportunites] = useState([]);
   const [Opportunites, setOpportunites] = useState([]);
@@ -38,7 +31,10 @@ const Section = ({ shop }) => {
     );
     const activeList = await activeListRes.json();
 
-    const finalArr = generateOpportunityArray(fullList, activeListRes);
+    console.log("fullList ", fullList);
+    console.log("activeList ", activeList);
+
+    const finalArr = generateOpportunityArray(fullList, activeList);
 
     console.log("finalArr ", finalArr);
 
@@ -77,6 +73,7 @@ const Section = ({ shop }) => {
   const generateOpportunityArray = (allArr, activeArr) => {
     const finalArr = [];
     console.log("allArr: ", allArr);
+    console.log("activeArr: ", activeArr);
     allArr.forEach((item) => {
       let id = item.id;
       let index = activeArr.findIndex((x) => x.id === id);

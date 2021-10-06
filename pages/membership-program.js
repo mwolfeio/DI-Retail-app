@@ -38,7 +38,6 @@ const CustomerPage = () => {
   // };
 
   let shop = translateStore(data.shop.id);
-  console.log("shop");
 
   return (
     <main>
