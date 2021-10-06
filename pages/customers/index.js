@@ -267,7 +267,7 @@ const SpecialPage = ({}) => {
             </p>
 
             <p style={{ justifySelf: "start" }}>Address</p>
-            <p>Subscribed</p>
+            <p>Marketing</p>
             <p
               onClick={() => {
                 if (sort == "ORDERS_COUNT") {

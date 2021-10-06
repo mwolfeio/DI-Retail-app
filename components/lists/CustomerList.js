@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { firestore } from "../../lib/firebase";
+import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import CustomersIcon from "../../media/icons/Customers.js";
 import ListInput from "./InterlistInput.js";
@@ -21,7 +23,15 @@ let animationDelayCalc = (index) => {
 };
 
 export default function SpecialPage(props) {
+  const [doc, loading, error] = useDocumentOnce(
+    firestore.collection(`stores/${props.shop}/users/${props.email}`)
+  );
+
+  let hide = loading || error ? true : false;
+  let isMember = hide || !doc.exists ? false : true;
+
   console.log("CustomerList: ", props);
+
   return (
     <Link
       href={{
@@ -39,16 +49,23 @@ export default function SpecialPage(props) {
         key={`customer-list-item-${props.index}`}
       >
         <div className="list-name" style={{ justifySelf: "start" }}>
-          <p>{props.customer.name}</p>
+          <div
+            style={{ flexWrap: "nowrap", width: "100%" }}
+            className="flex-center-left"
+          >
+            <p>{props.customer.name}</p>{" "}
+            {isMember && (
+              <div className="membership-tag flex-center-center">Member</div>
+            )}
+          </div>
           <p className="subtitle">{truncate(props.customer.email)}</p>
         </div>
 
         <div className="list-name" style={{ justifySelf: "start" }}>
-          <p>{props.customer.company}</p>
-          <p className="subtitle">{truncate(props.customer.address1)}</p>
+          <p>{truncate(props.customer.address1)}</p>
           <p className="subtitle">{truncate(props.customer.address2)}</p>
         </div>
-        <div style={{ position: "relative" }}>
+        <div className="flex-center-center">
           {props.customer.acceptsMarketing ? (
             <svg
               width="24"
@@ -81,6 +98,14 @@ export default function SpecialPage(props) {
             </svg>
           )}
         </div>
+        {isMember ? (
+          <div className="list-name flex-center-column">
+            <p>{doc.data().points}</p>
+            <p className="subtitle flex-center-column">points</p>
+          </div>
+        ) : (
+          <p className="subtitle">-</p>
+        )}
         <div className="list-name flex-center-column">
           <p>{props.customer.orders}</p>
           <p className="subtitle flex-center-column">

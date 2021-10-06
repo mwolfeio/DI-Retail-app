@@ -430,6 +430,16 @@ li p.sortable:hover {
   color: #4388f8 !important;
 }
 
+.membership-tag {
+  height: 20px;
+  margin-left: 8px;
+  flex-wrap: nowrap;
+  color: white;
+  background: #4388f8;
+  border-radius: 10px;
+  padding: 0 8px;
+}
+
 /* CARD LIST---------------------- */
 .card-container {
   background: #f4f6f8;
