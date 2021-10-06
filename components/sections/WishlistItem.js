@@ -53,7 +53,7 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 
 //component
-const CustomerPage = ({ id, removeAlert, index, shop }) => {
+const CustomerPage = ({ productId, remove, index, shop }) => {
   const [active, setActive] = useState(true);
   if (!active) return <div></div>;
 
@@ -87,13 +87,13 @@ const CustomerPage = ({ id, removeAlert, index, shop }) => {
       : "https://i.stack.imgur.com/y9DpT.jpg";
 
   return (
-    <Link href={`/products/${id}`}>
+    <Link href={`/products/${productId}`}>
       <div className="card product-page-product-card">
         <img src={img} />
         <div>
           <h2 style={{ lineHeight: "22px" }}>{product.title}</h2>
           <p className="subtitle">
-            SKU: {variant.sku} • ID: {id}
+            SKU: {variant.sku} • ID: {productId}
           </p>
 
           <div className="flex-center-left">
@@ -115,7 +115,7 @@ const CustomerPage = ({ id, removeAlert, index, shop }) => {
             </a>
             <a
               target="_blank"
-              href={`${data.shop.url}/admin/products/${id}`}
+              href={`${data.shop.url}/admin/products/${productId}`}
               onClick={(e) => e.stopPropagation()}
             >
               <button
@@ -126,7 +126,7 @@ const CustomerPage = ({ id, removeAlert, index, shop }) => {
               </button>
             </a>
             <button
-              onClick={(e) => removeAlert(e, index, id)}
+              onClick={(e) => remove(e, index)}
               style={{ height: "28px", padding: "0 12px", color: "#e4545d" }}
               className="text-button"
             >

@@ -24,14 +24,14 @@ const WishlistWrapper = ({ email, shop }) => {
     console.log("clearing alerts");
     const batch = firestore.batch();
 
-    idArr.forEach((alertId) =>
-      batch.delete(firestore.doc(`stores/${shop}/alerts/${alertId}`))
+    idArr.forEach((alert) =>
+      batch.delete(firestore.doc(`stores/${shop}/alerts/${alert.id}`))
     );
 
     await batch.commit();
     setIdArr([]);
   };
-  const removeAlert = async (e, i, id) => {
+  const removeAlert = async (e, i) => {
     e.preventDefault();
     e.stopPropagation();
     console.log("deleting alert");
@@ -40,9 +40,22 @@ const WishlistWrapper = ({ email, shop }) => {
     let removed = newArr.splice(i, 1);
 
     console.log("newArr: ", newArr);
-    await firestore.doc(`stores/${shop}/alerts/${id}`).delete();
+    console.log("removed: ", removed);
+    await firestore.doc(`stores/${shop}/alerts/${removed.id}`).delete();
+    console.log("completed successfully");
     setIdArr(newArr);
   };
+
+  //useEffect
+  useEffect(() => {
+    if (snapshot.empty) return;
+    snapshot.forEach((doc) => {
+      console.log("adding object");
+      if (doc.exists) setIdArr((idArr) => [...idArr, doc.data()]);
+      // if (doc.exists && !idArr.includes(doc.data().prodcutId))
+      //   setIdArr((idArr) => [...idArr, doc.data().prodcutId]);
+    });
+  }, [snapshot]);
 
   if (loading || error)
     return (
@@ -56,12 +69,6 @@ const WishlistWrapper = ({ email, shop }) => {
         {loading ? <Loader /> : <div>{error.message}</div>}
       </section>
     );
-
-  snapshot.forEach((doc) => {
-    console.log("adding Id");
-    if (doc.exists && !idArr.includes(doc.data().prodcutId))
-      setIdArr((idArr) => [...idArr, doc.data().prodcutId]);
-  });
 
   console.log("new state idArr: ", idArr);
   return (
@@ -81,12 +88,12 @@ const WishlistWrapper = ({ email, shop }) => {
         </div>
       ) : (
         <div className="card-container ">
-          {idArr.map((productId, i) => (
+          {idArr.map((alert, i) => (
             <WishlistItem
-              id={productId}
+              productId={alert.productId}
               index={i}
               shop={shop}
-              removeAlert={removeAlert}
+              remove={removeAlert}
             />
           ))}
         </div>

@@ -12,7 +12,7 @@ const WishlistWrapper = ({ email, shop }) => {
 
   //Firebase Queries
   const [snapshot, loading, error] = useDocumentOnce(
-    firestore.collection(`stores/${shop}/alerts`).where("user", "==", email)
+    firestore.collection(`stores/${shop}/Wishlists`).where("user", "==", email)
   );
 
   //functions
@@ -21,28 +21,41 @@ const WishlistWrapper = ({ email, shop }) => {
     setOpen(!open);
   };
   const clearAll = async () => {
-    console.log("clearing wishlists");
+    console.log("clearing Wishlists");
     const batch = firestore.batch();
 
-    idArr.forEach((alertId) =>
-      batch.delete(firestore.doc(`stores/${shop}/wishlists/${alertId}`))
+    idArr.forEach((Wishlist) =>
+      batch.delete(firestore.doc(`stores/${shop}/Wishlists/${Wishlist.id}`))
     );
 
     await batch.commit();
     setIdArr([]);
   };
-  const removeAlert = async (e, i, id) => {
+  const removeWishlist = async (e, i) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("deleting wishlist element");
+    console.log("deleting Wishlist");
 
     let newArr = idArr;
     let removed = newArr.splice(i, 1);
 
     console.log("newArr: ", newArr);
-    await firestore.doc(`stores/${shop}/wishlists/${id}`).delete();
+    console.log("removed: ", removed);
+    await firestore.doc(`stores/${shop}/Wishlists/${removed.id}`).delete();
+    console.log("completed successfully");
     setIdArr(newArr);
   };
+
+  //useEffect
+  useEffect(() => {
+    if (snapshot.empty) return;
+    snapshot.forEach((doc) => {
+      console.log("adding object");
+      if (doc.exists) setIdArr((idArr) => [...idArr, doc.data()]);
+      // if (doc.exists && !idArr.includes(doc.data().prodcutId))
+      //   setIdArr((idArr) => [...idArr, doc.data().prodcutId]);
+    });
+  }, [snapshot]);
 
   if (loading || error)
     return (
@@ -57,12 +70,6 @@ const WishlistWrapper = ({ email, shop }) => {
       </section>
     );
 
-  snapshot.forEach((doc) => {
-    console.log("adding Id");
-    if (doc.exists && !idArr.includes(doc.data().prodcutId))
-      setIdArr((idArr) => [...idArr, doc.data().prodcutId]);
-  });
-
   console.log("new state idArr: ", idArr);
   return (
     <section>
@@ -70,23 +77,23 @@ const WishlistWrapper = ({ email, shop }) => {
         add={{ display: false }}
         status={open}
         minimize={toggleOpen}
-        title={`Wishlist`}
+        title={`Wishliss`}
         dropDown={[{ name: "clear List", func: clearAll }]}
       />
       {open && snapshot.empty ? (
         <div className="card-container">
           <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
-            <b>Wishlist is empty</b>
+            <b>No Wishlists</b>
           </div>
         </div>
       ) : (
         <div className="card-container ">
-          {idArr.map((productId, i) => (
+          {idArr.map((Wishlist, i) => (
             <WishlistItem
-              id={productId}
+              productId={Wishlist.productId}
               index={i}
               shop={shop}
-              removeAlert={removeAlert}
+              remove={removeWishlist}
             />
           ))}
         </div>
