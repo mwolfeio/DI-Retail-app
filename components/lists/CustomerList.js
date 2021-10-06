@@ -29,14 +29,14 @@ export default function SpecialPage(props) {
 
   console.log("route: ", `stores/${props.shop}/users/${props.customer.email}`);
 
-  let hide = loading || error ? true : false;
-  let isMember = hide || !doc.exists ? false : true;
+  console.log("route: ", `stores/${props.shop}/users/${props.customer.email}`);
+  let isMember = !loading && !error && doc.exists;
+  if (loading) console.log("loading...");
   if (error) console.log(error);
-
-  console.log("CustomerList: ", props);
-  console.log("Customer doc: ", doc);
-  console.log("Customer hide ", props);
-  console.log("Customer isMember ", isMember);
+  if (!loading && !error) {
+    console.log("Customer doc", doc);
+    console.log("Customer isMember ", isMember);
+  }
 
   return (
     <Link

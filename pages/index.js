@@ -41,14 +41,14 @@ let linkMap = [
   },
   {
     title: "Membership Program",
-    link: "customers",
+    link: "membership-program",
     img: Membership,
     description: "Add rules and monitor membership points.",
     active: true,
   },
   {
     title: "Alert Settings",
-    link: "customers",
+    link: "alerts",
     img: Alerts,
     description: "Adjust alert cadence and triggers.",
     active: true,
@@ -76,7 +76,7 @@ const Index = () => {
 
         <p className="light">
           <span>
-            Welcome to the DI Admin app. From here you can control any of the
+            Welcome to the Admin app. From here you can control any of the
             custom features developed outside of Shopify. If you have any
             questions, feature requests or issues please contact{" "}
             <a href="mailto:matt@mwolfe.io">customer support</a>.

@@ -180,9 +180,16 @@ const CustomerPage = () => {
         <section className="clear">
           <div className="flex-bottom-btw underline">
             <div style={{ textAlign: "left" }}>
-              <h1>
-                {data.customer.firstName} {data.customer.lastName}
-              </h1>
+              <div className="flex-center-left">
+                <h1 style={{ marginRight: "8px" }}>
+                  {data.customer.firstName} {data.customer.lastName}
+                </h1>
+                {isMember && (
+                  <div className="tinny-tag active-tiny-tab flex-center-center">
+                    Member
+                  </div>
+                )}
+              </div>
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
                 <i>{data.customer.email}</i>
               </h2>
