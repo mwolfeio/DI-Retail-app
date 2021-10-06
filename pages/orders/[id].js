@@ -190,7 +190,7 @@ const CustomerPage = () => {
 
   let tag = (
     <h1 style={{ marginBottom: 0, color: isDropShipping ? "#4388f8" : "" }}>
-      {isDropShipping ? "Drop Shipping" : "Wholesale Order"}
+      "Drop Shipping"
     </h1>
   );
 

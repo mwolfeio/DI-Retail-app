@@ -24,7 +24,7 @@ let animationDelayCalc = (index) => {
 
 export default function SpecialPage(props) {
   const [doc, loading, error] = useDocumentOnce(
-    firestore.collection(`stores/${props.shop}/users/${props.email}`)
+    firestore.doc(`stores/${props.shop}/users/${props.email}`)
   );
 
   let hide = loading || error ? true : false;
