@@ -53,7 +53,7 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 
 //component
-const CustomerPage = ({ id, index, shop, dbRef }) => {
+const CustomerPage = ({ id, remove, index, shop }) => {
   const [active, setActive] = useState(true);
   if (!active) return <div></div>;
 
@@ -63,13 +63,13 @@ const CustomerPage = ({ id, index, shop, dbRef }) => {
   });
 
   //delete wishlist
-  const deleteItem = async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log("removing");
-    await firestore.doc(`stores/${shop}/${ref}/${id}`).delete();
-    setActive(false);
-  };
+  // const deleteItem = async (e) => {
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   console.log("removing");
+  //   await firestore.doc(`stores/${shop}/${ref}/${id}`).delete();
+  //   setActive(false);
+  // };
 
   if (loading) return <Loader />;
   if (error) return <div>{error.message}</div>;
@@ -96,11 +96,12 @@ const CustomerPage = ({ id, index, shop, dbRef }) => {
             SKU: {variant.sku} • ID: {id}
           </p>
 
-          <div
-            className="flex-center-left"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <a target="_blank" href={product.onlineStoreUrl}>
+          <div className="flex-center-left">
+            <a
+              target="_blank"
+              href={product.onlineStoreUrl}
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 style={{
                   height: "28px",
@@ -112,7 +113,11 @@ const CustomerPage = ({ id, index, shop, dbRef }) => {
                 View
               </button>
             </a>
-            <a target="_blank" href={`${data.shop.url}/admin/products/${id}`}>
+            <a
+              target="_blank"
+              href={`${data.shop.url}/admin/products/${id}`}
+              onClick={(e) => e.stopPropagation()}
+            >
               <button
                 style={{ height: "28px", padding: "0 12px" }}
                 className="text-button"
@@ -121,7 +126,7 @@ const CustomerPage = ({ id, index, shop, dbRef }) => {
               </button>
             </a>
             <button
-              onClick={(e) => deleteItem(e)}
+              onClick={(e) => deleteAlert(e, index)}
               style={{ height: "28px", padding: "0 12px", color: "#e4545d" }}
               className="text-button"
             >

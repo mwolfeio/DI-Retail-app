@@ -35,7 +35,7 @@ export default function SpecialPage(props) {
         {props.dropDown && (
           <MoreButton>
             {props.dropDown.map((lineItem) => (
-              <span onClick={props.dropDown.func}>{props.dropDown.name}</span>
+              <span onClick={lineItem.func}>{lineItem.name}</span>
             ))}
           </MoreButton>
         )}

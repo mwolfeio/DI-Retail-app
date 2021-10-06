@@ -6,16 +6,60 @@ import SectionHeader from "./SectionHeader.js";
 import WishlistItem from "./WishlistItem";
 import Loader from "../Loader.js";
 
-//Clear wishlist // TODO:
-
 const WishlistWrapper = ({ email, shop }) => {
+  const [idArr, setIdArr] = useState([]);
   const [open, setOpen] = useState(true);
+
+  //Firebase Queries
+  const [snapshot, loading, error] = useDocumentOnce(
+    firestore.collection(`stores/${shop}/alerts`).where("user", "==", email)
+  );
 
   //functions
   const toggleOpen = () => {
     console.log("clicked");
     setOpen(!open);
   };
+  const clearAll = async () => {
+    console.log("clearing alerts");
+    const batch = firestore.batch();
+
+    idArr.forEach((alertId) =>
+      batch.delete(firestore.doc(`stores/${shop}/alerts/${alertId}`))
+    );
+
+    await batch.commit();
+    setIdArr([]);
+  };
+  const deleteAlert = async (e, i) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log("deleting alert");
+
+    let newArr = idArr;
+    let removed = newArr.splice(i, 1);
+
+    console.log("newArr: ", newArr);
+    await firestore.doc(`stores/${shop}/alerts/${id}`).delete();
+    setIdArr(newArr);
+  };
+
+  if (loading || error)
+    return (
+      <section>
+        <SectionHeader
+          add={{ display: false }}
+          status={open}
+          minimize={toggleOpen}
+          title={`Back in stock alerts`}
+        />
+        {loading ? <Loader /> : <div>{error.message}</div>}
+      </section>
+    );
+
+  snapshot.forEach((doc) => {
+    if (doc.exists) setIdArr([...idArr, doc.data().prodcutId]);
+  });
 
   return (
     <section>
@@ -23,42 +67,28 @@ const WishlistWrapper = ({ email, shop }) => {
         add={{ display: false }}
         status={open}
         minimize={toggleOpen}
-        title={`Alerts`}
+        title={`Back in stock alerts`}
+        dropDown={[{ name: "clear List", func: clearAll }]}
       />
-      {open && <Wishlist email={email} shop={shop} />}
+      {open && snapshot.empty ? (
+        <div className="card-container">
+          <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
+            <b>No Alerts</b>
+          </div>
+        </div>
+      ) : (
+        <div className="card-container ">
+          {idArr.map((productId, i) => (
+            <WishlistItem
+              id={productId}
+              remove={deleteAlert}
+              index={i}
+              shop={shop}
+            />
+          ))}
+        </div>
+      )}
     </section>
-  );
-};
-
-const Wishlist = ({ email, shop }) => {
-  //Firebase Query
-  const [snapshot, loading, error] = useDocumentOnce(
-    firestore.collection(`stores/${shop}/alerts`).where("user", "==", email)
-  );
-
-  if (loading) return <Loader />;
-  if (error) return <div>{error.message}</div>;
-
-  let idArr = [];
-  console.log("snapshot: ", snapshot);
-  snapshot.forEach((doc) => {
-    console.log("doc.data(): ", doc.data());
-    if (doc.exists) idArr.push(doc.data().prodcutId);
-  });
-
-  console.log("idArr: ", idArr);
-  return snapshot.empty ? (
-    <div className="card-container">
-      <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
-        <b>No Alerts</b>
-      </div>
-    </div>
-  ) : (
-    <div className="card-container ">
-      {idArr.map((productId, i) => (
-        <WishlistItem id={productId} dbRef="wishlists" index={i} shop={shop} />
-      ))}
-    </div>
   );
 };
 
