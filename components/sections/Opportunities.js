@@ -12,6 +12,7 @@ import MoreButton from "../MoreButton.js";
 // app.delete("/:store/opportunities/:name", removeOpportunity);
 
 const Section = ({ shop }) => {
+  console.log("from app: ", shop);
   const [open, setOpen] = useState(true);
   const [allOpportunites, setAllOportunites] = useState([]);
   const [Opportunites, setOpportunites] = useState([]);

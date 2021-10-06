@@ -38,6 +38,7 @@ const CustomerPage = () => {
   // };
 
   let shop = translateStore(data.shop.id);
+  console.log("shop");
 
   return (
     <main>
@@ -84,7 +85,7 @@ const CustomerPage = () => {
             </div>
           </div>
         </section>
-        <Opportunities shop="shop" />
+        <Opportunities shop={shop} />
         <section className="disabled">opportunities</section>
         <section className="disabled">Outstanding Codes</section>
         <section className="disabled">Members and points</section>
