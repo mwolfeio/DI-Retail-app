@@ -8,8 +8,6 @@ import { gql } from "apollo-boost";
 import Loader from "./Loader.js";
 
 const Section = ({ pointsInt, email, shop }) => {
-  console.log("customer number: ", props);
-
   //State
   const [points, setPoints] = useState(pointsInt);
   const [loading, setLoading] = useState(false);
