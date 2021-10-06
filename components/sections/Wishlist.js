@@ -58,7 +58,7 @@ const WishlistWrapper = ({ email, shop }) => {
     });
   }, [snapshot]);
 
-  if (loading || error)
+  if (loading || error || idArr.length < 1)
     return (
       <section>
         <SectionHeader
@@ -67,7 +67,7 @@ const WishlistWrapper = ({ email, shop }) => {
           minimize={toggleOpen}
           title={`Wishlist`}
         />
-        {loading ? <Loader /> : <div>{error.message}</div>}
+        {loading || idArr.length < 1 ? <Loader /> : <div>{error.message}</div>}
       </section>
     );
 
@@ -89,14 +89,17 @@ const WishlistWrapper = ({ email, shop }) => {
         </div>
       ) : (
         <div className="card-container ">
-          {idArr.map((Wishlist, i) => (
-            <WishlistItem
-              productId={Wishlist.productId}
-              index={i}
-              shop={shop}
-              remove={removeWishlist}
-            />
-          ))}
+          {idArr.map((Wishlist, i) => {
+            console.log("Wishlist: ", Wishlist);
+            return (
+              <WishlistItem
+                productId={Wishlist.productId}
+                index={i}
+                shop={shop}
+                remove={removeWishlist}
+              />
+            );
+          })}
         </div>
       )}
     </section>

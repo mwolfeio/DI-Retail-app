@@ -58,16 +58,16 @@ const WishlistWrapper = ({ email, shop }) => {
     });
   }, [snapshot]);
 
-  if (loading || error)
+  if (loading || error || idArr.length < 1)
     return (
       <section>
         <SectionHeader
           add={{ display: false }}
           status={open}
           minimize={toggleOpen}
-          title={`Back in stock alerts`}
+          title={`Wishlist`}
         />
-        {loading ? <Loader /> : <div>{error.message}</div>}
+        {loading || idArr.length < 1 ? <Loader /> : <div>{error.message}</div>}
       </section>
     );
 

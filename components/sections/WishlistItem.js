@@ -64,7 +64,7 @@ const CustomerPage = ({ productId, remove, index, shop }) => {
   });
 
   useEffect(() => {
-    console.log("running useEffect");
+    console.log("running useEffect for: ", productId);
     setStateId(productId);
   }, [productId]);
 
