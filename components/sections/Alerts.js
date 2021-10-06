@@ -57,15 +57,11 @@ const WishlistWrapper = ({ email, shop }) => {
       </section>
     );
 
-  useEffect(() => {
-    snapshot.forEach((doc) => {
-      console.log("adding Id");
-      if (doc.exists) {
-        let newElement = doc.data().prodcutId;
-        setIdArr((idArr) => [...idArr, newElement]);
-      }
-    });
-  }, []);
+  snapshot.forEach((doc) => {
+    console.log("adding Id");
+    if (doc.exists && !idArr.includes(doc.data().prodcutId))
+      setIdArr((idArr) => [...idArr, doc.data().prodcutId]);
+  });
 
   console.log("new state idArr: ", idArr);
   return (
