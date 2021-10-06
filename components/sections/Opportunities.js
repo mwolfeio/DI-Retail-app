@@ -132,6 +132,7 @@ const Section = ({ shop }) => {
           ) : (
             <div className="card-container">
               {Opportunites.map((opp) => {
+                let parser = new DOMParser();
                 let icon = parser.parseFromString(opp.icon, "image/svg+xml");
 
                 return (
