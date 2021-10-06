@@ -24,26 +24,25 @@ const Section = ({ shop }) => {
 
   //functions
   const fetchOpportunities = async () => {
-    const promises = [];
+    console.log("running fetchOpportunities");
+
     //get admin opportunities
-    promises.push(
-      fetch(
-        `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/opportunities`
-      )
+    const fullListRes = await fetch(
+      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/opportunities`
     );
+    const fullList = await fullListRes.json();
 
     // get store opportunities
-    promises.push(
-      fetch(
-        `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/opportunities`
-      )
+    const activeListRes = await fetch(
+      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/opportunities`
     );
+    const activeList = await activeListRes.json();
 
-    const resolved = await Promise.all(promises);
-    console.log("resolved: ", resolved);
-    const finalArr = generateOpportunityArray(resolved[0], resolved[1]);
-    console.log("finalArr: ", finalArr);
-    setAllOportunites(resolved[0]);
+    const finalArr = generateOpportunityArray(fullList, activeListRes);
+
+    console.log("finalArr ", finalArr);
+
+    setAllOportunites(fullList);
     setOpportunites(finalArr);
   };
   const addOpportunity = async (id, data) => {
