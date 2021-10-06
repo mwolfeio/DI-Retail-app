@@ -59,7 +59,7 @@ export default function SpecialPage(props) {
             style={{ flexWrap: "nowrap", width: "100%" }}
             className="flex-center-left"
           >
-            <p>{props.customer.name}</p>
+            <p style={{ whiteSpace: "noWrap" }}>{props.customer.name}</p>
             {isMember && (
               <div className="membership-tag flex-center-center">Member</div>
             )}

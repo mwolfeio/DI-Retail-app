@@ -196,6 +196,7 @@ button.primary {
   background: #4388f8;
   color: #ffffff;
 }
+
 button.submit-button {
   background: #54e4a6;
   color: white;
@@ -211,6 +212,13 @@ button.icon {
 
 button.icon {
   padding: 9.5px;
+}
+
+button.disabled {
+  opacity: 0.6;
+}
+button.disabled:hover {
+  box-shadow: none;
 }
 
 /* INPUTS--------------------- */
@@ -438,6 +446,8 @@ li p.sortable:hover {
   background: #4388f8;
   border-radius: 10px;
   padding: 0 8px;
+  font-size: 10px;
+  width: auto;
 }
 
 /* CARD LIST---------------------- */
@@ -526,6 +536,12 @@ ul.product-list li img {
 }
 .cus-numb-edit:hover svg {
   opacity: 1;
+}
+.customer-header-subsection {
+  margin-top: 8px;
+}
+.customer-header-subsection button {
+  height: 36px;
 }
 
 /* CUSTOMER PAGE WRAPPER--------------- */

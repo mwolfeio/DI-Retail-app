@@ -2,9 +2,6 @@ import { useState, useEffect } from "react";
 import { firestore } from "../lib/firebase";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
-import { useMutation } from "react-apollo";
-import { gql } from "apollo-boost";
-
 import Loader from "./Loader.js";
 
 const Section = ({ data }) => {
