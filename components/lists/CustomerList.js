@@ -13,7 +13,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 
 let truncate = (str) => {
   let length = str.length;
-  if (length > 28) return `${str.substring(0, 25)}...`;
+  if (length > 26) return `${str.substring(0, 23)}...`;
   else return str;
 };
 
@@ -24,10 +24,10 @@ let animationDelayCalc = (index) => {
 
 export default function SpecialPage(props) {
   const [doc, loading, error] = useDocumentOnce(
-    firestore.doc(`stores/${props.shop}/users/${props.email}`)
+    firestore.doc(`stores/${props.shop}/users/${props.customer.email}`)
   );
 
-  console.log("route: ", `stores/${props.shop}/users/${props.email}`);
+  console.log("route: ", `stores/${props.shop}/users/${props.customer.email}`);
 
   let hide = loading || error ? true : false;
   let isMember = hide || !doc.exists ? false : true;
@@ -59,7 +59,7 @@ export default function SpecialPage(props) {
             style={{ flexWrap: "nowrap", width: "100%" }}
             className="flex-center-left"
           >
-            <p>{props.customer.name}</p>{" "}
+            <p>{props.customer.name}</p>
             {isMember && (
               <div className="membership-tag flex-center-center">Member</div>
             )}
@@ -105,10 +105,13 @@ export default function SpecialPage(props) {
           )}
         </div>
         {isMember ? (
-          <div className="list-name flex-center-column">
-            <p>{doc.data().points}</p>
-            <p className="subtitle flex-center-column">points</p>
-          </div>
+          <ListInput
+            data={{
+              pointsInt: doc.data().points,
+              email: props.customer.email,
+              shop: props.shop,
+            }}
+          />
         ) : (
           <p className="subtitle">-</p>
         )}

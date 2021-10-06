@@ -1,137 +1,48 @@
 import { useState, useEffect } from "react";
-import { useMutation } from "react-apollo";
-import { gql } from "apollo-boost";
+import { firestore } from "../../lib/firebase";
+import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import Loader from "../Loader.js";
 
-//graphql
-const UPDATE_CUSTOEMR_NUMBER = gql`
-  mutation customerUpdate($input: CustomerInput!) {
-    customerUpdate(input: $input) {
-      customer {
-        metafield(namespace: "Customer Number", key: "cus_no") {
-          id
-          namespace
-          key
-          value
-        }
-      }
-      userErrors {
-        field
-        message
-      }
-    }
-  }
-`;
-
-const Section = (props) => {
+const Section = ({ data }) => {
+  const { pointsInt, email, shop } = data;
+  console.log("pointsInt: ", pointsInt);
   //State
-  const [varfied, setVarified] = useState(
-    props.varfiedValue == "true" ? true : false
-  );
-  const [customerNumber, setCustomerNumber] = useState(
-    props.cnumb ? `#${props.cnumb}` : ""
-  );
-  const [oldCustomerNumber, setOldCustomerNumber] = useState(
-    props.cnumb ? `#${props.cnumb}` : ""
-  );
-
-  //Query
-  const [customerUpdate, { loading, error, data }] = useMutation(
-    UPDATE_CUSTOEMR_NUMBER
-  );
+  const [points, setPoints] = useState(pointsInt);
+  const [loading, setLoading] = useState(false);
+  const [oldPoints, setOldPoints] = useState(pointsInt);
 
   //Handle input
   const changeHandler = (e) => {
-    console.log(`#${e.target.value.replace("#", "")}`);
-    setCustomerNumber(`#${e.target.value.replace("#", "")}`);
+    setPoints(e.target.value);
   };
   const erase = (e) => {
     e.preventDefault();
-    setCustomerNumber(oldCustomerNumber);
+    setPoints(oldPoints);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("submitting: ", points);
+    setLoading(true);
 
-    let payload = props.fieldId
-      ? {
-          variables: {
-            input: {
-              id: props.cusId,
-              metafields: {
-                id: props.fieldId,
-                value: customerNumber.replace("#", ""),
-                valueType: "STRING",
-              },
-            },
-          },
-        }
-      : {
-          variables: {
-            input: {
-              id: props.cusId,
-              metafields: {
-                namespace: "Customer Number",
-                key: "cus_no",
-                value: customerNumber.replace("#", ""),
-                valueType: "STRING",
-              },
-            },
-          },
-        };
+    await firestore
+      .doc(`stores/${shop}/users/${email}`)
+      .update({ points: points });
 
-    customerUpdate(payload);
-    setVarified(true);
-    setOldCustomerNumber(customerNumber);
+    setOldPoints(points);
+    setLoading(false);
   };
   const preventClickthrough = (e) => {
     e.stopPropagation();
   };
-  const submitVarification = (e) => {
-    e.preventDefault();
-
-    let payload = props.varifyId
-      ? {
-          variables: {
-            input: {
-              id: props.cusId,
-              metafields: {
-                id: props.varifyId,
-                value: "true",
-                valueType: "BOOLEAN",
-              },
-            },
-          },
-        }
-      : {
-          variables: {
-            input: {
-              id: props.cusId,
-              metafields: {
-                namespace: "CN Varified",
-                key: "cus_var",
-                value: "true",
-                valueType: "BOOLEAN",
-              },
-            },
-          },
-        };
-
-    customerUpdate(payload);
-    setVarified(true);
-  };
 
   useEffect(() => {
-    setCustomerNumber(props.cnumb ? `#${props.cnumb}` : "");
-    setOldCustomerNumber(props.cnumb ? `#${props.cnumb}` : "");
-  }, [props.cnumb]);
-
-  useEffect(() => {
-    setVarified(props.varfiedValue == "true" ? true : false);
-  }, [props.varfiedValue]);
+    console.log("running useEffect for: ", pointsInt);
+    setPoints(pointsInt);
+  }, [pointsInt]);
 
   //return component
-  let needsSaving = customerNumber !== oldCustomerNumber;
+  let needsSaving = points !== oldPoints;
   return (
     <div
       class="list-input-wrapper "
@@ -150,7 +61,7 @@ const Section = (props) => {
           onChange={changeHandler}
           type="text"
           placeholder="Empty"
-          value={customerNumber}
+          value={points}
           style={{ padding: 0 }}
         />
         {needsSaving ? (
@@ -170,16 +81,6 @@ const Section = (props) => {
           ""
         )}
       </form>
-      {varfied || needsSaving || !customerNumber ? (
-        ""
-      ) : (
-        <div
-          onClick={submitVarification}
-          className="tinny-tag active-tiny-tab flex-center-center varfied-list-tag"
-        >
-          Verify
-        </div>
-      )}
     </div>
   );
 };
