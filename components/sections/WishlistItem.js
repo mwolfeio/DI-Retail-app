@@ -59,7 +59,7 @@ const CustomerPage = ({ productId, remove, index, shop }) => {
 
   //Shopify Query
   const { loading, error, data } = useQuery(GET_PRODUCT, {
-    variables: { id: `gid://shopify/Product/${id}` },
+    variables: { id: `gid://shopify/Product/${productId}` },
   });
 
   //delete wishlist
