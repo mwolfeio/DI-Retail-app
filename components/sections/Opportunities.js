@@ -132,12 +132,16 @@ const Section = ({ shop }) => {
           ) : (
             <div className="card-container">
               {Opportunites.map((opp) => {
-                let parser = new DOMParser();
-                let icon = parser.parseFromString(opp.icon, "image/svg+xml");
+                // let parser = new DOMParser();
+                // let icon = parser.parseFromString(opp.icon, "image/svg+xml");
 
                 return (
                   <div className="card">
-                    {icon}
+                    <img
+                      src={`data:image/svg+xml;utf8,${encodeURIComponent(
+                        opp.icon
+                      )}1`}
+                    />
                     <h3>{opp.name}</h3>
                     <p>{opp.description}</p>
                     <p>{opp.value}</p>
