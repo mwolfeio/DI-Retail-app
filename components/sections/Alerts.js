@@ -39,8 +39,7 @@ const WishlistWrapper = ({ email, shop }) => {
     let newArr = idArr;
     let removed = newArr.splice(i, 1);
 
-    console.log("newArr: ", newArr);
-    console.log("removed: ", removed);
+    console.log("removing: ", `stores/${shop}/alerts/${removed.id}`);
     await firestore.doc(`stores/${shop}/alerts/${removed.id}`).delete();
     console.log("completed successfully");
     setIdArr(newArr);
@@ -52,7 +51,9 @@ const WishlistWrapper = ({ email, shop }) => {
     snapshot.forEach((doc) => {
       console.log("adding object");
       if (doc.exists && !idArr.includes(doc.data()))
-        setIdArr((idArr) => [...idArr, doc.data()]);
+        let snapshotObject = doc.data()
+        snapshotObject.id = doc.id
+        setIdArr((idArr) => [...idArr, snapshotObject]);
       // if (doc.exists && !idArr.includes(doc.data().prodcutId))
       //   setIdArr((idArr) => [...idArr, doc.data().prodcutId]);
     });

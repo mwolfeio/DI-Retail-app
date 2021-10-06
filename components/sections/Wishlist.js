@@ -52,7 +52,9 @@ const WishlistWrapper = ({ email, shop }) => {
     snapshot.forEach((doc) => {
       console.log("adding object");
       if (doc.exists && !idArr.includes(doc.data()))
-        setIdArr((idArr) => [...idArr, doc.data()]);
+        let snapshotObject = doc.data()
+        snapshotObject.id = doc.id
+        setIdArr((idArr) => [...idArr, snapshotObject]);
       // if (doc.exists && !idArr.includes(doc.data().prodcutId))
       //   setIdArr((idArr) => [...idArr, doc.data().prodcutId]);
     });
