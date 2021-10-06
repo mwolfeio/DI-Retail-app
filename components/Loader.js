@@ -7,7 +7,7 @@ const Loader = (props) => {
   return (
     <div
       className="flex-center-center"
-      style={{ margin: "20px 0", width: "100%" }}
+      style={{ margin: props.size ? "0" : "20px 0", width: "100%" }}
     >
       <div className="lds-ripple" style={{ height: height, width: width }}>
         <div></div>

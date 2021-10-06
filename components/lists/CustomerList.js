@@ -27,10 +27,16 @@ export default function SpecialPage(props) {
     firestore.doc(`stores/${props.shop}/users/${props.email}`)
   );
 
+  console.log("route: ", `stores/${props.shop}/users/${props.email}`);
+
   let hide = loading || error ? true : false;
   let isMember = hide || !doc.exists ? false : true;
+  if (error) console.log(error);
 
   console.log("CustomerList: ", props);
+  console.log("Customer doc: ", doc);
+  console.log("Customer hide ", props);
+  console.log("Customer isMember ", isMember);
 
   return (
     <Link
