@@ -39,10 +39,8 @@ const WishlistWrapper = ({ email, shop }) => {
     let newArr = idArr;
     let removed = newArr.splice(i, 1);
 
-    console.log("newArr: ", newArr);
-    console.log("removed: ", removed);
     await firestore.doc(`stores/${shop}/wishlists/${removed.id}`).delete();
-    console.log("completed successfully");
+
     setIdArr(newArr);
   };
 
@@ -50,13 +48,11 @@ const WishlistWrapper = ({ email, shop }) => {
   useEffect(() => {
     if (loading || error) return;
     snapshot.forEach((doc) => {
-      console.log("adding object");
-      if (doc.exists && !idArr.includes(doc.data()))
-        let snapshotObject = doc.data()
-        snapshotObject.id = doc.id
+      if (doc.exists && !idArr.includes(doc.data())) {
+        let snapshotObject = doc.data();
+        snapshotObject.id = doc.id;
         setIdArr((idArr) => [...idArr, snapshotObject]);
-      // if (doc.exists && !idArr.includes(doc.data().prodcutId))
-      //   setIdArr((idArr) => [...idArr, doc.data().prodcutId]);
+      }
     });
   }, [snapshot]);
 
@@ -73,7 +69,6 @@ const WishlistWrapper = ({ email, shop }) => {
       </section>
     );
 
-  console.log("new state idArr: ", idArr);
   return (
     <section>
       <SectionHeader
@@ -91,19 +86,15 @@ const WishlistWrapper = ({ email, shop }) => {
         </div>
       ) : (
         <div className="card-container ">
-          {idArr.map((Wishlist, i) => {
-            console.log("Wishlist: ", Wishlist);
-            console.log("Wishlist.prodcutId: ", Wishlist.prodcutId);
-            return (
-              <WishlistItem
-                key={`${Wishlist.handle}-item`}
-                prodcutId={Wishlist.prodcutId}
-                index={i}
-                shop={shop}
-                remove={removeWishlist}
-              />
-            );
-          })}
+          {idArr.map((Wishlist, i) => (
+            <WishlistItem
+              key={`${Wishlist.handle}-item`}
+              prodcutId={Wishlist.prodcutId}
+              index={i}
+              shop={shop}
+              remove={removeWishlist}
+            />
+          ))}
         </div>
       )}
     </section>

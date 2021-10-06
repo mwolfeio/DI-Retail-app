@@ -17,7 +17,7 @@ const Section = (props) => {
         {props.dropDown && (
           <MoreButton>
             {props.dropDown.map((lineItem) => (
-              <span onClick={() => props.dropDown.func()}>Delete</span>
+              <span onClick={lineItem.func}>{lineItem.name}</span>
             ))}
           </MoreButton>
         )}

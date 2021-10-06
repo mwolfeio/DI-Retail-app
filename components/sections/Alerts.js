@@ -41,7 +41,7 @@ const WishlistWrapper = ({ email, shop }) => {
 
     console.log("removing: ", `stores/${shop}/alerts/${removed.id}`);
     await firestore.doc(`stores/${shop}/alerts/${removed.id}`).delete();
-    console.log("completed successfully");
+
     setIdArr(newArr);
   };
 
@@ -49,13 +49,11 @@ const WishlistWrapper = ({ email, shop }) => {
   useEffect(() => {
     if (loading || error) return;
     snapshot.forEach((doc) => {
-      console.log("adding object");
-      if (doc.exists && !idArr.includes(doc.data()))
-        let snapshotObject = doc.data()
-        snapshotObject.id = doc.id
+      if (doc.exists && !idArr.includes(doc.data())) {
+        let snapshotObject = doc.data();
+        snapshotObject.id = doc.id;
         setIdArr((idArr) => [...idArr, snapshotObject]);
-      // if (doc.exists && !idArr.includes(doc.data().prodcutId))
-      //   setIdArr((idArr) => [...idArr, doc.data().prodcutId]);
+      }
     });
   }, [snapshot]);
 
@@ -72,7 +70,6 @@ const WishlistWrapper = ({ email, shop }) => {
       </section>
     );
 
-  console.log("new state idArr: ", idArr);
   return (
     <section>
       <SectionHeader
