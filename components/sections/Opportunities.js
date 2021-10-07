@@ -47,10 +47,6 @@ const Section = ({ shop }) => {
     setLoading(false);
   };
   const addOpportunity = async (id, data) => {
-    console.log(
-      "adding with ref: ",
-      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/opportunities/${id}`
-    );
     const response = await fetch(
       `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/opportunities/${id}`,
       {
@@ -62,7 +58,6 @@ const Section = ({ shop }) => {
       }
     );
     const newData = await response.json();
-    console.log("newData: ", newData);
     UpdateOpportunityInArray(true, newData);
   };
   const deleteOpportunity = async (id) => {

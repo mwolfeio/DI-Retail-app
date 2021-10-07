@@ -21,7 +21,7 @@ const Section = ({ add, remove, reward }) => {
           </span>
         </p>
         <p style={{ whiteSpace: "nowrap" }}>
-          <span className="subtitle" style={{ margin: " 0 8px 0 16px" }}>
+          <span className="subtitle" style={{ margin: " 0 4px 0 16px" }}>
             Value: $
           </span>
           {reward.value}
