@@ -1044,6 +1044,7 @@ ul.product-list li img {
 .not-active-opp-card p,
 .not-active-opp-card h2,
 .not-active-opp-card input,
+.not-active-opp-card img,
 .not-active-opp-card svg {
   color: #b0b7c3 !important;
   fill: #b0b7c3 !important;
@@ -1068,7 +1069,22 @@ input.opp-input {
   padding: 8px;
   margin: 0 -8px;
   border: none;
+  background: none;
   width: Calc(100% - 16px) !important;
+}
+
+textarea.opp-input {
+  font-family: Inter;
+  font-style: normal;
+  font-weight: 500;
+  display: -moz-box;
+  display: flex;
+  -moz-box-align: center;
+  align-items: center;
+  color: #b0b7c3;
+  margin: 0 -8px -16px !important;
+  font-size: 12px;
+  width: 100%;
 }
 
 input.opp-input,
@@ -1087,9 +1103,21 @@ input.opp-input.lrg-opp-txt {
 }
 .opportunity-card textarea.opp-input:focus,
 .opportunity-card input.opp-input:focus {
-  background: #b0b7c3;
+  background: #fafbfc;
   border: 1px solid #f3f3f3;
   box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
+}
+
+.not-active-opp-card .opportunity-card textarea,
+.not-active-opp-card .opportunity-card textarea {
+  cursor: default;
+}
+
+.not-active-opp-card .opportunity-card textarea.opp-input:focus,
+.not-active-opp-card .opportunity-card textarea.opp-input:focus {
+  background: none;
+  border: none;
+  box-shadow: none;
 }
 
 /* TOGGLE------------------- */

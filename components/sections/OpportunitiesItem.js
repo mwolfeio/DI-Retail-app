@@ -125,7 +125,7 @@ const Section = ({ opp, add, remove }) => {
       </div>
       <div
         className={`opp-button-wrapper ${
-          needsSaving ? "opp-needs-saving" : ""
+          needsSaving && active ? "opp-needs-saving" : ""
         }`}
       >
         <button style={{ marginBottom: "8px" }} onClick={() => resetValues()}>
