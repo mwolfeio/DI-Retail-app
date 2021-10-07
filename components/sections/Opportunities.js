@@ -147,34 +147,36 @@ const Section = ({ shop }) => {
             points. This is a great way to motivate customers to preform desired
             tasks. You can toggle them on or off and change their values.
             Opportunities appear on the customer’s account page.
-            <br />
+          </p>
+          <p>
             <i>Note: set Usage limit to 0 for unlimited usage</i>
           </p>
-          (loading ? (
-          <Loader />) : (
-          <div>
-            {Opportunites.length < 1 ? (
-              <div className="card-container">
-                <div
-                  className="flex-center-center"
-                  style={{ color: "#b0b7c3" }}
-                >
-                  <b>No Opportunites</b>
+          {loading ? (
+            <Loader />
+          ) : (
+            <div>
+              {Opportunites.length < 1 ? (
+                <div className="card-container">
+                  <div
+                    className="flex-center-center"
+                    style={{ color: "#b0b7c3" }}
+                  >
+                    <b>No Opportunites</b>
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="card-container">
-                {Opportunites.map((opp) => (
-                  <OpportunitiesItem
-                    opp={opp}
-                    add={addOpportunity}
-                    remove={deleteOpportunity}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-          )){" "}
+              ) : (
+                <div className="card-container">
+                  {Opportunites.map((opp) => (
+                    <OpportunitiesItem
+                      opp={opp}
+                      add={addOpportunity}
+                      remove={deleteOpportunity}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </section>

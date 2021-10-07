@@ -143,7 +143,8 @@ const Section = ({ shop }) => {
             Customers can redeem their points for rewards. Once redeemed, a
             customer receives a personalized discount code that can only be used
             by them. Add and edit the rewards available to your customers here.
-            <br />
+          </p>
+          <p>
             <i>
               Discounting higher rewards and only allowing one discount code per
               checkout incentivize users to spend more and save their points
