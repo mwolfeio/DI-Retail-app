@@ -380,8 +380,7 @@ textarea {
   box-shadow: none;
   overflow: hidden;
   padding: 8px;
-  margin: 0 -8px -16px !important;
-  height: 34px !important;
+  height: 48px !important;
 
   resize: none;
   background: none;
@@ -1082,7 +1081,7 @@ textarea.opp-input {
   -moz-box-align: center;
   align-items: center;
   color: #b0b7c3;
-  margin: 0 -8px -16px !important;
+  margin: -8px -8px -24px !important;
   font-size: 12px;
   width: 100%;
 }
@@ -1101,6 +1100,11 @@ input.opp-input.lrg-opp-txt {
   color: #4e5d78;
   font-size: 14px;
 }
+
+.opportunity-card textarea.opp-input-chnged,
+.opportunity-card input.opp-input-chnged {
+  color: #4388f8;
+}
 .opportunity-card textarea.opp-input:focus,
 .opportunity-card input.opp-input:focus {
   background: #fafbfc;
@@ -1108,16 +1112,16 @@ input.opp-input.lrg-opp-txt {
   box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
 }
 
-.not-active-opp-card.opportunity-card textarea,
-.not-active-opp-card.opportunity-card textarea {
-  cursor: default;
-}
-
-.not-active-opp-card.opportunity-card textarea.opp-input:focus,
-.not-active-opp-card.opportunity-card textarea.opp-input:focus {
+div.not-active-opp-card input,
+div.not-active-opp-card textarea,
+div.not-active-opp-card input:disabled,
+div.not-active-opp-card textarea:disabled,
+div.not-active-opp-card input.opp-input:focus,
+div.not-active-opp-card textarea.opp-input:focus {
   background: none;
   border: none;
   box-shadow: none;
+  cursor: default;
 }
 
 /* TOGGLE------------------- */

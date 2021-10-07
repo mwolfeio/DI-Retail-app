@@ -112,7 +112,7 @@ const Section = ({ shop }) => {
     } else {
       item = allOpportunites[allArrIndex];
       item.active = false;
-      newArr[index] = item;
+      newArr[oppArrIndex] = item;
     }
 
     return setOpportunites(newArr);

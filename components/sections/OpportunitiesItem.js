@@ -75,6 +75,7 @@ const Section = ({ opp, add, remove }) => {
             style={{ color: "#4e5d78" }}
             placeholder="Title..."
             type="text"
+            disabled={active ? "" : "disabled"}
             value={active ? name : opp.name}
             onChange={(e) => setname(e.target.value)}
           />
@@ -84,6 +85,7 @@ const Section = ({ opp, add, remove }) => {
             }`}
             placeholder="Title..."
             type="text"
+            disabled={active ? "" : "disabled"}
             value={active ? description : opp.description}
             onChange={(e) => setdescription(e.target.value)}
           />
@@ -99,6 +101,7 @@ const Section = ({ opp, add, remove }) => {
             style={{ color: "#4e5d78", textAlign: "center" }}
             placeholder="Title..."
             type="number"
+            disabled={active ? "" : "disabled"}
             value={active ? value : opp.value}
             onChange={(e) => setvalue(e.target.value)}
           />
@@ -116,6 +119,7 @@ const Section = ({ opp, add, remove }) => {
           style={{ color: "#4e5d78", textAlign: "center" }}
           placeholder="Title..."
           type="number"
+          disabled={active ? "" : "disabled"}
           value={active ? limit : opp.limit}
           onChange={(e) => setlimit(e.target.value)}
         />
