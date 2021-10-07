@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useQuery } from "react-apollo";
+import { useLazyQuery } from "react-apollo";
 import { gql } from "apollo-boost";
 import { firestore } from "../../lib/firebase";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
@@ -59,8 +59,8 @@ const CustomerPage = ({ prodcutId, remove, index, shop }) => {
   console.log("stateId ", stateId);
 
   //Shopify Query
-  const { loading, error, data } = useQuery(GET_PRODUCT, {
-    variables: { id: `gid://shopify/Product/${prodcutId}` },
+  const { loading, error, data } = useLazyQuery(GET_PRODUCT, {
+    variables: { id: `gid://shopify/Product/${stateId}` },
   });
 
   useEffect(() => {

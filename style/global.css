@@ -1103,7 +1103,7 @@ input.opp-input.lrg-opp-txt {
 
 .opportunity-card textarea.opp-input-chnged,
 .opportunity-card input.opp-input-chnged {
-  color: #4388f8;
+  color: #4388f8 !important;
 }
 .opportunity-card textarea.opp-input:focus,
 .opportunity-card input.opp-input:focus {
