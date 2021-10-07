@@ -5,6 +5,7 @@ import { useDocumentOnce } from "react-firebase-hooks/firestore";
 import SectionHeader from "./SectionHeader.js";
 import MoreButton from "../MoreButton.js";
 import Loader from "../Loader.js";
+import RewardsItem from "./RewardsItem.js";
 
 const Section = ({ shop }) => {
   const [open, setOpen] = useState(true);
