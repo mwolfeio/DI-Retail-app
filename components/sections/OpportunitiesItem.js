@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import MetafieldInput from "./MetafieldInput.js";
 
-const Section = ({ opp }) => {
+const Section = ({ opp, add, remove }) => {
   const [name, setname] = useState(opp.name);
   const [description, setdescription] = useState(opp.description);
   const [value, setvalue] = useState(opp.value);
@@ -10,29 +10,56 @@ const Section = ({ opp }) => {
   const [limit, setlimit] = useState(opp.limit);
   const [active, setActive] = useState(opp.active);
 
+  const toggleActive = () => {};
   const handleSubmit = (e) => {
-    //prevent dfault
-    // if active add
-    // if false remove
-  };
+    console.log("submitting");
+    let id = opp.id;
+    console.log("id: ", id);
+    if (!active) return remove(id);
+    let payload = {
+      name: name,
+      description: description,
+      value: value,
+      value_type: value_type,
+      limit: limit,
+      active: active,
+    };
 
-  useEffect(() => {
+    console.log("payload: ", payload);
+
+    addOpportunity(id, payload);
+  };
+  const resetValues = () => {
     setname(opp.name);
     setdescription(opp.description);
     setvalue(opp.value);
     setvalue_type(opp.value_type);
     setlimit(opp.limit);
+  };
+
+  useEffect(() => {
+    resetValues();
   }, [opp]);
+
+  //variables
+  let needsSaving =
+    name !== opp.name ||
+    description !== opp.description ||
+    value !== opp.value ||
+    value_type !== opp.value_type ||
+    limit !== opp.limit ||
+    active !== opp.active;
 
   return (
     <div
-      className={`card opportunity-card ${!active && "not-active-opp-card"}`}
+      className={`card opportunity-card ${active ? "" : "not-active-opp-card"}`}
     >
       <div className="flex-center-left">
         <div className="toggle">
           <input
             type="checkbox"
-            onChange={(e) => setActive(e.target.value)}
+            checked={active}
+            onChange={() => setActive(!active)}
             className="check"
           />
           <b className="b switch"></b>
@@ -63,6 +90,16 @@ const Section = ({ opp }) => {
         <p className="subtitle" style={{ fontSize: "14px" }}>
           Usage limit
         </p>
+      </div>
+      <div
+        className={`opp-button-wrapper${needsSaving ? "opp-needs-saving" : ""}`}
+      >
+        <button style={{ marginBottom: "8px" }} onClick={() => resetValues()}>
+          Clear
+        </button>
+        <button className="submit-button" onClick={() => handleSubmit()}>
+          Save
+        </button>
       </div>
     </div>
   );

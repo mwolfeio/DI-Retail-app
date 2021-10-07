@@ -983,11 +983,13 @@ ul.product-list li img {
 
 /* MEMBERSHIP-------------- */
 
-.not-active-opp-card {
-  opacity: 0.6;
+.opportunity-card {
   display: grid;
   grid-gap: 8px;
-  grid-template-columns: 56px 3fr 1fr 1fr;
+  grid-template-columns: 56px 2fr 1fr 1fr 1fr;
+}
+.not-active-opp-card {
+  opacity: 0.6;
   /* display: flex;
   justify-content: space-between; */
 }
@@ -1013,6 +1015,17 @@ ul.product-list li img {
   fill: #b0b7c3;
 }
 
+.opp-button-wrapper button {
+  transition: 0.15s ease;
+  height: Calc(50% - 4px);
+  max-height: 48px;
+  width: 100%;
+  max-width: 200px;
+}
+.opp-needs-saving button {
+  opacity: 0;
+}
+
 /* TOGGLE------------------- */
 
 .b {
@@ -1020,14 +1033,11 @@ ul.product-list li img {
 }
 
 .toggle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: relative;
   width: 44px;
   height: 24px;
   border-radius: 100px;
   background-color: #d5dbe4;
-  margin: -20px -40px;
   overflow: hidden;
 }
 
