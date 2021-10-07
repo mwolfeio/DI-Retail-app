@@ -33,13 +33,7 @@ const Section = ({ shop }) => {
       `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/opportunities`
     );
     const activeList = await activeListRes.json();
-
-    console.log("fullList ", fullList);
-    console.log("activeList ", activeList);
-
     const finalArr = generateOpportunityArray(fullList, activeList);
-
-    console.log("finalArr ", finalArr);
 
     setAllOportunites(fullList);
     setActiveOportunites(activeList);
