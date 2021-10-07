@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import MoreButton from "../MoreButton.js";
 
 const Section = ({ add, remove, reward }) => {
   return (
