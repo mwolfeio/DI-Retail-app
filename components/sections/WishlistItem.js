@@ -60,7 +60,7 @@ const CustomerPage = ({ prodcutId, remove, index, shop }) => {
 
   //Shopify Query
   const { loading, error, data } = useQuery(GET_PRODUCT, {
-    variables: { id: `gid://shopify/Product/${stateId}` },
+    variables: { id: `gid://shopify/Product/${prodcutId}` },
   });
 
   useEffect(() => {

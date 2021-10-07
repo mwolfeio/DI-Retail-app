@@ -55,7 +55,7 @@ const Section = ({ shop }) => {
       `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/opportunities/${id}`,
       {
         method: "POST",
-        body: JSON.stringify({ data }),
+        body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
         },

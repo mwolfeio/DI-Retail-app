@@ -78,17 +78,15 @@ const Section = ({ opp, add, remove }) => {
             value={name}
             onChange={(e) => setname(e.target.value)}
           />
-          <input
+          <textarea
             className={`opp-input lrg-opp-txt ${
               description !== opp.description ? "opp-input-chnged" : ""
             }`}
-            style={{ color: "#b0b7c3" }}
             placeholder="Title..."
             type="text"
             value={description}
             onChange={(e) => setdescription(e.target.value)}
           />
-          <p className="subtitle">{opp.description}</p>
         </div>
       </div>
 
@@ -98,13 +96,12 @@ const Section = ({ opp, add, remove }) => {
             className={`opp-input lrg-opp-txt ${
               value !== opp.value ? "opp-input-chnged" : ""
             }`}
-            style={{ color: "#4e5d78" }}
+            style={{ color: "#4e5d78", textAlign: "center" }}
             placeholder="Title..."
             type="number"
             value={value}
             onChange={(e) => setvalue(e.target.value)}
           />
-          {opp.value_type}
         </div>
         <p className="subtitle" style={{ fontSize: "14px" }}>
           Reward
@@ -116,11 +113,11 @@ const Section = ({ opp, add, remove }) => {
           className={`opp-input lrg-opp-txt ${
             limit !== opp.limit ? "opp-input-chnged" : ""
           }`}
-          style={{ color: "#4e5d78" }}
+          style={{ color: "#4e5d78", textAlign: "center" }}
           placeholder="Title..."
           type="number"
           value={limit}
-          onChange={(e) => setvalue(e.target.limit)}
+          onChange={(e) => setlimit(e.target.limit)}
         />
         <p className="subtitle" style={{ fontSize: "14px" }}>
           Usage limit
