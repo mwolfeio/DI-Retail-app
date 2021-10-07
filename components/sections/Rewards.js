@@ -3,8 +3,8 @@ import { firestore } from "../../lib/firebase";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import SectionHeader from "./SectionHeader.js";
-import MetafieldInput from "./MetafieldInput.js";
 import MoreButton from "../MoreButton.js";
+import Loader from "../Loader.js";
 
 const Section = ({ shop }) => {
   const [open, setOpen] = useState(true);
