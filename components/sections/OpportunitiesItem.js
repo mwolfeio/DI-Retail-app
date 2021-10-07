@@ -51,7 +51,7 @@ const Section = ({ opp, add, remove }) => {
     value_type !== opp.value_type ||
     limit !== opp.limit ||
     active !== opp.active;
-  console.log("needsSaving: ", needsSaving);
+
   return (
     <div
       className={`card opportunity-card ${active ? "" : "not-active-opp-card"}`}
