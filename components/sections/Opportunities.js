@@ -3,12 +3,14 @@ import { useState, useEffect } from "react";
 import SectionHeader from "./SectionHeader.js";
 import OpportunitiesItem from "./OpportunitiesItem.js";
 import MoreButton from "../MoreButton.js";
+import Loader from "../Loader.js";
 
 const Section = ({ shop }) => {
   const [open, setOpen] = useState(true);
   const [allOpportunites, setAllOportunites] = useState([]);
   const [activeOportunites, setActiveOportunites] = useState([]);
   const [Opportunites, setOpportunites] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   //handlers
   const toggleOpen = () => {
@@ -18,6 +20,7 @@ const Section = ({ shop }) => {
   //functions
   const fetchOpportunities = async () => {
     console.log("running fetchOpportunities");
+    setLoading(true);
 
     //get admin opportunities
     const fullListRes = await fetch(
@@ -41,6 +44,7 @@ const Section = ({ shop }) => {
     setAllOportunites(fullList);
     setActiveOportunites(activeList);
     setOpportunites(finalArr);
+    setLoading(false);
   };
   const addOpportunity = async (id, data) => {
     const response = await fetch(
@@ -122,27 +126,33 @@ const Section = ({ shop }) => {
         minimize={toggleOpen}
         title={`Opportunities (${activeOportunites.length} / ${allOpportunites.length})`}
       />
-      {open && (
-        <div>
-          {Opportunites.length < 1 ? (
-            <div className="card-container">
-              <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
-                <b>No Opportunites</b>
+      {open &&
+        (loading ? (
+          <Loader />
+        ) : (
+          <div>
+            {Opportunites.length < 1 ? (
+              <div className="card-container">
+                <div
+                  className="flex-center-center"
+                  style={{ color: "#b0b7c3" }}
+                >
+                  <b>No Opportunites</b>
+                </div>
               </div>
-            </div>
-          ) : (
-            <div className="card-container">
-              {Opportunites.map((opp) => (
-                <OpportunitiesItem
-                  opp={opp}
-                  add={addOpportunity}
-                  remove={deleteOpportunity}
-                />
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+            ) : (
+              <div className="card-container">
+                {Opportunites.map((opp) => (
+                  <OpportunitiesItem
+                    opp={opp}
+                    add={addOpportunity}
+                    remove={deleteOpportunity}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
     </section>
   );
 };

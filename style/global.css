@@ -1028,9 +1028,10 @@ ul.product-list li img {
   max-height: 48px;
   width: 100%;
   max-width: 200px;
+  opacity: 0;
 }
 .opp-needs-saving button {
-  opacity: 0;
+  opacity: 1;
 }
 
 /* TOGGLE------------------- */
