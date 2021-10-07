@@ -985,6 +985,25 @@ ul.product-list li img {
 
 .not-active-opp-card {
   opacity: 0.6;
+  display: grid;
+  grid-gap: 8px;
+  grid-template-columns: 56px 3fr 1fr 1fr;
+  /* display: flex;
+  justify-content: space-between; */
+}
+.opp-icon-wrapper {
+  height: 56px;
+  width: 56px;
+  background: #fafbfc;
+  border-radius: 100%;
+  margin-right: 16px;
+}
+.opp-icon-wrapper svg {
+  width: 32px !important;
+  height: 32px !important;
+}
+.opp-icon-wrapper svg path {
+  fill: #4e5d78 !important;
 }
 
 .not-active-opp-card p,
@@ -994,18 +1013,70 @@ ul.product-list li img {
   fill: #b0b7c3;
 }
 
-.opp-icon-wrapper {
-  height: 56px;
-  width: 56px;
-  background: #fafbfc;
+/* TOGGLE------------------- */
+
+.b {
+  display: block;
+}
+
+.toggle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
+  height: 24px;
+  border-radius: 100px;
+  background-color: #d5dbe4;
+  margin: -20px -40px;
+  overflow: hidden;
+}
+
+.check {
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 6;
+}
+
+.check:checked ~ .track {
+  box-shadow: inset 0 0 0 20px #4388f8;
+}
+
+.check:checked ~ .switch {
+  right: 2px;
+  left: 22px;
+  transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transition-property: left, right;
+  transition-delay: 0.02s, 0s;
+}
+
+.switch {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  bottom: 2px;
+  right: 22px;
+  background-color: #fff;
   border-radius: 100%;
+  z-index: 1;
+  transition: 0.25s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  transition-property: left, right;
+  transition-delay: 0s, 0.02s;
 }
-.opp-icon-wrapper svg {
-  width: 3px;
-  height: 32px;
-}
-.opp-icon-wrapper svg path {
-  fill: #4e5d78 !important;
+
+.track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: 0.35s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  border-radius: 40px;
 }
 
 /* FLEXBOX-------------------- */

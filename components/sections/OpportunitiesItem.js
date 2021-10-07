@@ -29,24 +29,40 @@ const Section = ({ opp }) => {
       className={`card opportunity-card ${!active && "not-active-opp-card"}`}
     >
       <div className="flex-center-left">
+        <div className="toggle">
+          <input
+            type="checkbox"
+            onChange={(e) => setActive(e.target.value)}
+            className="check"
+          />
+          <b className="b switch"></b>
+          <b className="b track"></b>
+        </div>
+      </div>
+      <div className="flex-center-left">
         <div className="opp-icon-wrapper flex-center-center">
           <img src={`data:image/svg+xml;utf8,${opp.icon}`} />
         </div>
         <div>
           <h2>{opp.name}</h2>
-          <p className="subtitle" style={{ margin: "8px 0 0" }}>
-            {opp.description}
-          </p>
+          <p className="subtitle">{opp.description}</p>
         </div>
       </div>
 
       <div>
-        <p>{opp.value}</p>
-        <p>{opp.value_type}</p>
+        <p>
+          {opp.value} {opp.value_type}
+        </p>
+        <p className="subtitle" style={{ fontSize: "14px" }}>
+          Reward
+        </p>
       </div>
 
       <div>
         <p>{opp.limit}</p>
+        <p className="subtitle" style={{ fontSize: "14px" }}>
+          Usage limit
+        </p>
       </div>
     </div>
   );
