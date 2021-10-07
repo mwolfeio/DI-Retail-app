@@ -27,14 +27,16 @@ const Section = ({ opp, add, remove }) => {
 
     console.log("payload: ", payload);
 
-    addOpportunity(id, payload);
+    add(id, payload);
   };
   const resetValues = () => {
+    console.log("resetting values");
     setname(opp.name);
     setdescription(opp.description);
     setvalue(opp.value);
     setvalue_type(opp.value_type);
     setlimit(opp.limit);
+    setActive(opp.active);
   };
 
   useEffect(() => {
@@ -49,7 +51,7 @@ const Section = ({ opp, add, remove }) => {
     value_type !== opp.value_type ||
     limit !== opp.limit ||
     active !== opp.active;
-
+  console.log("needsSaving: ", needsSaving);
   return (
     <div
       className={`card opportunity-card ${active ? "" : "not-active-opp-card"}`}
@@ -76,7 +78,7 @@ const Section = ({ opp, add, remove }) => {
         </div>
       </div>
 
-      <div>
+      <div className="flex-center-column">
         <p>
           {opp.value} {opp.value_type}
         </p>
@@ -85,14 +87,16 @@ const Section = ({ opp, add, remove }) => {
         </p>
       </div>
 
-      <div>
+      <div className="flex-center-column">
         <p>{opp.limit}</p>
         <p className="subtitle" style={{ fontSize: "14px" }}>
           Usage limit
         </p>
       </div>
       <div
-        className={`opp-button-wrapper${needsSaving ? "opp-needs-saving" : ""}`}
+        className={`opp-button-wrapper ${
+          needsSaving ? "opp-needs-saving" : ""
+        }`}
       >
         <button style={{ marginBottom: "8px" }} onClick={() => resetValues()}>
           Clear

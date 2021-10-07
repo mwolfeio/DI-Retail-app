@@ -986,12 +986,18 @@ ul.product-list li img {
 .opportunity-card {
   display: grid;
   grid-gap: 8px;
-  grid-template-columns: 56px 2fr 1fr 1fr 1fr;
+  grid-template-columns: 56px 2fr 1fr 1fr 0.75fr;
+  box-shadow: 0 4px 4px rgb(176 183 195 / 17%);
 }
 .not-active-opp-card {
   opacity: 0.6;
+  box-shadow: none;
   /* display: flex;
   justify-content: space-between; */
+}
+.opportunity-card p.subtitle {
+  line-height: 18px;
+  margin-top: 0 !important;
 }
 .opp-icon-wrapper {
   height: 56px;
@@ -1018,6 +1024,7 @@ ul.product-list li img {
 .opp-button-wrapper button {
   transition: 0.15s ease;
   height: Calc(50% - 4px);
+  min-height: 32px;
   max-height: 48px;
   width: 100%;
   max-width: 200px;
