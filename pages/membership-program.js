@@ -5,6 +5,7 @@ import { gql } from "apollo-boost";
 import ButtonNav from "../components/ButtonNav.js";
 import Loader from "../components/Loader.js";
 import Opportunities from "../components/sections/Opportunities.js";
+import Rewards from "../components/sections/Rewards.js";
 
 const GET_SHOP = gql`
   {
@@ -68,26 +69,32 @@ const CustomerPage = () => {
           <div className="order-page-header">
             <div className="clickable-card">
               <div className=" flex-center-btw">
-                <h2>Metric 1</h2>
+                <h2>Program Members</h2>
+                <p>Count</p>
               </div>
             </div>
 
             <div className="clickable-card">
               <div className=" flex-center-btw">
-                <h2>Metric 2</h2>
+                <h2>Current State </h2>
+                <p>cupons outstanding</p>
+                <p>value outstanding</p>
               </div>
             </div>
             <div className="clickable-card">
               <div className=" flex-center-btw">
-                <h2>Metric 3</h2>
+                <h2>History</h2>
+                <p>Total Sales</p>
+                <p>Aggregate Discount</p>
               </div>
             </div>
           </div>
         </section>
         <Opportunities shop={shop} />
+        <Rewards shop={shop} />
 
-        <section className="disabled">Outstanding Codes</section>
-        <section className="disabled">Members and points</section>
+        <section className="disabled">Rewards offered to trade-ins</section>
+        <section className="disabled">Members sorted by point total</section>
       </div>
     </main>
   );

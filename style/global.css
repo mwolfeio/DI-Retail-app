@@ -1124,6 +1124,10 @@ div.not-active-opp-card textarea.opp-input:focus {
   cursor: default;
 }
 
+div.not-active-opp-card input[type="checkbox"]:hover {
+  cursor: pointer;
+}
+
 /* TOGGLE------------------- */
 
 .b {

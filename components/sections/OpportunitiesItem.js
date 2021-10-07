@@ -83,7 +83,7 @@ const Section = ({ opp, add, remove }) => {
             className={`opp-input lrg-opp-txt ${
               description !== opp.description ? "opp-input-chnged" : ""
             }`}
-            placeholder="Title..."
+            placeholder="Description..."
             type="text"
             disabled={active ? "" : "disabled"}
             value={active ? description : opp.description}
@@ -99,15 +99,18 @@ const Section = ({ opp, add, remove }) => {
               value !== opp.value ? "opp-input-chnged" : ""
             }`}
             style={{ color: "#4e5d78", textAlign: "center" }}
-            placeholder="Title..."
+            placeholder="Value..."
             type="number"
             disabled={active ? "" : "disabled"}
             value={active ? value : opp.value}
             onChange={(e) => setvalue(e.target.value)}
           />
         </div>
-        <p className="subtitle" style={{ fontSize: "14px" }}>
-          Reward
+        <p
+          className="subtitle"
+          style={{ fontSize: "14px", textTransfrom: "capitalize" }}
+        >
+          {opp.value_type}
         </p>
       </div>
 
@@ -117,7 +120,7 @@ const Section = ({ opp, add, remove }) => {
             limit !== opp.limit ? "opp-input-chnged" : ""
           }`}
           style={{ color: "#4e5d78", textAlign: "center" }}
-          placeholder="Title..."
+          placeholder="Limit..."
           type="number"
           disabled={active ? "" : "disabled"}
           value={active ? limit : opp.limit}
