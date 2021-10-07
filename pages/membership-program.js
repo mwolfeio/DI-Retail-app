@@ -68,25 +68,19 @@ const CustomerPage = () => {
 
           <div className="order-page-header">
             <div className="clickable-card">
-              <div className=" flex-center-btw">
-                <h2>Program Members</h2>
-                <p>Count</p>
-              </div>
+              <h2>Program Members</h2>
+              <p>Count</p>
             </div>
 
             <div className="clickable-card">
-              <div className=" flex-center-btw">
-                <h2>Current State </h2>
-                <p>cupons outstanding</p>
-                <p>value outstanding</p>
-              </div>
+              <h2>Current State </h2>
+              <p>cupons outstanding</p>
+              <p>value outstanding</p>
             </div>
             <div className="clickable-card">
-              <div className=" flex-center-btw">
-                <h2>History</h2>
-                <p>Total Sales</p>
-                <p>Aggregate Discount</p>
-              </div>
+              <h2>History</h2>
+              <p>Total Sales</p>
+              <p>Aggregate Discount</p>
             </div>
           </div>
         </section>

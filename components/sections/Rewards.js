@@ -12,6 +12,11 @@ const Section = ({ shop }) => {
   const [addCard, setAddCard] = useState(false);
   const [rewardArr, setRewardArr] = useState([]);
 
+  //form inputs
+  const [newname, setnewname] = useState();
+  const [newpoints, setnewpoints] = useState();
+  const [newvalue, setnewvalue] = useState();
+
   //Firebase Queries
   const [snapshot, loading, error] = useDocumentOnce(
     firestore.collection(`stores/${shop}/rewards`)
@@ -22,18 +27,72 @@ const Section = ({ shop }) => {
     console.log("clicked");
     setOpen(!open);
   };
-  const submitHandler = () => {
-    console.log("submit");
+  const toggleAddCard = () => {
+    setAddCard(!addCard);
   };
-  const newReward = () => {
-    setAddCard(true);
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (!newpoints || !newvalue || !newname) {
+      console.log("payload cant be blank");
+      return;
+    }
+    let payload = {
+      points: newpoints,
+      value: newvalue,
+      name: newname,
+    };
+    newReward(payload);
+  };
+  const newReward = async (payload) => {
+    const response = await fetch(
+      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/rewards/create`,
+      {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const newData = await response.json();
+    console.log("newData: ", newData);
+    setRewardArr([...rewardArr, newData]);
+  };
+  const removeReward = async (id) => {
+    const response = await fetch(
+      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/:store/rewards/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const idToRemove = await response.json();
+    const newArr = rewardArr.filter((reward) => reward.id === id);
+
+    setRewardArr(newArr);
+  };
+  const clearAll = async () => {
+    console.log("clearing wishlists");
+    const batch = rewardArr.batch();
+
+    idArr.forEach((alert) => {
+      console.log("clearing: ", alert);
+      batch.delete(firestore.doc(`stores/${shop}/rewards/${alert.id}`));
+    });
+
+    await batch.commit();
+    setIdArr([]);
   };
 
   //useEffect
   useEffect(() => {
+    console.log("running useEffect");
     if (loading || error) return;
     snapshot.forEach((doc) => {
       if (doc.exists) {
+        console.log("adding new data");
         let snapshotObject = doc.data();
         setRewardArr((rewardArr) => [...rewardArr, snapshotObject]);
       }
@@ -56,25 +115,88 @@ const Section = ({ shop }) => {
   return (
     <section>
       <SectionHeader
-        add={{ display: true, func: newReward }}
+        add={{ display: true, func: toggleAddCard }}
         status={open}
         minimize={toggleOpen}
         title={`Rewards (${rewardArr.length})`}
+        dropDown={[{ name: "clear List", func: clearAll }]}
       />
       {open && (
-        <div>
-          {addCard && <div>add card</div>}
-
-          {rewardArr.length < 1 ? (
-            <div className="card-container">
-              <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
-                <b>No Metafields</b>
+        <div className="card-container">
+          {addCard && (
+            <form onSubmit={submitHandler} className="card input-card">
+              <div className="flex-center-left" style={{ width: "100%" }}>
+                <h2 style={{ marginRight: "8px" }}>Name:</h2>
+                <input
+                  required
+                  type="text"
+                  placeholder="Add a name (ex. Level 1 Reward)"
+                  value={newname}
+                  style={{ width: "100%" }}
+                  onChange={(e) => setnewname(e.target.value)}
+                />
               </div>
+              <div className="flex-center-btw" style={{ width: "100%" }}>
+                <div className="flex-center-left">
+                  <p>
+                    <span className="subtitle" style={{ marginRight: "8px" }}>
+                      Cost in points:{" "}
+                    </span>
+                  </p>
+                  <input
+                    required
+                    type="text"
+                    placeholder="Add a cost (ex. 100 Points)"
+                    value={newpoints}
+                    style={{ width: "100%" }}
+                    onChange={(e) => setnewpoints(e.target.value)}
+                  />
+                </div>
+
+                <div className="flex-center-left">
+                  <p>
+                    <span className="subtitle" style={{ marginRight: "8px" }}>
+                      Value in dollars:{" "}
+                    </span>
+                  </p>
+                  <input
+                    required
+                    type="text"
+                    placeholder="Add a value (ex. $5)"
+                    value={newvalue}
+                    style={{ width: "100%" }}
+                    onChange={(e) => setnewvalue(e.target.value)}
+                  />
+                </div>
+              </div>
+              <div className="flex-center-right">
+                <div className="flex-center-center">
+                  <button
+                    className=""
+                    onClick={() => setAddCard(false)}
+                    style={{ marginRight: "8px" }}
+                  >
+                    Cancel
+                  </button>
+                  <button type="submit" className="submit-button">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          )}
+          {rewardArr.length < 1 ? (
+            <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
+              <b>No Metafields</b>
             </div>
           ) : (
-            <div className="card-container">
-              {rewardArr.map((reward) => RewardsItem)}
-            </div>
+            rewardArr.map((reward) => (
+              <RewardsItem
+                add={newReward}
+                remove={removeReward}
+                reward={reward}
+              />
+            ))
           )}
         </div>
       )}
