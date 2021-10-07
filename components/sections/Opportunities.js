@@ -131,10 +131,27 @@ const Section = ({ shop }) => {
         minimize={toggleOpen}
         title={`Opportunities (${activeOportunites.length} / ${allOpportunites.length})`}
       />
-      {open &&
-        (loading ? (
-          <Loader />
-        ) : (
+      {open && (
+        <div>
+          <p
+            className="subtitle"
+            style={{
+              lineHeight: "22px",
+              fontSize: "14px",
+              width: "700px",
+              margin: "-8px 0 20px",
+              maxWidth: "Calc(100% - 120px)",
+            }}
+          >
+            Opportunities offer different ways for your customers to earn
+            points. This is a great way to motivate customers to preform desired
+            tasks. You can toggle them on or off and change their values.
+            Opportunities appear on the customer’s account page.
+            <br />
+            <i>Note: set Usage limit to 0 for unlimited usage</i>
+          </p>
+          (loading ? (
+          <Loader />) : (
           <div>
             {Opportunites.length < 1 ? (
               <div className="card-container">
@@ -157,7 +174,9 @@ const Section = ({ shop }) => {
               </div>
             )}
           </div>
-        ))}
+          )){" "}
+        </div>
+      )}
     </section>
   );
 };

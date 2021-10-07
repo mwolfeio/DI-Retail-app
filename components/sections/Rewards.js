@@ -111,6 +111,14 @@ const Section = ({ shop }) => {
       </section>
     );
 
+  //variables
+  let sortedArr =
+    rewardArr.length < 2
+      ? rewardArr
+      : rewardArr.sort(function (a, b) {
+          return b.value - a.value;
+        });
+
   return (
     <section>
       <SectionHeader
@@ -118,85 +126,116 @@ const Section = ({ shop }) => {
         status={open}
         minimize={toggleOpen}
         title={`Rewards (${rewardArr.length})`}
-        dropDown={[{ name: "clear List", func: clearAll }]}
+        dropDown={[{ name: "clear Rewards", func: clearAll }]}
       />
       {open && (
-        <div className="card-container">
-          {addCard && (
-            <form onSubmit={submitHandler} className="card input-card">
-              <div className="flex-center-left" style={{ width: "100%" }}>
-                <h2 style={{ marginRight: "8px" }}>Name:</h2>
-                <input
-                  required
-                  type="text"
-                  placeholder="Add a name (ex. Level 1 Reward)"
-                  value={newname}
-                  style={{ width: "100%" }}
-                  onChange={(e) => setnewname(e.target.value)}
-                />
-              </div>
-              <div className="flex-center-btw" style={{ width: "100%" }}>
-                <div className="flex-center-left">
-                  <p>
-                    <span className="subtitle" style={{ marginRight: "8px" }}>
-                      Cost in points:{" "}
-                    </span>
-                  </p>
-                  <input
-                    required
-                    type="text"
-                    placeholder="Add a cost (ex. 100 Points)"
-                    value={newpoints}
-                    style={{ width: "100%" }}
-                    onChange={(e) => setnewpoints(e.target.value)}
-                  />
-                </div>
-
-                <div className="flex-center-left">
-                  <p>
-                    <span className="subtitle" style={{ marginRight: "8px" }}>
-                      Value in dollars:{" "}
-                    </span>
-                  </p>
-                  <input
-                    required
-                    type="text"
-                    placeholder="Add a value (ex. $5)"
-                    value={newvalue}
-                    style={{ width: "100%" }}
-                    onChange={(e) => setnewvalue(e.target.value)}
-                  />
-                </div>
-              </div>
-              <div className="flex-center-right">
-                <div className="flex-center-center">
-                  <button
-                    className=""
-                    onClick={() => setAddCard(false)}
-                    style={{ marginRight: "8px" }}
+        <div>
+          <p
+            className="subtitle"
+            style={{
+              lineHeight: "22px",
+              fontSize: "14px",
+              width: "700px",
+              margin: "-8px 0 20px",
+              maxWidth: "Calc(100% - 120px)",
+            }}
+          >
+            Customers can redeem their points for rewards. Once redeemed, a
+            customer receives a personalized discount code that can only be used
+            by them. Add and edit the rewards available to your customers here.
+            <br />
+            <i>
+              Discounting higher rewards and only allowing one discount code per
+              checkout incentivize users to spend more and save their points
+              (ex. Reward 1: 100 points $5 and coupon, Reward 2: 190 points and
+              $10 coupon)
+            </i>
+          </p>
+          <div className="card-container">
+            {addCard && (
+              <form onSubmit={submitHandler} className="card input-card">
+                <p>
+                  <span
+                    className="subtitle"
+                    style={{ marginBottom: "8px", fontSize: "16px" }}
                   >
-                    Cancel
-                  </button>
-                  <button type="submit" className="submit-button">
-                    Submit
-                  </button>
+                    New Rewards{" "}
+                  </span>
+                </p>
+                <div
+                  className="flex-center-left"
+                  style={{ width: "100%", marginBottom: "8px" }}
+                >
+                  <h2 style={{ marginRight: "8px" }}>Name:</h2>
+
+                  <input
+                    required
+                    type="text"
+                    placeholder="Add a name (ex. Level 1 Reward)"
+                    value={newname}
+                    style={{ width: "100%" }}
+                    onChange={(e) => setnewname(e.target.value)}
+                  />
                 </div>
+                <div
+                  className="flex-center-btw"
+                  style={{ width: "100%", marginBottom: "8px" }}
+                >
+                  <div className="flex-center-left">
+                    <h2 style={{ marginRight: "8px" }}>Cost:</h2>
+
+                    <input
+                      required
+                      type="text"
+                      placeholder="Add a cost (ex. 100 Points)"
+                      value={newpoints}
+                      style={{ width: "100%" }}
+                      onChange={(e) => setnewpoints(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="flex-center-left">
+                    <h2 style={{ marginRight: "8px" }}>Value:</h2>
+                    <input
+                      required
+                      type="text"
+                      placeholder="Add a value (ex. $5)"
+                      value={newvalue}
+                      style={{ width: "100%" }}
+                      onChange={(e) => setnewvalue(e.target.value)}
+                    />
+                  </div>
+                </div>
+                <div className="flex-center-right">
+                  <div className="flex-center-center">
+                    <button
+                      className=""
+                      onClick={() => setAddCard(false)}
+                      style={{ marginRight: "8px" }}
+                    >
+                      Cancel
+                    </button>
+                    <button type="submit" className="submit-button">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+            )}
+            {rewardArr.length < 1 ? (
+              <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
+                <b>No Metafields</b>
               </div>
-            </form>
-          )}
-          {rewardArr.length < 1 ? (
-            <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
-              <b>No Metafields</b>
-            </div>
-          ) : (
-            rewardArr.map((reward) => (
-              <RewardsItem
-                add={newReward}
-                remove={removeReward}
-                reward={reward}
-              />
-            ))
-          )}
+            ) : (
+              rewardArr.map((reward) => (
+                <RewardsItem
+                  add={newReward}
+                  remove={removeReward}
+                  reward={reward}
+                />
+              ))
+            )}
+          </div>
         </div>
       )}
     </section>
