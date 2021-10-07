@@ -12,9 +12,7 @@ const Section = ({ opp, add, remove }) => {
 
   const toggleActive = () => {};
   const handleSubmit = (e) => {
-    console.log("submitting");
     let id = opp.id;
-    console.log("id: ", id);
     if (!active) return remove(id);
     let payload = {
       name: name,
@@ -25,12 +23,9 @@ const Section = ({ opp, add, remove }) => {
       active: active,
     };
 
-    console.log("payload: ", payload);
-
     add(id, payload);
   };
   const resetValues = () => {
-    console.log("resetting values");
     setname(opp.name);
     setdescription(opp.description);
     setvalue(opp.value);
@@ -73,22 +68,60 @@ const Section = ({ opp, add, remove }) => {
           <img src={`data:image/svg+xml;utf8,${opp.icon}`} />
         </div>
         <div>
-          <h2>{opp.name}</h2>
+          <input
+            className={`opp-input lrg-opp-txt ${
+              name !== opp.name ? "opp-input-chnged" : ""
+            }`}
+            style={{ color: "#4e5d78" }}
+            placeholder="Title..."
+            type="text"
+            value={name}
+            onChange={(e) => setname(e.target.value)}
+          />
+          <input
+            className={`opp-input lrg-opp-txt ${
+              description !== opp.description ? "opp-input-chnged" : ""
+            }`}
+            style={{ color: "#b0b7c3" }}
+            placeholder="Title..."
+            type="text"
+            value={description}
+            onChange={(e) => setdescription(e.target.value)}
+          />
           <p className="subtitle">{opp.description}</p>
         </div>
       </div>
 
       <div className="flex-center-column">
-        <p>
-          {opp.value} {opp.value_type}
-        </p>
+        <div className="flex-center-center">
+          <input
+            className={`opp-input lrg-opp-txt ${
+              value !== opp.value ? "opp-input-chnged" : ""
+            }`}
+            style={{ color: "#4e5d78" }}
+            placeholder="Title..."
+            type="number"
+            value={value}
+            onChange={(e) => setvalue(e.target.value)}
+          />
+          {opp.value_type}
+        </div>
         <p className="subtitle" style={{ fontSize: "14px" }}>
           Reward
         </p>
       </div>
 
       <div className="flex-center-column">
-        <p>{opp.limit}</p>
+        <input
+          className={`opp-input lrg-opp-txt ${
+            limit !== opp.limit ? "opp-input-chnged" : ""
+          }`}
+          style={{ color: "#4e5d78" }}
+          placeholder="Title..."
+          type="number"
+          value={limit}
+          onChange={(e) => setvalue(e.target.limit)}
+        />
         <p className="subtitle" style={{ fontSize: "14px" }}>
           Usage limit
         </p>

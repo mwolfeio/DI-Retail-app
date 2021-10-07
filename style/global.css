@@ -12,7 +12,7 @@ main {
 }
 section {
   background: #ffffff;
-  border-radius: 15px;
+  border-radius: 24px;
   padding: 24px;
   width: 100%;
   display: block;
@@ -998,8 +998,8 @@ ul.product-list li img {
   box-shadow: 0 4px 4px rgb(176 183 195 / 17%);
 }
 .not-active-opp-card {
-  opacity: 0.6;
-  box-shadow: none;
+  background: rgba(255, 255, 255, 0.6);
+  box-shadow: none !important;
   /* display: flex;
   justify-content: space-between; */
 }
@@ -1024,9 +1024,11 @@ ul.product-list li img {
 
 .not-active-opp-card p,
 .not-active-opp-card h2,
-.not-active-opp-card svg path {
-  color: #b0b7c3;
-  fill: #b0b7c3;
+.not-active-opp-card input,
+.not-active-opp-card svg {
+  color: #b0b7c3 !important;
+  fill: #b0b7c3 !important;
+  opacity: 0.6;
 }
 
 .opp-button-wrapper button {
@@ -1040,6 +1042,17 @@ ul.product-list li img {
 }
 .opp-needs-saving button {
   opacity: 1;
+}
+
+input.opp-input {
+  max-height: 30px;
+  padding: 8px;
+  margin: -8px;
+  border: none;
+}
+
+.opp-input-chnged {
+  color: #4388f8 !important;
 }
 
 /* TOGGLE------------------- */

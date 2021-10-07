@@ -75,9 +75,10 @@ const Section = ({ shop }) => {
         },
       }
     );
-    const data = await response;
-    UpdateOpportunityInArray(false, data);
+    const newData = await response.json();
+    UpdateOpportunityInArray(false, newData);
   };
+
   const generateOpportunityArray = (allArr, activeArr) => {
     const finalArr = [];
     console.log("allArr: ", allArr);
