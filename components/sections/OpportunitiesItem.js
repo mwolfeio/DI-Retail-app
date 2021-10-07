@@ -75,7 +75,7 @@ const Section = ({ opp, add, remove }) => {
             style={{ color: "#4e5d78" }}
             placeholder="Title..."
             type="text"
-            value={name}
+            value={active ? name : opp.name}
             onChange={(e) => setname(e.target.value)}
           />
           <textarea
@@ -84,7 +84,7 @@ const Section = ({ opp, add, remove }) => {
             }`}
             placeholder="Title..."
             type="text"
-            value={description}
+            value={active ? description : opp.description}
             onChange={(e) => setdescription(e.target.value)}
           />
         </div>
@@ -99,7 +99,7 @@ const Section = ({ opp, add, remove }) => {
             style={{ color: "#4e5d78", textAlign: "center" }}
             placeholder="Title..."
             type="number"
-            value={value}
+            value={active ? value : opp.value}
             onChange={(e) => setvalue(e.target.value)}
           />
         </div>
@@ -116,8 +116,8 @@ const Section = ({ opp, add, remove }) => {
           style={{ color: "#4e5d78", textAlign: "center" }}
           placeholder="Title..."
           type="number"
-          value={limit}
-          onChange={(e) => setlimit(e.target.limit)}
+          value={active ? limit : opp.limit}
+          onChange={(e) => setlimit(e.target.value)}
         />
         <p className="subtitle" style={{ fontSize: "14px" }}>
           Usage limit
@@ -125,7 +125,7 @@ const Section = ({ opp, add, remove }) => {
       </div>
       <div
         className={`opp-button-wrapper ${
-          needsSaving && active ? "opp-needs-saving" : ""
+          needsSaving ? "opp-needs-saving" : ""
         }`}
       >
         <button style={{ marginBottom: "8px" }} onClick={() => resetValues()}>

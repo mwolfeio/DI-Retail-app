@@ -1108,13 +1108,13 @@ input.opp-input.lrg-opp-txt {
   box-shadow: 0px 4px 4px rgba(176, 183, 195, 0.17);
 }
 
-.not-active-opp-card .opportunity-card textarea,
-.not-active-opp-card .opportunity-card textarea {
+.not-active-opp-card.opportunity-card textarea,
+.not-active-opp-card.opportunity-card textarea {
   cursor: default;
 }
 
-.not-active-opp-card .opportunity-card textarea.opp-input:focus,
-.not-active-opp-card .opportunity-card textarea.opp-input:focus {
+.not-active-opp-card.opportunity-card textarea.opp-input:focus,
+.not-active-opp-card.opportunity-card textarea.opp-input:focus {
   background: none;
   border: none;
   box-shadow: none;
