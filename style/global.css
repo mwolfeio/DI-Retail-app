@@ -981,6 +981,33 @@ ul.product-list li img {
   padding-left: 12px;
 }
 
+/* MEMBERSHIP-------------- */
+
+.not-active-opp-card {
+  opacity: 0.6;
+}
+
+.not-active-opp-card p,
+.not-active-opp-card h2,
+.not-active-opp-card svg path {
+  color: #b0b7c3;
+  fill: #b0b7c3;
+}
+
+.opp-icon-wrapper {
+  height: 56px;
+  width: 56px;
+  background: #fafbfc;
+  border-radius: 100%;
+}
+.opp-icon-wrapper svg {
+  width: 3px;
+  height: 32px;
+}
+.opp-icon-wrapper svg path {
+  fill: #4e5d78 !important;
+}
+
 /* FLEXBOX-------------------- */
 .flex-center-left {
   display: flex;

@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 
 import SectionHeader from "./SectionHeader.js";
-import MetafieldInput from "./MetafieldInput.js";
-
+import OpportunitiesItem from "./OpportunitiesItem.js";
 import MoreButton from "../MoreButton.js";
 
 const Section = ({ shop }) => {
   const [open, setOpen] = useState(true);
   const [allOpportunites, setAllOportunites] = useState([]);
+  const [activeOportunites, setActiveOportunites] = useState([]);
   const [Opportunites, setOpportunites] = useState([]);
 
   //handlers
@@ -39,6 +39,7 @@ const Section = ({ shop }) => {
     console.log("finalArr ", finalArr);
 
     setAllOportunites(fullList);
+    setActiveOportunites(activeList);
     setOpportunites(finalArr);
   };
   const addOpportunity = async (id, data) => {
@@ -69,7 +70,6 @@ const Section = ({ shop }) => {
     const data = await response;
     UpdateOpportunityInArray(false, data);
   };
-
   const generateOpportunityArray = (allArr, activeArr) => {
     const finalArr = [];
     console.log("allArr: ", allArr);
@@ -109,6 +109,7 @@ const Section = ({ shop }) => {
     return setOpportunites(newArr);
   };
 
+  //onMount hydrate page
   useEffect(() => {
     fetchOpportunities();
   }, []);
@@ -119,7 +120,7 @@ const Section = ({ shop }) => {
         add={{ display: false }}
         status={open}
         minimize={toggleOpen}
-        title={`Opportunities (${Opportunites.length} / ${allOpportunites.length})`}
+        title={`Opportunities (${activeOportunites.length} / ${allOpportunites.length})`}
       />
       {open && (
         <div>
@@ -131,25 +132,13 @@ const Section = ({ shop }) => {
             </div>
           ) : (
             <div className="card-container">
-              {Opportunites.map((opp) => {
-                // let parser = new DOMParser();
-                // let icon = parser.parseFromString(opp.icon, "image/svg+xml");
-
-                return (
-                  <div className="card">
-                    <img
-                      src={`data:image/svg+xml;utf8,${encodeURIComponent(
-                        opp.icon
-                      )}1`}
-                    />
-                    <h3>{opp.name}</h3>
-                    <p>{opp.description}</p>
-                    <p>{opp.value}</p>
-                    <p>{opp.value_type}</p>
-                    <p>{opp.limit}</p>
-                  </div>
-                );
-              })}
+              {Opportunites.map((opp) => (
+                <OpportunitiesItem
+                  opp={opp}
+                  add={addOpportunity}
+                  remove={deleteOpportunity}
+                />
+              ))}
             </div>
           )}
         </div>
@@ -158,3 +147,5 @@ const Section = ({ shop }) => {
   );
 };
 export default Section;
+
+//<img src={`data:image/svg+xml;utf8,${encodeURIComponent(opp.icon)}`} />
