@@ -59,7 +59,7 @@ const Section = ({ shop }) => {
   };
   const removeReward = async (id) => {
     const response = await fetch(
-      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/:store/rewards/${id}`,
+      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/rewards/${id}`,
       {
         method: "DELETE",
         headers: {
