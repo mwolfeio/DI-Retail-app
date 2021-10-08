@@ -89,7 +89,7 @@ const CustomerPage = () => {
             </div>
             <div className="clickable-card">
               <h2>Outstanding Cupons</h2>
-              <p>$</p>
+              <p>$ </p>
             </div>
           </div>
         </section>
