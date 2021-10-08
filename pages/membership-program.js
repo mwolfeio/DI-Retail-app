@@ -7,6 +7,7 @@ import Loader from "../components/Loader.js";
 import Opportunities from "../components/sections/Opportunities.js";
 import Rewards from "../components/sections/Rewards.js";
 import MembershipMembers from "../components/sections/MembershipMembers.js";
+import HeaderCards from "../components/sections/HeaderCards.js";
 
 const GET_SHOP = gql`
   {
