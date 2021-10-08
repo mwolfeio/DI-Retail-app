@@ -61,7 +61,7 @@ const Section = ({ shop }) => {
   return (
     <section>
       <SectionHeader
-        add={{ display: true, func: toggleAddCard }}
+        add={{ display: false }}
         status={open}
         minimize={toggleOpen}
         title={`Rewards (${memberArr.length})`}
