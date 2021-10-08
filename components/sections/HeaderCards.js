@@ -5,8 +5,12 @@ import { useDocumentOnce } from "react-firebase-hooks/firestore";
 import Loader from "../Loader.js";
 
 const StatCards = ({ shop }) => {
+  // const [data, loading, error] = useDocumentOnce(
+  //   firestore.doc(`stores/${shop}/users/-STATS-`)
+  // );
+
   const [data, loading, error] = useDocumentOnce(
-    firestore.doc(`stores/${shop}/users/-STATS-`).get()
+    firestore.doc(`stores/${shop}/users/-STATS-`)
   );
 
   console.log("in StatCards");
