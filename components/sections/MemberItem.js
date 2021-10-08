@@ -24,13 +24,16 @@ const Section = ({ member }) => {
           <span className="subtitle" style={{ margin: " 0 2px 0 16px" }}>
             name:
           </span>
-          {reward.firstName}
+          {member.firstName}
         </p>
       </div>
       <div className="flex-center-right" style={{ width: "100%" }}>
-        <MoreButton>
-          <span onClick={() => remove(reward.id)}>Delete</span>
-        </MoreButton>
+        <p style={{ whiteSpace: "nowrap" }}>
+          <span className="subtitle" style={{ margin: " 0 2px 0 16px" }}>
+            name:
+          </span>
+          {member.lastName}
+        </p>
       </div>
     </div>
   );
