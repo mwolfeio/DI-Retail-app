@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import MoreButton from "../MoreButton.js";
 
-const Section = ({ add, remove, reward }) => {
+const Section = ({ member }) => {
   return (
     <div className="card flex-center-btw ">
       <div className="flex-center-left">
