@@ -65,7 +65,6 @@ const Section = ({ shop }) => {
         status={open}
         minimize={toggleOpen}
         title={`Rewards (${memberArr.length})`}
-        dropDown={[{ name: "clear Rewards", func: clearAll }]}
       />
       {open && (
         <div>

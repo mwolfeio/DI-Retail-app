@@ -7,24 +7,24 @@ const Section = ({ member }) => {
       <div className="flex-center-left">
         <p style={{ whiteSpace: "nowrap", width: "100%" }}>
           <span className="subtitle" style={{ marginRight: "8px" }}>
-            Name:{" "}
+            email:{" "}
           </span>{" "}
-          {reward.name}
+          {member.email}
         </p>
         <p style={{ whiteSpace: "nowrap" }}>
           <span className="subtitle" style={{ margin: " 0 8px 0 16px" }}>
-            Cost:{" "}
+            points:{" "}
           </span>
-          {reward.points}
+          {member.points}
           <span className="subtitle" style={{ margin: " 0 8px 0 4px" }}>
             Points
           </span>
         </p>
         <p style={{ whiteSpace: "nowrap" }}>
           <span className="subtitle" style={{ margin: " 0 2px 0 16px" }}>
-            Value: $
+            name:
           </span>
-          {reward.value}
+          {reward.firstName}
         </p>
       </div>
       <div className="flex-center-right" style={{ width: "100%" }}>
