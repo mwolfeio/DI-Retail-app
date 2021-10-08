@@ -2,7 +2,7 @@ import React from "react";
 import { firestore } from "../../lib/firebase";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
-const translateStore = ({ shop }) => {
+const StatCards = ({ shop }) => {
   const [statsDoc, loading, error] = useDocumentOnce(
     firestore.collection(`stores/${shop}/users/-STATS-`).get
   );
@@ -31,4 +31,4 @@ const translateStore = ({ shop }) => {
     </div>
   );
 };
-export default CustomerPage;
+export default StatCards;
