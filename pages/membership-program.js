@@ -1,6 +1,8 @@
 import React from "react";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
+import { firestore } from "../lib/firebase";
+import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import ButtonNav from "../components/ButtonNav.js";
 import Loader from "../components/Loader.js";
