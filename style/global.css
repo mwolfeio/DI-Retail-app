@@ -1127,9 +1127,6 @@ div.not-active-opp-card textarea.opp-input:focus {
 div.not-active-opp-card input[type="checkbox"]:hover {
   cursor: pointer;
 }
-div.reward-card-wrapper :not(:last-child) {
-  margin-bottom: 8px;
-}
 
 /* TOGGLE------------------- */
 

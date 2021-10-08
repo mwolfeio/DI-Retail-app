@@ -56,6 +56,10 @@ const Section = ({ shop }) => {
     const newData = await response.json();
     console.log("newData: ", newData);
     setRewardArr([...rewardArr, newData]);
+    setnewname("");
+    setnewpoints("");
+    setnewvalue("");
+    setAddCard(false);
   };
   const removeReward = async (id) => {
     const response = await fetch(
@@ -68,7 +72,7 @@ const Section = ({ shop }) => {
       }
     );
     const idToRemove = await response.json();
-    const newArr = rewardArr.filter((reward) => reward.id === id);
+    const newArr = rewardArr.filter((reward) => reward.id !== id);
 
     setRewardArr(newArr);
   };
@@ -180,7 +184,7 @@ const Section = ({ shop }) => {
 
                     <input
                       required
-                      type="text"
+                      type="number"
                       placeholder="Add a cost (ex. 100 Points)"
                       value={newpoints}
                       style={{ width: "100%" }}
@@ -192,7 +196,7 @@ const Section = ({ shop }) => {
                     <h2 style={{ marginRight: "8px" }}>Value:</h2>
                     <input
                       required
-                      type="text"
+                      type="number"
                       placeholder="Add a value (ex. $5)"
                       value={newvalue}
                       style={{ width: "100%" }}
