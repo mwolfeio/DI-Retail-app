@@ -145,7 +145,7 @@ const Section = ({ shop }) => {
             by them. Add and edit the rewards available to your customers here.
           </p>
 
-          <div className="card-container">
+          <div className="card-container reward-card-wrapper">
             {addCard && (
               <form onSubmit={submitHandler} className="card input-card">
                 <p>
@@ -221,15 +221,13 @@ const Section = ({ shop }) => {
                 <b>No Metafields</b>
               </div>
             ) : (
-              <div className="reward-card-wrapper">
-                {rewardArr.map((reward) => (
-                  <RewardsItem
-                    add={newReward}
-                    remove={removeReward}
-                    reward={reward}
-                  />
-                ))}
-              </div>
+              rewardArr.map((reward) => (
+                <RewardsItem
+                  add={newReward}
+                  remove={removeReward}
+                  reward={reward}
+                />
+              ))
             )}
           </div>
         </div>
