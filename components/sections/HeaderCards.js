@@ -9,9 +9,15 @@ const StatCards = ({ shop }) => {
     firestore.doc(`stores/${shop}/users/-STATS-`).get
   );
 
+  console.log("in StatCards");
+
   if (loading) return <Loader />;
   if (error) return <div>{error.message}</div>;
+
+  console.log("laoded");
+
   let stats = statsDoc.data();
+  console.log("stats:", stats);
 
   return (
     <div className="order-page-header">
