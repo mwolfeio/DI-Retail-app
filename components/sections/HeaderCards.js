@@ -4,7 +4,7 @@ import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 const StatCards = ({ shop }) => {
   const [statsDoc, loading, error] = useDocumentOnce(
-    firestore.collection(`stores/${shop}/users/-STATS-`).get
+    firestore.doc(`stores/${shop}/users/-STATS-`).get
   );
 
   if (loading) return <Loader />;
