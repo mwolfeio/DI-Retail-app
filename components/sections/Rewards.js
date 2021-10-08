@@ -116,7 +116,7 @@ const Section = ({ shop }) => {
     rewardArr.length < 2
       ? rewardArr
       : rewardArr.sort(function (a, b) {
-          return b.value - a.value;
+          return b.points - a.points;
         });
 
   return (

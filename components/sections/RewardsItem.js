@@ -29,7 +29,7 @@ const Section = ({ add, remove, reward }) => {
       </div>
       <div className="flex-center-right" style={{ width: "100%" }}>
         <MoreButton>
-          <span onClick={() => console.log("DELETE")}>Delete</span>
+          <span onClick={() => remove(reward.id)}>Delete</span>
         </MoreButton>
       </div>
     </div>
