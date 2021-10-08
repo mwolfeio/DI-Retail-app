@@ -128,7 +128,7 @@ const Section = ({ shop }) => {
               lineHeight: "22px",
               fontSize: "14px",
               width: "700px",
-              margin: "-8px 0 20px",
+              margin: "-8px 0 0",
               maxWidth: "Calc(100% - 120px)",
             }}
           >
@@ -137,7 +137,16 @@ const Section = ({ shop }) => {
             tasks. You can toggle them on or off and change their values.
             Opportunities appear on the customer’s account page.
           </p>
-          <p>
+          <p
+            className="subtitle"
+            style={{
+              lineHeight: "22px",
+              fontSize: "14px",
+              width: "700px",
+              margin: "0 0 20px",
+              maxWidth: "Calc(100% - 120px)",
+            }}
+          >
             <i>Note: set Usage limit to 0 for unlimited usage</i>
           </p>
           {loading ? (

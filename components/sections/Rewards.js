@@ -144,14 +144,7 @@ const Section = ({ shop }) => {
             customer receives a personalized discount code that can only be used
             by them. Add and edit the rewards available to your customers here.
           </p>
-          <p>
-            <i>
-              Discounting higher rewards and only allowing one discount code per
-              checkout incentivize users to spend more and save their points
-              (ex. Reward 1: 100 points $5 and coupon, Reward 2: 190 points and
-              $10 coupon)
-            </i>
-          </p>
+
           <div className="card-container">
             {addCard && (
               <form onSubmit={submitHandler} className="card input-card">
@@ -228,13 +221,15 @@ const Section = ({ shop }) => {
                 <b>No Metafields</b>
               </div>
             ) : (
-              rewardArr.map((reward) => (
-                <RewardsItem
-                  add={newReward}
-                  remove={removeReward}
-                  reward={reward}
-                />
-              ))
+              <div className="reward-card-wrapper">
+                {rewardArr.map((reward) => (
+                  <RewardsItem
+                    add={newReward}
+                    remove={removeReward}
+                    reward={reward}
+                  />
+                ))}
+              </div>
             )}
           </div>
         </div>

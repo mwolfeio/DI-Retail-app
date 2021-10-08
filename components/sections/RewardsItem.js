@@ -3,7 +3,7 @@ import MoreButton from "../MoreButton.js";
 
 const Section = ({ add, remove, reward }) => {
   return (
-    <div className="card flex-center-btw" style={{ marginBottom: "8px" }}>
+    <div className="card flex-center-btw ">
       <div className="flex-center-left">
         <p style={{ whiteSpace: "nowrap", width: "100%" }}>
           <span className="subtitle" style={{ marginRight: "8px" }}>
@@ -21,7 +21,7 @@ const Section = ({ add, remove, reward }) => {
           </span>
         </p>
         <p style={{ whiteSpace: "nowrap" }}>
-          <span className="subtitle" style={{ margin: " 0 4px 0 16px" }}>
+          <span className="subtitle" style={{ margin: " 0 2px 0 16px" }}>
             Value: $
           </span>
           {reward.value}
