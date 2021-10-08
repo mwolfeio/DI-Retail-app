@@ -64,7 +64,7 @@ const Section = ({ shop }) => {
         add={{ display: false }}
         status={open}
         minimize={toggleOpen}
-        title={`Rewards (${memberArr.length})`}
+        title={`Members (${memberArr.length})`}
       />
       {open && (
         <div>

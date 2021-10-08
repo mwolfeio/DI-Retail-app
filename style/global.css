@@ -1127,6 +1127,9 @@ div.not-active-opp-card textarea.opp-input:focus {
 div.not-active-opp-card input[type="checkbox"]:hover {
   cursor: pointer;
 }
+.heder-card-stat {
+  box-shadow: 0 4px 4px rgb(176 183 195 / 17%);
+}
 
 /* TOGGLE------------------- */
 

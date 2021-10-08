@@ -25,18 +25,16 @@ const StatCards = ({ shop }) => {
 
   return (
     <div className="order-page-header">
-      <div className="clickable-card">
+      <div className="heder-card-stat">
         <h2>Program Members</h2>
-        <p>
-          {stats.member_count} <span style={{ color: "#b0b7c3" }}>members</span>
-        </p>
+        <p>{stats.member_count} members</p>
       </div>
 
-      <div className="clickable-card">
+      <div className="heder-card-stat">
         <h2>Outstanding Points </h2>
         <p>{stats.outstanding_points} Points</p>
       </div>
-      <div className="clickable-card">
+      <div className="heder-card-stat">
         <h2>Outstanding Cupons</h2>
         <p>$ </p>
       </div>
