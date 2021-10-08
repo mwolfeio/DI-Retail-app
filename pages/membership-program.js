@@ -6,6 +6,7 @@ import ButtonNav from "../components/ButtonNav.js";
 import Loader from "../components/Loader.js";
 import Opportunities from "../components/sections/Opportunities.js";
 import Rewards from "../components/sections/Rewards.js";
+import MembershipMembers from "../components/sections/MembershipMembers.js";
 
 const GET_SHOP = gql`
   {
@@ -28,9 +29,13 @@ const translateStore = (storeName) => {
 const CustomerPage = () => {
   //Query
   const { loading, error, data } = useQuery(GET_SHOP);
+  const [statsDoc, dbLoading, fbError] = useDocumentOnce(
+    firestore.collection(`stores/${shop}/users/-STATS-`).get
+  );
 
-  if (loading) return <Loader />;
-  if (error) return <div>{error.message}</div>;
+  if (loading || dbLoading) return <Loader />;
+  if (error || fbError)
+    return <div>{error ? error.message : fbError.message}</div>;
 
   // let data = {
   //   shop: {
@@ -39,6 +44,7 @@ const CustomerPage = () => {
   // };
 
   let shop = translateStore(data.shop.id);
+  let stats = statsDoc.data();
 
   return (
     <main>
@@ -69,25 +75,26 @@ const CustomerPage = () => {
           <div className="order-page-header">
             <div className="clickable-card">
               <h2>Program Members</h2>
-              <p>Count</p>
+              <p>
+                {stats.member_count}{" "}
+                <span style={{ color: "#b0b7c3" }}>members</span>
+              </p>
             </div>
 
             <div className="clickable-card">
-              <h2>Current State </h2>
-              <p>cupons outstanding</p>
-              <p>value outstanding</p>
+              <h2>Outstanding Points </h2>
+              <p>{stats.outstanding_points} Points</p>
             </div>
             <div className="clickable-card">
-              <h2>History</h2>
-              <p>Total Sales</p>
-              <p>Aggregate Discount</p>
+              <h2>Outstanding Cupons</h2>
+              <p>$</p>
             </div>
           </div>
         </section>
         <Opportunities shop={shop} />
         <Rewards shop={shop} />
+        <MembershipMembers memberCount={stats.member_count} shop={shop} />
 
-        <section className="disabled">Rewards offered to trade-ins</section>
         <section className="disabled">Members sorted by point total</section>
       </div>
     </main>

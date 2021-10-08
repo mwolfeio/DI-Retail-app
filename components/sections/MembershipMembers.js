@@ -4,12 +4,11 @@ import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import SectionHeader from "./SectionHeader.js";
 import Loader from "../Loader.js";
-import RewardsItem from "./RewardsItem.js";
+import MemberItem from "./MemberItem.js";
 
 const Section = ({ shop }) => {
   const [open, setOpen] = useState(true);
-  const [addCard, setAddCard] = useState(false);
-  const [rewardArr, setRewardArr] = useState([]);
+  const [memberArr, setmemberArr] = useState([]);
 
   //form inputs
   const [newname, setnewname] = useState();
@@ -18,75 +17,16 @@ const Section = ({ shop }) => {
 
   //Firebase Queries
   const [snapshot, loading, error] = useDocumentOnce(
-    firestore.collection(`stores/${shop}/rewards`)
+    firestore
+      .collection(`stores/${shop}/users`)
+      .orderBy("points", "desc")
+      .limit(50)
   );
 
   //cloudfunctions
   const toggleOpen = () => {
     console.log("clicked");
     setOpen(!open);
-  };
-  const toggleAddCard = () => {
-    setAddCard(!addCard);
-  };
-  const submitHandler = (e) => {
-    e.preventDefault();
-    if (!newpoints || !newvalue || !newname) {
-      console.log("payload cant be blank");
-      return;
-    }
-    let payload = {
-      points: newpoints,
-      value: newvalue,
-      name: newname,
-    };
-    newReward(payload);
-  };
-  const newReward = async (payload) => {
-    const response = await fetch(
-      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/rewards/create`,
-      {
-        method: "POST",
-        body: JSON.stringify(payload),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const newData = await response.json();
-    console.log("newData: ", newData);
-    setRewardArr([...rewardArr, newData]);
-    setnewname("");
-    setnewpoints("");
-    setnewvalue("");
-    setAddCard(false);
-  };
-  const removeReward = async (id) => {
-    const response = await fetch(
-      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/rewards/${id}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const idToRemove = await response.json();
-    const newArr = rewardArr.filter((reward) => reward.id !== id);
-
-    setRewardArr(newArr);
-  };
-  const clearAll = async () => {
-    console.log("clearing wishlists");
-    const batch = rewardArr.batch();
-
-    idArr.forEach((alert) => {
-      console.log("clearing: ", alert);
-      batch.delete(firestore.doc(`stores/${shop}/rewards/${alert.id}`));
-    });
-
-    await batch.commit();
-    setIdArr([]);
   };
 
   //useEffect
@@ -97,7 +37,8 @@ const Section = ({ shop }) => {
       if (doc.exists) {
         console.log("adding new data");
         let snapshotObject = doc.data();
-        setRewardArr((rewardArr) => [...rewardArr, snapshotObject]);
+        snapshotObject.id = doc.id;
+        setmemberArr((memberArr) => [...memberArr, snapshotObject]);
       }
     });
   }, [snapshot]);
@@ -116,12 +57,6 @@ const Section = ({ shop }) => {
     );
 
   //variables
-  let sortedArr =
-    rewardArr.length < 2
-      ? rewardArr
-      : rewardArr.sort(function (a, b) {
-          return b.points - a.points;
-        });
 
   return (
     <section>
@@ -129,7 +64,7 @@ const Section = ({ shop }) => {
         add={{ display: true, func: toggleAddCard }}
         status={open}
         minimize={toggleOpen}
-        title={`Rewards (${rewardArr.length})`}
+        title={`Rewards (${memberArr.length})`}
         dropDown={[{ name: "clear Rewards", func: clearAll }]}
       />
       {open && (
@@ -150,88 +85,15 @@ const Section = ({ shop }) => {
           </p>
 
           <div className="card-container reward-card-wrapper">
-            {addCard && (
-              <form onSubmit={submitHandler} className="card input-card">
-                <p>
-                  <span
-                    className="subtitle"
-                    style={{ marginBottom: "8px", fontSize: "16px" }}
-                  >
-                    New Reward{" "}
-                  </span>
-                </p>
-                <div
-                  className="flex-center-left"
-                  style={{ width: "100%", marginBottom: "8px" }}
-                >
-                  <h2 style={{ marginRight: "8px" }}>Name:</h2>
-
-                  <input
-                    required
-                    type="text"
-                    placeholder="Add a name (ex. Level 1 Reward)"
-                    value={newname}
-                    style={{ width: "100%" }}
-                    onChange={(e) => setnewname(e.target.value)}
-                  />
-                </div>
-                <div
-                  className="flex-center-btw"
-                  style={{ width: "100%", marginBottom: "8px" }}
-                >
-                  <div className="flex-center-left">
-                    <h2 style={{ marginRight: "8px" }}>Cost:</h2>
-
-                    <input
-                      required
-                      type="number"
-                      placeholder="Add a cost (ex. 100 Points)"
-                      value={newpoints}
-                      style={{ width: "100%" }}
-                      onChange={(e) => setnewpoints(e.target.value)}
-                    />
-                  </div>
-
-                  <div className="flex-center-left">
-                    <h2 style={{ marginRight: "8px" }}>Value:</h2>
-                    <input
-                      required
-                      type="number"
-                      placeholder="Add a value (ex. $5)"
-                      value={newvalue}
-                      style={{ width: "100%" }}
-                      onChange={(e) => setnewvalue(e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="flex-center-right">
-                  <div className="flex-center-center">
-                    <button
-                      className=""
-                      onClick={() => setAddCard(false)}
-                      style={{ marginRight: "8px" }}
-                    >
-                      Cancel
-                    </button>
-                    <button type="submit" className="submit-button">
-                      Submit
-                    </button>
-                  </div>
-                </div>
-              </form>
-            )}
-            {rewardArr.length < 1 ? (
+            {memberArr.length < 1 ? (
               <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
                 <b>No Metafields</b>
               </div>
             ) : (
-              sortedArr.map((reward) => (
-                <RewardsItem
-                  add={newReward}
-                  remove={removeReward}
-                  reward={reward}
-                />
-              ))
+              memberArr.map((member) => {
+                if (member.id === "-STATS-") return;
+                return <MemberItem member={member} />;
+              })
             )}
           </div>
         </div>
