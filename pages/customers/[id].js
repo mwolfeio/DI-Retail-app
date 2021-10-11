@@ -256,7 +256,12 @@ const CustomerPage = () => {
           </div>
         </section>
         {isMember && (
-          <Membership email={email} points={points} oppArr={oppArr} />
+          <Membership
+            email={email}
+            points={points}
+            oppArr={oppArr}
+            shop={shop}
+          />
         )}
         <Interests email={email} interests={interests} />
         <Wishlist email={email} shop={shop} />
