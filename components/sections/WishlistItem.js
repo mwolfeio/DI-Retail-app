@@ -62,6 +62,7 @@ const CustomerPage = ({ prodcutId, remove, index, shop }) => {
   const [getProduct, { called, loading, data, error }] = useLazyQuery(
     GET_PRODUCT,
     {
+      fetchPolicy: "no-cache",
       variables: { id: `gid://shopify/Product/6673326309528` },
     }
   );
