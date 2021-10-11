@@ -253,10 +253,16 @@ const CustomerPage = () => {
             </div>
           </div>
         </section>
-
+        <Interests email={email} interests={interests} />
         <Wishlist email={email} shop={shop} />
+        <Alerts email={email} shop={shop} />
+        <Orders fields={ordersArr} />
+        <MatafieldSection
+          fields={matafieldsArr}
+          type="customer"
+          globalId={globalId}
+        />
 
-        <section className="disabled">Reviews</section>
         <section className="disabled">Rewards</section>
       </div>
     </main>
@@ -273,6 +279,8 @@ export default CustomerPage;
 //   type="customer"
 //   globalId={globalId}
 // />
+
+//  <section className="disabled">Reviews</section>
 
 // <section className="disabled">Wishlist</section>
 // <section className="disabled">Interests</section>
