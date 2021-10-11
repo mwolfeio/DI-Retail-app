@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { firestore } from "../../lib/firebase";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
+//components
 import SectionHeader from "./SectionHeader.js";
 import Loader from "../Loader.js";
 import MemberItem from "./MemberItem.js";
