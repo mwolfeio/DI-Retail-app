@@ -60,6 +60,11 @@ const CustomerPage = ({ prodcutId, remove, index, shop }) => {
   //Shopify Query
   const [getProduct, { called, loading, data }] = useLazyQuery(GET_PRODUCT);
 
+  if (prodcutId)
+    getProduct({
+      variables: { id: `gid://shopify/Product/${prodcutId}` },
+    });
+
   useEffect(() => {
     console.log("running useEffect for: ", prodcutId);
     setStateId(prodcutId);
