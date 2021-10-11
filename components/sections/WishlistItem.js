@@ -10,12 +10,14 @@ import Loader from "../Loader.js";
 
 const GET_PRODUCT = gql`
   query getProduct($id: ID!) {
+    id
     product(id: $id) {
       id
       title
       variants(first: 50) {
         edges {
           node {
+            id
             image(maxHeight: 100, maxWidth: 100) {
               src
             }
@@ -33,6 +35,7 @@ const GET_PRODUCT = gql`
       onlineStoreUrl
       images(maxHeight: 100, maxWidth: 100, first: 1) {
         edges {
+          id
           node {
             src
           }

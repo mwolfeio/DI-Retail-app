@@ -14,8 +14,8 @@ import SearchTerms from "../../components/sections/SearchTerms.js";
 const GET_PRODUCT = gql`
   query getProduct($id: ID!) {
     product(id: $id) {
-      description
       id
+      description
       images(first: 10, maxHeight: 500, maxWidth: 500) {
         edges {
           node {
