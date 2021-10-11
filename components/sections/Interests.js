@@ -68,7 +68,10 @@ const Section = ({ interests, email }) => {
 
           {sortedInterestsArr.length < 1 ? (
             <div className="card-container">
-              <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
+              <div
+                className="flex-center-center"
+                style={{ background: "none", boxShadow: "none" }}
+              >
                 <b>No Interests</b>
               </div>
             </div>

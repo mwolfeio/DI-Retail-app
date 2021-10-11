@@ -60,51 +60,50 @@ const Section = ({ oppArr, email, points, shop }) => {
   //codes
   //points
 
+  //codes should be
+
   return (
     <section>
-      <SectionHeader status={open} minimize={toggleOpen} title={`Membership`} />
+      <SectionHeader
+        status={open}
+        minimize={toggleOpen}
+        title={`Codes (${codeArr.length})`}
+      />
       {open && (
-        <div>
-          <p>Points</p>
-          <p>Opportunites</p>
-          <div
-            className="card-container flex-top-left "
-            style={{ minHeight: "80px", flexWrap: "wrap" }}
-          >
-            {codeArr.length ? (
-              codeArr.map((code, i) => (
-                <div
-                  style={{ color: "#4e5d78" }}
-                  className="search-code-tag flex-center-center"
-                >
-                  {`${code.code} ($${code.value})`}
-                  <div
-                    onClick={() => removecode(i)}
-                    style={{ color: "#b0b7c3" }}
-                  >
-                    <svg
-                      viewBox="0 0 20 20"
-                      style={{ height: "18px", width: "18px" }}
-                    >
-                      <path
-                        fill="currentColor"
-                        d="m11.414 10 4.293-4.293a.999.999 0 1 0-1.414-1.414L10 8.586 5.707 4.293a.999.999 0 1 0-1.414 1.414L8.586 10l-4.293 4.293a.999.999 0 1 0 1.414 1.414L10 11.414l4.293 4.293a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414L11.414 10z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-              ))
-            ) : (
+        <div
+          className="card-container flex-top-left "
+          style={{ minHeight: "80px", flexWrap: "wrap" }}
+        >
+          {codeArr.length ? (
+            codeArr.map((code, i) => (
               <div
-                className="flex-center-center"
-                style={{ background: "none", width: "100%" }}
+                style={{ color: "#4e5d78" }}
+                className="search-term-tag flex-center-center"
               >
-                <p className="subtitle" style={{ fontSize: "14px" }}>
-                  No codes yet
-                </p>
+                {`${code.code} ($${code.value})`}
+                <div onClick={() => removecode(i)} style={{ color: "#b0b7c3" }}>
+                  <svg
+                    viewBox="0 0 20 20"
+                    style={{ height: "18px", width: "18px" }}
+                  >
+                    <path
+                      fill="currentColor"
+                      d="m11.414 10 4.293-4.293a.999.999 0 1 0-1.414-1.414L10 8.586 5.707 4.293a.999.999 0 1 0-1.414 1.414L8.586 10l-4.293 4.293a.999.999 0 1 0 1.414 1.414L10 11.414l4.293 4.293a.997.997 0 0 0 1.414 0 .999.999 0 0 0 0-1.414L11.414 10z"
+                    ></path>
+                  </svg>
+                </div>
               </div>
-            )}
-          </div>
+            ))
+          ) : (
+            <div
+              className="flex-center-center"
+              style={{ background: "none", width: "100%" }}
+            >
+              <p className="subtitle" style={{ fontSize: "14px" }}>
+                No codes yet
+              </p>
+            </div>
+          )}
         </div>
       )}
     </section>
