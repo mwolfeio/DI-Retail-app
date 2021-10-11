@@ -17,6 +17,7 @@ const StatCards = ({ shop }) => {
   );
 
   console.log("in StatCards");
+  console.log("codeData", codeData);
 
   if (loading || codeLoading) return <Loader />;
   if (error || codeError)

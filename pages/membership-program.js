@@ -67,8 +67,6 @@ const CustomerPage = () => {
         <Opportunities shop={shop} />
         <Rewards shop={shop} />
         <MembershipMembers shop={shop} />
-
-        <section className="disabled">Members sorted by point total</section>
       </div>
     </main>
   );
