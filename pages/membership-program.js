@@ -18,8 +18,11 @@ const GET_SHOP = gql`
   }
 `;
 
+const getId = (storeName) => {
+  return storeName.replace("gid://shopify/Shop/", "");
+};
 const translateStore = (storeName) => {
-  let key = "id_" + storeName.replace("gid://shopify/Shop/", "");
+  let key = "id_" + getId(storeName);
   let shopTranslator = {
     id_44390383768: "design-ideas",
     id_34498510987: "texxture-home",
@@ -60,8 +63,7 @@ const CustomerPage = () => {
               <h1 style={{ fontSize: "20px" }}>{url}</h1>
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
                 <i>
-                  Shopify: {storeName.replace("gid://shopify/Shop/", "")},
-                  Firebase: {shop}
+                  Shopify: {getId(data.shop.id)}, Firebase: {shop}
                 </i>
               </h2>
             </div>
