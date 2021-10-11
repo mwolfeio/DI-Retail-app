@@ -161,6 +161,7 @@ const CustomerPage = () => {
   let interests = firebaseData.data() ? firebaseData.data().interests : {};
   let points = firebaseData.data() ? firebaseData.data().points : "";
   let isMember = firebaseData.exists;
+  let OppArr = firebaseData.data() ? firebaseData.data().opportunities : [];
 
   return (
     <main>
@@ -254,7 +255,9 @@ const CustomerPage = () => {
             </div>
           </div>
         </section>
-        {isMember && <Membership email={email} interests={interests} />}
+        {isMember && (
+          <Membership email={email} points={points} oppArr={oppArr} />
+        )}
         <Interests email={email} interests={interests} />
         <Wishlist email={email} shop={shop} />
         <Alerts email={email} shop={shop} />

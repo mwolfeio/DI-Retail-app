@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { firestore } from "../../lib/firebase";
-// import { useDocumentOnce } from "react-firebase-hooks/firestore";
-import { useFirestoreLoadMore } from "../useFirestoreLoadMore.js";
+import { useCollectionOnce } from "react-firebase-hooks/firestore";
+// import { useFirestoreLoadMore } from "../useFirestoreLoadMore.js";
 
 //components
 import SectionHeader from "./SectionHeader.js";
@@ -18,12 +18,12 @@ const Section = ({ shop }) => {
   const [newvalue, setnewvalue] = useState();
 
   //Firebase Queries
-  const [[snapshot, loading, error], more] = useFirestoreLoadMore(
-    firestore.collection(`stores/${shop}/users`).orderBy("points").limit(2)
-  );
-  // const [snapshot, loading, error] = useDocumentOnce(
+  // const [[snapshot, loading, error], more] = useFirestoreLoadMore(
   //   firestore.collection(`stores/${shop}/users`).orderBy("points").limit(2)
   // );
+  const [snapshot, loading, error] = useCollectionOnce(
+    firestore.collection(`stores/${shop}/users`).orderBy("points").limit(50)
+  );
 
   //cloudfunctions
   const toggleOpen = () => {

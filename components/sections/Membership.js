@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useMutation } from "react-apollo";
-import { gql } from "apollo-boost";
+import { firestore } from "../../lib/firebase";
+import { useCollectionOnce } from "react-firebase-hooks/firestore";
 
 import SectionHeader from "./SectionHeader.js";
 import MetafieldInput from "./MetafieldInput.js";
@@ -9,109 +10,75 @@ import MoreButton from "../MoreButton.js";
 
 //graphql
 
-const Section = ({ arr, id, globalId }) => {
+const Section = ({ oppArr, email, points }) => {
   const [open, setOpen] = useState(true);
-  const [searchTermArray, setSearchTermArray] = useState([
-    { code: "DI-7E5EEC", value: 5 },
-  ]);
-  const [fieldId, setFieldId] = useState(id);
+  const [codeArr, setcodeArr] = useState([]);
+  // const [fieldId, setFieldId] = useState(id);
   const [input, setInput] = useState("");
 
   //Query
+  const [snapshot, loading, error] = useCollectionOnce(
+    firestore.collection(`stores/${shop}/codes`).where("user", "==", email)
+  );
 
   //handlers
   const toggleOpen = () => {
     setOpen(!open);
   };
   const deleteMetafield = () => {
-    let payload = {
-      variables: {
-        input: {
-          id: fieldId,
-        },
-      },
-    };
-
-    console.log("deleting: ", payload);
-    deleteField(payload)
-      .then(() => {
-        setSearchTermArray([]);
-        setFieldId("");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    console.log("deleting");
   };
   const submitHandler = () => {
-    let newTermsArr = input.split(", ");
-    let allTermsArr = [...searchTermArray, ...newTermsArr];
-
-    submit(allTermsArr);
+    console.log("submit handler");
   };
   const submit = (arrayToSubmit) => {
     console.log("arrayToSubmit:", arrayToSubmit);
   };
-  const removeTerm = (i) => {
-    console.log("running removeTerm");
-    let newArr = searchTermArray;
+  const removecode = (i) => {
+    console.log("running removecode");
+    let newArr = [...codeArr];
     newArr.splice(i, 1);
     console.log("newArr= ", newArr);
     submit(newArr);
   };
 
-  // useEffect(() => {
-  //   setSearchTermArray(arr);
-  // }, [arr]);
   useEffect(() => {
-    setFieldId(id);
-  }, [id]);
+    if (loading || error) return;
+    snapshot.forEach((doc) => {
+      if (doc.exists) {
+        let snapshotObject = doc.data();
+        snapshotObject.docId = doc.id;
+        setcodeArr((codeArr) => [...codeArr, snapshotObject]);
+      }
+    });
+    setcodeArr(arr);
+  }, [snapshot]);
+  // useEffect(() => {
+  //   setFieldId(id);
+  // }, [id]);
+
+  //opportunites
+  //codes
+  //points
 
   return (
     <section>
-      <SectionHeader
-        status={open}
-        minimize={toggleOpen}
-        title={`Membership (${searchTermArray.length})`}
-      />
+      <SectionHeader status={open} minimize={toggleOpen} title={`Membership`} />
       {open && (
         <div>
-          <div className="flex-center-center" style={{ marginBottom: "16px" }}>
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              placeholder="Enter your terms (ex. term A, term B, etc..)"
-            />
-            <button
-              className=""
-              style={{ margin: "0 8px", opacity: input ? 1 : 0.5 }}
-              onClick={() => setInput("")}
-              disabled={input ? false : true}
-            >
-              clear
-            </button>
-            <button
-              onClick={submitHandler}
-              style={{ opacity: input ? 1 : 0.5 }}
-              className={input && "submit-button"}
-              disabled={input ? false : true}
-            >
-              Submit
-            </button>
-          </div>
           <div
             className="card-container flex-top-left "
             style={{ minHeight: "80px", flexWrap: "wrap" }}
           >
-            {searchTermArray.length ? (
-              searchTermArray.map((term, i) => (
+            {codeArr.length ? (
+              codeArr.map((code, i) => (
                 <div
                   style={{ color: "#4e5d78" }}
-                  className="search-term-tag flex-center-center"
+                  className="search-code-tag flex-center-center"
                 >
-                  {term}
+                  {code}
                   <div
-                    onClick={() => removeTerm(i)}
+                    onClick={() => removecode(i)}
                     style={{ color: "#b0b7c3" }}
                   >
                     <svg
@@ -132,7 +99,7 @@ const Section = ({ arr, id, globalId }) => {
                 style={{ background: "none", width: "100%" }}
               >
                 <p className="subtitle" style={{ fontSize: "14px" }}>
-                  No terms yet
+                  No codes yet
                 </p>
               </div>
             )}
