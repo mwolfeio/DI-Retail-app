@@ -15,6 +15,7 @@ import Wishlist from "../../components/sections/Wishlist.js";
 import Discounts from "../../components/sections/Discounts.js";
 import Placeholder from "../../components/Placeholder.js";
 import Alerts from "../../components/sections/Alerts.js";
+import Membership from "../../components/sections/Membership.js";
 
 const GET_CUSTOMER = gql`
   query getCustomer($id: ID!) {
@@ -253,6 +254,7 @@ const CustomerPage = () => {
             </div>
           </div>
         </section>
+        {isMember && <Membership email={email} interests={interests} />}
         <Interests email={email} interests={interests} />
         <Wishlist email={email} shop={shop} />
         <Alerts email={email} shop={shop} />

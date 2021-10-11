@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { firestore } from "../../lib/firebase";
-import { useDocumentOnce } from "react-firebase-hooks/firestore";
+// import { useDocumentOnce } from "react-firebase-hooks/firestore";
+import { useFirestoreLoadMore } from "../useFirestoreLoadMore.js";
 
 //components
 import SectionHeader from "./SectionHeader.js";
@@ -17,9 +18,12 @@ const Section = ({ shop }) => {
   const [newvalue, setnewvalue] = useState();
 
   //Firebase Queries
-  const [snapshot, loading, error] = useDocumentOnce(
-    firestore.collection(`stores/${shop}/users`).orderBy("points").limit(50)
+  const [[snapshot, loading, error], more] = useFirestoreLoadMore(
+    firestore.collection(`stores/${shop}/users`).orderBy("points").limit(2)
   );
+  // const [snapshot, loading, error] = useDocumentOnce(
+  //   firestore.collection(`stores/${shop}/users`).orderBy("points").limit(2)
+  // );
 
   //cloudfunctions
   const toggleOpen = () => {
@@ -89,6 +93,9 @@ const Section = ({ shop }) => {
                 if (member.docId === "-STATS-") return;
                 return <MemberItem member={member} shop={shop} />;
               })
+            )}
+            {memberArr.length > 0 && (
+              <button onClick={() => more()}>Load More</button>
             )}
           </div>
         </div>
