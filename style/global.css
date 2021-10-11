@@ -1155,11 +1155,15 @@ div.not-active-opp-card input[type="checkbox"]:hover {
 }
 
 .member-icon-wrap svg {
-  transform: rotate(-90deg);
+  transform: rotate(90deg);
 }
 
 .member-card:hover .member-icon-wrap {
   opacity: 1;
+}
+
+form.input-card {
+  margin-bottom: 24px;
 }
 
 /* TOGGLE------------------- */

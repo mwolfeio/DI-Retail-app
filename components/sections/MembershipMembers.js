@@ -35,7 +35,7 @@ const Section = ({ shop }) => {
       if (doc.exists) {
         console.log("adding new data");
         let snapshotObject = doc.data();
-        snapshotObject.id = doc.id;
+        snapshotObject.docId = doc.id;
         setmemberArr((memberArr) => [...memberArr, snapshotObject]);
       }
     });
@@ -86,7 +86,7 @@ const Section = ({ shop }) => {
               </div>
             ) : (
               memberArr.map((member) => {
-                if (member.id === "-STATS-") return;
+                if (member.docId === "-STATS-") return;
                 return <MemberItem member={member} shop={shop} />;
               })
             )}

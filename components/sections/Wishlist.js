@@ -58,6 +58,9 @@ const WishlistWrapper = ({ email, shop }) => {
     });
   }, [snapshot]);
 
+  console.log("wishlist loading: ", loading);
+  console.log("wishlist loading: ", error);
+
   if (loading || error)
     return (
       <section>
