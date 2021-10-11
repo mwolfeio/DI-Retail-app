@@ -25,6 +25,9 @@ const Section = ({ member, shop }) => {
     totalValue += code.value;
   });
 
+  console.log(member.firstName, "'s id is ", member.id);
+  console.log(`href = /customers/${member.id}`);
+
   return (
     <Link href={`/customers/${member.id}`}>
       <div className="card member-card">
@@ -52,22 +55,24 @@ const Section = ({ member, shop }) => {
             Codes (${totalValue})
           </span>
         </p>
-        <div className="member-icon-wrap flex-center-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke="#B0B7C3"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-              d="M7 14.5l5-5 5 5"
-            ></path>
-          </svg>
+        <div className="flex-center-right">
+          <div className="member-icon-wrap flex-center-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke="#B0B7C3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M7 14.5l5-5 5 5"
+              ></path>
+            </svg>
+          </div>
         </div>
       </div>
     </Link>
