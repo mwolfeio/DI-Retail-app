@@ -161,7 +161,7 @@ const CustomerPage = () => {
   let interests = firebaseData.data() ? firebaseData.data().interests : {};
   let points = firebaseData.data() ? firebaseData.data().points : "";
   let isMember = firebaseData.exists;
-  let OppArr = firebaseData.data() ? firebaseData.data().opportunities : [];
+  let oppArr = firebaseData.data() ? firebaseData.data().opportunities : [];
 
   return (
     <main>

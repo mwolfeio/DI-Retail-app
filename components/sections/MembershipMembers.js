@@ -94,9 +94,6 @@ const Section = ({ shop }) => {
                 return <MemberItem member={member} shop={shop} />;
               })
             )}
-            {memberArr.length > 0 && (
-              <button onClick={() => more()}>Load More</button>
-            )}
           </div>
         </div>
       )}
@@ -104,6 +101,10 @@ const Section = ({ shop }) => {
   );
 };
 export default Section;
+
+// {memberArr.length > 0 && (
+//   <button onClick={() => more()}>Load More</button>
+// )}
 
 // <form onSubmit={submitHandler} className="card input-card">
 //   <div className="flex-center-btw">
