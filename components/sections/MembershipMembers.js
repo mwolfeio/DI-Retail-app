@@ -18,10 +18,7 @@ const Section = ({ shop }) => {
 
   //Firebase Queries
   const [snapshot, loading, error] = useDocumentOnce(
-    firestore
-      .collection(`stores/${shop}/users`)
-      .orderBy("points", "desc")
-      .limit(50)
+    firestore.collection(`stores/${shop}/users`).orderBy("points").limit(50)
   );
 
   //cloudfunctions
