@@ -46,7 +46,6 @@ const GET_PRODUCT = gql`
 `;
 
 // remove item from wishlist // TODO:
-
 const formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
@@ -59,7 +58,7 @@ const CustomerPage = ({ prodcutId, remove, index, shop }) => {
   console.log("stateId ", stateId);
 
   //Shopify Query
-  const [getProduct, { loading, error, data }] = useLazyQuery(GET_PRODUCT);
+  const [getProduct, { called, loading, data }] = useLazyQuery(GET_PRODUCT);
 
   useEffect(() => {
     console.log("running useEffect for: ", prodcutId);
@@ -69,8 +68,7 @@ const CustomerPage = ({ prodcutId, remove, index, shop }) => {
     });
   }, [prodcutId]);
 
-  if (loading || !data) return <Loader />;
-  if (error) return <div>{error.message}</div>;
+  if (called && loading) return <Loader />;
 
   console.log("data: ", data);
   console.log("product: ", data.product);

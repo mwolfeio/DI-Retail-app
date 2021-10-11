@@ -26,7 +26,9 @@ const StatCards = ({ shop }) => {
   console.log("laoded");
 
   let stats = data.data();
+  let code = codeData.data();
   console.log("stats:", stats);
+  console.log("code:", code);
 
   return (
     <div className="order-page-header">
@@ -42,7 +44,7 @@ const StatCards = ({ shop }) => {
       <div className="heder-card-stat">
         <h2>Outstanding Cupons</h2>
         <p>
-          {codeData.cuponsOutstanding} Cupons (${codeData.valueOutstanding})
+          {code.cuponsOutstanding} Cupons (${code.valueOutstanding})
         </p>
       </div>
     </div>

@@ -29,7 +29,16 @@ const Section = ({ member, shop }) => {
   console.log(`href = /customers/${member.id}`);
 
   return (
-    <Link href={`/customers/${member.id}`}>
+    <Link
+      href={{
+        pathname: `/customers/${member.id}`,
+        query: {
+          email: member.email,
+          id: member.id,
+          shop: shop,
+        },
+      }}
+    >
       <div className="card member-card">
         <div>
           <p style={{ whiteSpace: "nowrap", width: "100%" }}>
