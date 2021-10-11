@@ -51,7 +51,6 @@ const Section = ({ oppArr, email, points, shop }) => {
         setcodeArr((codeArr) => [...codeArr, snapshotObject]);
       }
     });
-    setcodeArr(arr);
   }, [snapshot]);
   // useEffect(() => {
   //   setFieldId(id);
