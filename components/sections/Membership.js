@@ -77,7 +77,7 @@ const Section = ({ oppArr, email, points, shop }) => {
                   style={{ color: "#4e5d78" }}
                   className="search-code-tag flex-center-center"
                 >
-                  {code}
+                  {`${code.code} ($${code.value})`}
                   <div
                     onClick={() => removecode(i)}
                     style={{ color: "#b0b7c3" }}
