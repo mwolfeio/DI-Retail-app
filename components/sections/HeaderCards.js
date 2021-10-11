@@ -12,11 +12,15 @@ const StatCards = ({ shop }) => {
   const [data, loading, error] = useDocumentOnce(
     firestore.doc(`stores/${shop}/users/-STATS-`)
   );
+  const [codeData, codeLoading, codeError] = useDocumentOnce(
+    firestore.doc(`stores/${shop}/codes/-STATS-`)
+  );
 
   console.log("in StatCards");
 
-  if (loading) return <Loader />;
-  if (error) return <div>{error.message}</div>;
+  if (loading || codeLoading) return <Loader />;
+  if (error || codeError)
+    return <div>{error ? error.message : codeError.message}</div>;
 
   console.log("laoded");
 
@@ -36,7 +40,9 @@ const StatCards = ({ shop }) => {
       </div>
       <div className="heder-card-stat">
         <h2>Outstanding Cupons</h2>
-        <p>$ </p>
+        <p>
+          {codeData.cuponsOutstanding} Cupons (${codeData.valueOutstanding})
+        </p>
       </div>
     </div>
   );

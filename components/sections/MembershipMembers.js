@@ -78,9 +78,7 @@ const Section = ({ shop }) => {
               maxWidth: "Calc(100% - 120px)",
             }}
           >
-            Customers can redeem their points for rewards. Once redeemed, a
-            customer receives a personalized discount code that can only be used
-            by them. Add and edit the rewards available to your customers here.
+            View and edit customers in the membership program.
           </p>
 
           <div className="card-container reward-card-wrapper">
