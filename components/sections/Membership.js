@@ -10,7 +10,7 @@ import MoreButton from "../MoreButton.js";
 
 //graphql
 
-const Section = ({ oppArr, email, points }) => {
+const Section = ({ oppArr, email, points, shop }) => {
   const [open, setOpen] = useState(true);
   const [codeArr, setcodeArr] = useState([]);
   // const [fieldId, setFieldId] = useState(id);
@@ -66,6 +66,8 @@ const Section = ({ oppArr, email, points }) => {
       <SectionHeader status={open} minimize={toggleOpen} title={`Membership`} />
       {open && (
         <div>
+          <p>Points</p>
+          <p>Opportunites</p>
           <div
             className="card-container flex-top-left "
             style={{ minHeight: "80px", flexWrap: "wrap" }}
