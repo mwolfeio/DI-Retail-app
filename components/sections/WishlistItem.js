@@ -62,10 +62,10 @@ const CustomerPage = ({ prodcutId, remove, index, shop }) => {
     variables: { id: `gid://shopify/Product/${prodcutId}` },
   });
 
-  if (prodcutId) {
-    console.log("getting product information for ", prodcutId);
-    getProduct();
-  }
+  console.log("prodcutId: ", prodcutId);
+  console.log("loading: ", loading);
+  console.log("called: ", called);
+  console.log("data: ", data);
 
   useEffect(() => {
     console.log("running useEffect for: ", prodcutId);
@@ -73,10 +73,18 @@ const CustomerPage = ({ prodcutId, remove, index, shop }) => {
     getProduct();
   }, [prodcutId]);
 
+  useEffect(() => {
+    console.log("running onMount for: ", prodcutId);
+    setStateId(prodcutId);
+    getProduct();
+  }, []);
+
   if (called && loading) return <Loader />;
 
   console.log("data: ", data);
   console.log("product: ", data.product);
+
+  if (!data) return <div>?No data</div>;
 
   if (!data.product) return <div>Product does not exist</div>;
   let product = data.product;
