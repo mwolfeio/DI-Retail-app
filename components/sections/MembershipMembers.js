@@ -89,7 +89,7 @@ const Section = ({ shop }) => {
             ) : (
               memberArr.map((member) => {
                 if (member.id === "-STATS-") return;
-                return <MemberItem member={member} />;
+                return <MemberItem member={member} shop={shop} />;
               })
             )}
           </div>

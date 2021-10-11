@@ -3,7 +3,7 @@ import MoreButton from "../MoreButton.js";
 import { firestore } from "../../lib/firebase";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
-const Section = ({ member }) => {
+const Section = ({ member, shop }) => {
   const [codeData, codeLoading, codeError] = useDocumentOnce(
     firestore
       .collection(`stores/${shop}/codes`)
