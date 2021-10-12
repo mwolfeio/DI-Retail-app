@@ -31,6 +31,11 @@ const Section = ({ oppArr, email, points, shop }) => {
     let newArr = [...codeArr];
     let codeToRemove = newArr.splice(i, 1);
 
+    console.log("i: ", i);
+    console.log("newArr: ", newArr);
+    console.log("codeToRemove: ", codeToRemove);
+    console.log("codeToRemove2: ", codeArr[i]);
+
     console.log("removing: ", codeToRemove.docId);
 
     const response = await fetch(
@@ -72,7 +77,7 @@ const Section = ({ oppArr, email, points, shop }) => {
       <SectionHeader
         status={open}
         minimize={toggleOpen}
-        title={`Coupon Codes (${codeArr.length})`}
+        title={`Coupon Codes`}
       />
       {open && (
         <div>
@@ -86,8 +91,14 @@ const Section = ({ oppArr, email, points, shop }) => {
               maxWidth: "Calc(100% - 120px)",
             }}
           >
-            <span style={{ color: "#4e5d78" }}>{count}</span> Codes,{" "}
-            <span style={{ color: "#4e5d78" }}>${value}</span> Value
+            <span style={{ color: "#4e5d78", marginRight: "2px" }}>
+              {count}
+            </span>{" "}
+            Code{count !== 1 ? "s" : ""},{" "}
+            <span style={{ color: "#4e5d78", margin: "0 2px 0 8px" }}>
+              ${value}
+            </span>{" "}
+            Value
           </p>
 
           <div
