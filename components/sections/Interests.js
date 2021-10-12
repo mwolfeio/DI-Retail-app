@@ -70,7 +70,11 @@ const Section = ({ interests, email }) => {
             <div className="card-container">
               <div
                 className="flex-center-center"
-                style={{ background: "none", boxShadow: "none" }}
+                style={{
+                  background: "none",
+                  boxShadow: "none",
+                  color: "#b0b7c3",
+                }}
               >
                 <b>No Interests</b>
               </div>

@@ -255,6 +255,10 @@ const CustomerPage = () => {
             </div>
           </div>
         </section>
+
+        <Interests email={email} interests={interests} />
+        <Wishlist email={email} shop={shop} />
+        <Alerts email={email} shop={shop} />
         {isMember && (
           <Membership
             email={email}
@@ -263,9 +267,6 @@ const CustomerPage = () => {
             shop={shop}
           />
         )}
-        <Interests email={email} interests={interests} />
-        <Wishlist email={email} shop={shop} />
-        <Alerts email={email} shop={shop} />
         <Orders fields={ordersArr} />
         <MatafieldSection
           fields={matafieldsArr}
