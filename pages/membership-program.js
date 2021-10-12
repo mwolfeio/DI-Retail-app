@@ -62,9 +62,7 @@ const CustomerPage = () => {
             <div style={{ textAlign: "right" }} className="flex-right-column ">
               <h1 style={{ fontSize: "20px" }}>{url}</h1>
               <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                <i>
-                  Shopify: {getId(data.shop.id)}, Firebase: {shop}
-                </i>
+                <i>Shopify Id: {getId(data.shop.id)}</i>
               </h2>
             </div>
           </div>

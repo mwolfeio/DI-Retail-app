@@ -38,7 +38,7 @@ export default function SpecialPage({ cnumb, dropDown }) {
             <Orders />
           </button>
         </Link>
-        <Link href="/Products">
+        <Link href="/products">
           <button className="icon" style={{ marginRight: "8px" }}>
             <Products />
           </button>

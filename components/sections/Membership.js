@@ -15,6 +15,7 @@ const Section = ({ oppArr, email, points, shop }) => {
   const [codeArr, setcodeArr] = useState([]);
   // const [fieldId, setFieldId] = useState(id);
   const [input, setInput] = useState("");
+  const [deleting, setDeleting] = useState(false);
 
   //Query
   const [snapshot, loading, error] = useCollectionOnce(
@@ -28,15 +29,9 @@ const Section = ({ oppArr, email, points, shop }) => {
 
   const removecode = async (i) => {
     console.log("running removecode");
+    setDeleting(true);
     let newArr = [...codeArr];
     let codeToRemove = newArr.splice(i, 1);
-
-    console.log("i: ", i);
-    console.log("newArr: ", newArr);
-    console.log("codeToRemove: ", codeToRemove);
-    console.log("codeToRemove2: ", codeArr[i]);
-
-    console.log("removing: ", codeToRemove[0].docId);
 
     const response = await fetch(
       `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/code/${codeToRemove[0].docId}`,
@@ -51,6 +46,7 @@ const Section = ({ oppArr, email, points, shop }) => {
 
     console.log("newData: ", newData);
     setcodeArr(newArr);
+    setDeleting(false);
   };
 
   useEffect(() => {
