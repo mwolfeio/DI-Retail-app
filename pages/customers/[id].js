@@ -273,8 +273,6 @@ const CustomerPage = () => {
           type="customer"
           globalId={globalId}
         />
-
-        <section className="disabled">Rewards</section>
       </div>
     </main>
   );

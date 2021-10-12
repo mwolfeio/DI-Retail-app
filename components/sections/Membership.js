@@ -31,6 +31,8 @@ const Section = ({ oppArr, email, points, shop }) => {
     let newArr = [...codeArr];
     let codeToRemove = newArr.splice(i, 1);
 
+    console.log("removing: ", codeToRemove.docId);
+
     const response = await fetch(
       `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/code/${codeToRemove.docId}`,
       {
