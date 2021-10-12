@@ -36,10 +36,10 @@ const Section = ({ oppArr, email, points, shop }) => {
     console.log("codeToRemove: ", codeToRemove);
     console.log("codeToRemove2: ", codeArr[i]);
 
-    console.log("removing: ", codeToRemove.docId);
+    console.log("removing: ", codeToRemove[0].docId);
 
     const response = await fetch(
-      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/code/${codeToRemove.docId}`,
+      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/code/${codeToRemove[0].docId}`,
       {
         method: "DELETE",
         headers: {
@@ -94,7 +94,7 @@ const Section = ({ oppArr, email, points, shop }) => {
             <span style={{ color: "#4e5d78", marginRight: "2px" }}>
               {count}
             </span>{" "}
-            Code{count !== 1 ? "s" : ""},{" "}
+            Code{codeArr !== 1 ? "s" : ""},{" "}
             <span style={{ color: "#4e5d78", margin: "0 2px 0 8px" }}>
               ${value}
             </span>{" "}
