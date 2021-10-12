@@ -12,6 +12,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 });
 
 let truncate = (str) => {
+  if (str == null) return str;
   let length = str.length;
   if (length > 26) return `${str.substring(0, 23)}...`;
   else return str;
