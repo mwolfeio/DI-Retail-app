@@ -81,6 +81,19 @@ const GET_PRODUCT = gql`
   }
 `;
 
+const getId = (storeName) => {
+  return storeName.replace("gid://shopify/Shop/", "");
+};
+const translateStore = (storeName) => {
+  let key = "id_" + getId(storeName);
+  let shopTranslator = {
+    id_44390383768: "design-ideas",
+    id_34498510987: "texxture-home",
+    id_56025776295: "larry-traverso",
+  };
+  return shopTranslator[key];
+};
+
 //show how many alerts and wishlists product is in //// TODO:
 
 var formatter = new Intl.NumberFormat("en-US", {
@@ -92,15 +105,6 @@ const ProductPage = () => {
   const { id } = useRouter().query;
   const globalId = `gid://shopify/Product/${id}`;
 
-  const translateStore = (storeName) => {
-    let key = "id_" + getId(storeName);
-    let shopTranslator = {
-      id_44390383768: "design-ideas",
-      id_34498510987: "texxture-home",
-      id_56025776295: "larry-traverso",
-    };
-    return shopTranslator[key];
-  };
   //Querys
   const { loading, error, data } = useQuery(GET_PRODUCT, {
     fetchPolicy: "no-cache",
