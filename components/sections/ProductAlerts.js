@@ -1,25 +1,32 @@
 import { useState, useEffect } from "react";
+import { firestore } from "../../lib/firebase";
+import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import SectionHeader from "./SectionHeader.js";
 import ProductAlertItem from "./ProductAlertItem";
 import Loader from "../Loader.js";
 
-const WishlistWrapper = ({ alertsObj, shop }) => {
-  const [alerts, setAlerts] = useState(alertsObj);
+const WishlistWrapper = ({ shop }) => {
   const [open, setOpen] = useState(true);
+
+  //Query
+  const [data, loading, error] = useDocumentOnce(
+    firestore.doc(`stores/${shop}/alerts/-STATS-`)
+  );
+
   //functions
   const toggleOpen = () => {
     console.log("clicked");
     setOpen(!open);
   };
 
-  //useEffect
-  useEffect(() => {
-    setAlerts(alertsObj);
-  }, [alertsObj]);
+  if (loading) return <Loader />;
+  if (error) return <div>{error.message}</div>;
 
+  let alertsStats = data.data();
   let productArr = Object.keys(alerts);
   let productCount = productArr.length;
+  let aertCount = Object.values(alerts).reduce((a, b) => a + b);
 
   return (
     <section>
@@ -45,7 +52,7 @@ const WishlistWrapper = ({ alertsObj, shop }) => {
                 prodcutId={productId}
                 index={i}
                 shop={shop}
-                count={alerts[productId]}
+                count={data[productId]}
               />
             ))}
           </div>

@@ -1,15 +1,13 @@
 import React from "react";
 import { useQuery } from "react-apollo";
 import { gql } from "apollo-boost";
-import { firestore } from "../lib/firebase";
-import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import ButtonNav from "../components/ButtonNav.js";
 import Loader from "../components/Loader.js";
 import Opportunities from "../components/sections/Opportunities.js";
 import Rewards from "../components/sections/Rewards.js";
 import ProductAlerts from "../components/sections/ProductAlerts.js";
-// import HeaderCards from "../components/sections/HeaderAlertCards.js";
+import HeaderCards from "../components/sections/HeaderAlertCards.js";
 
 const GET_SHOP = gql`
   {
@@ -36,19 +34,12 @@ const translateStore = (storeName) => {
 const CustomerPage = () => {
   //Query
   const { loading, error, data } = useQuery(GET_SHOP);
-  const [fbData, fbLoading, fbError] = useDocumentOnce(
-    firestore.doc(`stores/${shop}/alerts/-STATS-`)
-  );
 
-  if (loading || fbLoading) return <Loader />;
-  if (error || fbError) return <div>{error.message}</div>;
+  if (loading) return <Loader />;
+  if (error) return <div>{error.message}</div>;
 
   let shop = translateStore(data.shop.id);
   let url = data.shop.url.replace("https://", "");
-
-  let alertsStats = fbData.data();
-  let productCount = Object.keys(alertsStats).length;
-  let aertCount = Object.values(alertsStats).reduce((a, b) => a + b);
 
   return (
     <main>
@@ -67,12 +58,7 @@ const CustomerPage = () => {
                 <i>Manage alert settings</i>
               </h2>
             </div>
-            <div style={{ textAlign: "right" }} className="flex-right-column ">
-              <h1 style={{ fontSize: "20px" }}>{aertCount} alerts</h1>
-              <h2 className="subtitle" style={{ fontSize: "16px" }}>
-                <i>{productCount} different products</i>
-              </h2>
-            </div>
+            <HeaderCards shop={shop} />
           </div>
         </section>
         <section className="disabled">Settings</section>
