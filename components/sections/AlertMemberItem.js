@@ -15,7 +15,7 @@ const Section = ({ alert, shop }) => {
   if (loading) return <Loader />;
   if (error) return <div>{error.message}</div>;
 
-  let member = data.doc();
+  let member = data.data();
   return (
     <Link
       href={{
