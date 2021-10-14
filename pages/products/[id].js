@@ -75,6 +75,7 @@ const GET_PRODUCT = gql`
       tags
     }
     shop {
+      id
       url
     }
   }
@@ -91,6 +92,15 @@ const ProductPage = () => {
   const { id } = useRouter().query;
   const globalId = `gid://shopify/Product/${id}`;
 
+  const translateStore = (storeName) => {
+    let key = "id_" + getId(storeName);
+    let shopTranslator = {
+      id_44390383768: "design-ideas",
+      id_34498510987: "texxture-home",
+      id_56025776295: "larry-traverso",
+    };
+    return shopTranslator[key];
+  };
   //Querys
   const { loading, error, data } = useQuery(GET_PRODUCT, {
     fetchPolicy: "no-cache",
@@ -123,6 +133,8 @@ const ProductPage = () => {
       </main>
     );
   }
+
+  let shop = translateStore(data.shop.id);
 
   console.log("product data for globalId: ", data);
   if (!data) return <div>no data</div>;

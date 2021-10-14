@@ -84,11 +84,13 @@ const CustomerPage = ({ prodcutId, index, count, shop }) => {
   return (
     <Link href={`/products/${prodcutId}`}>
       <div className="card product-page-product-card alert-card">
-        <div className="alert-bubble flex-center-column">
-          <p style={{ lineHeight: "22px" }}>{count}</p>
-          <p className="subtitle" style={{ color: "white" }}>
-            Alerts
-          </p>
+        <div className="flex-center-center">
+          <div className="alert-bubble flex-center-column">
+            <p style={{ lineHeight: "22px", color: "white" }}>{count}</p>
+            <p className="subtitle" style={{ color: "white" }}>
+              Alert{count === 1 ? "" : "s"}
+            </p>
+          </div>
         </div>
         <img src={img} />
         <div>
