@@ -35,7 +35,6 @@ const WishlistWrapper = ({ shop }) => {
         status={open}
         minimize={toggleOpen}
         title={`Product (${productCount.length})`}
-        dropDown={[{ name: "clear List", func: clearAll }]}
       />
       {open &&
         (productCount < 1 ? (
