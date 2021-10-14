@@ -24,9 +24,9 @@ const WishlistWrapper = ({ shop }) => {
   if (error) return <div>{error.message}</div>;
 
   let alertsStats = data.data();
-  let productArr = Object.keys(alerts);
+  let productArr = Object.keys(alertsStats);
   let productCount = productArr.length;
-  let aertCount = Object.values(alerts).reduce((a, b) => a + b);
+  let aertCount = Object.values(alertsStats).reduce((a, b) => a + b);
 
   return (
     <section>
@@ -52,7 +52,7 @@ const WishlistWrapper = ({ shop }) => {
                 prodcutId={productId}
                 index={i}
                 shop={shop}
-                count={data[productId]}
+                count={alertsStats[productId]}
               />
             ))}
           </div>

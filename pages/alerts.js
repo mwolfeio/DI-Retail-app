@@ -62,7 +62,7 @@ const CustomerPage = () => {
           </div>
         </section>
         <section className="disabled">Settings</section>
-        <ProductAlerts alertsObj={alertsStats} shop={shop} />
+        <ProductAlerts shop={shop} />
       </div>
     </main>
   );
