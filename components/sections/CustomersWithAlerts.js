@@ -71,7 +71,7 @@ const Section = ({ shop, id }) => {
               maxWidth: "Calc(100% - 120px)",
             }}
           >
-            View and edit customers in the membership program.
+            Customers currently waiting for this item to be back in stock.
           </p>
 
           <div className="card-container reward-card-wrapper">

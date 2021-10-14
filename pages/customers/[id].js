@@ -238,11 +238,11 @@ const CustomerPage = () => {
             </div>
             <div className="flex-center-right">
               <button
-                className={`${!data.customer.acceptsMarketing && "disabled"}`}
+                className={`disabled`}
                 disabled={data.customer.acceptsMarketing ? true : false}
                 style={{ marginLeft: "8px" }}
               >
-                Resend last Merketing email
+                Send personalized text
               </button>
               <button
                 className={` ${
