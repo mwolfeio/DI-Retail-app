@@ -875,6 +875,16 @@ ul.product-list li img {
   transition: 0.15s ease;
   grid-template-columns: 80px 3fr 1fr 1fr 1fr;
 }
+.product-page-product-card.alert-card {
+  grid-template-columns: 48px 80px 3fr 1fr 1fr;
+}
+.alert-bubble {
+  background-color: #4388f8;
+  color: white;
+  border-radius: 100%;
+  width: 48px;
+  height: 48px;
+}
 
 .orders-page-product-card:hover,
 .product-page-product-card:hover {

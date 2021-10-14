@@ -6,12 +6,12 @@ import SectionHeader from "./SectionHeader.js";
 import ProductAlertItem from "./ProductAlertItem";
 import Loader from "../Loader.js";
 
-const WishlistWrapper = ({ shop }) => {
+const WishlistWrapper = ({ id, shop }) => {
   const [open, setOpen] = useState(true);
 
   //Query
   const [data, loading, error] = useDocumentOnce(
-    firestore.doc(`stores/${shop}/alerts/-STATS-`)
+    firestore.collection(`stores/${shop}/alerts`).where("user", "==", id)
   );
 
   //functions
@@ -26,7 +26,12 @@ const WishlistWrapper = ({ shop }) => {
   let alertsStats = data.data();
   let productArr = Object.keys(alertsStats);
   let productCount = productArr.length;
-  let aertCount = Object.values(alertsStats).reduce((a, b) => a + b);
+  let arr = [];
+  productArr.forEach((key, i) => {
+    arr.push({ id: key, value: alertsStats[key] });
+  });
+
+  let sortedArr = arr.sort((a, b) => b.value - a.value);
 
   return (
     <section>
@@ -34,7 +39,7 @@ const WishlistWrapper = ({ shop }) => {
         add={{ display: false }}
         status={open}
         minimize={toggleOpen}
-        title={`Product (${productCount.length})`}
+        title={`Product (${productCount})`}
       />
       {open &&
         (productCount < 1 ? (
@@ -45,13 +50,13 @@ const WishlistWrapper = ({ shop }) => {
           </div>
         ) : (
           <div className="card-container ">
-            {productArr.map((productId, i) => (
+            {sortedArr.map((product, i) => (
               <ProductAlertItem
-                key={`${productId}-item`}
-                prodcutId={productId}
+                key={`${product.id}-item`}
+                prodcutId={product.id}
                 index={i}
                 shop={shop}
-                count={alertsStats[productId]}
+                count={product.value}
               />
             ))}
           </div>

@@ -10,6 +10,7 @@ import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
 import Variants from "../../components/sections/Variants.js";
 import SearchTerms from "../../components/sections/SearchTerms.js";
+import CustomersWithAlerts from "../../components/sections/CustomersWithAlerts.js";
 
 const GET_PRODUCT = gql`
   query getProduct($id: ID!) {
@@ -224,6 +225,7 @@ const ProductPage = () => {
           arr={searchTermsArr}
           id={product.searchTerms !== null ? product.searchTerms.id : ""}
         />
+        <CustomersWithAlerts id={id} shop={shop} />
         <MatafieldSection
           fields={matafieldsArr}
           type="product"

@@ -83,7 +83,13 @@ const CustomerPage = ({ prodcutId, index, count, shop }) => {
 
   return (
     <Link href={`/products/${prodcutId}`}>
-      <div className="card product-page-product-card">
+      <div className="card product-page-product-card alert-card">
+        <div className="alert-bubble flex-center-column">
+          <p style={{ lineHeight: "22px" }}>{count}</p>
+          <p className="subtitle" style={{ color: "white" }}>
+            Alerts
+          </p>
+        </div>
         <img src={img} />
         <div>
           <h2 style={{ lineHeight: "22px" }}>{product.title}</h2>
@@ -139,11 +145,6 @@ const CustomerPage = ({ prodcutId, index, count, shop }) => {
             {formatter.format(variant.price)}
           </p>
           <p className="subtitle">Price</p>
-        </div>
-
-        <div className="flex-center-column">
-          <p style={{ lineHeight: "22px" }}>{count}</p>
-          <p className="subtitle">Alerts</p>
         </div>
       </div>
     </Link>
