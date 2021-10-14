@@ -100,7 +100,7 @@ const Section = ({ interests, email }) => {
                         width: `${(interest.value / sumOfInterests) * 100}%`,
                       }}
                     >
-                      {interest.value / sumOfInterests <= 0.2 ? (
+                      {interest.value / sumOfInterests <= 0.25 ? (
                         ""
                       ) : (
                         <span>
@@ -113,7 +113,7 @@ const Section = ({ interests, email }) => {
                         </span>
                       )}
                     </div>
-                    {interest.value / sumOfInterests > 0.2 ? (
+                    {interest.value / sumOfInterests > 0.25 ? (
                       ""
                     ) : (
                       <span style={{ marginLeft: "12px", color: "#b0b7c3" }}>
