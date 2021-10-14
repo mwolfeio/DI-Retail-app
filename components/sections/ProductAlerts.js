@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { firestore } from "../../lib/firebase";
-import { useCollectionOnce } from "react-firebase-hooks/firestore";
+import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import SectionHeader from "./SectionHeader.js";
 import ProductAlertItem from "./ProductAlertItem";
 import Loader from "../Loader.js";
 
-const WishlistWrapper = ({ id, shop }) => {
+const WishlistWrapper = ({ shop }) => {
   const [open, setOpen] = useState(true);
 
   //Query
-  const [data, loading, error] = useCollectionOnce(
-    firestore.collection(`stores/${shop}/alerts`).where("user", "==", id)
+  const [data, loading, error] = useDocumentOnce(
+    firestore.doc(`stores/${shop}/alerts/-STATS-`)
   );
 
   //functions
