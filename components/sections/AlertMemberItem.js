@@ -16,6 +16,7 @@ const Section = ({ alert, shop }) => {
   if (error) return <div>{error.message}</div>;
 
   let member = data.data();
+
   return (
     <Link
       href={{
@@ -46,12 +47,7 @@ const Section = ({ alert, shop }) => {
             Points
           </span>
         </p>
-        <p style={{ whiteSpace: "nowrap" }}>
-          {count}{" "}
-          <span className="subtitle" style={{ margin: " 0 4px" }}>
-            Codes (${totalValue})
-          </span>
-        </p>
+        <div></div>
         <div className="flex-center-right">
           <div className="member-icon-wrap flex-center-center">
             <svg
