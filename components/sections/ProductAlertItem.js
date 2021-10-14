@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLazyQuery } from "react-apollo";
 import { gql } from "apollo-boost";
-import { firestore } from "../../lib/firebase";
-import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import SectionHeader from "./SectionHeader.js";
 import Link from "next/link";
