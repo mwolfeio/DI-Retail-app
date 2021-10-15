@@ -44,12 +44,38 @@ const WishlistWrapper = ({ shop }) => {
       {open &&
         (productCount < 1 ? (
           <div className="card-container">
+            <p
+              className="subtitle"
+              style={{
+                lineHeight: "22px",
+                fontSize: "14px",
+                width: "700px",
+                margin: "-8px 0 0",
+                maxWidth: "Calc(100% - 120px)",
+              }}
+            >
+              Products that are currently out of stock that customers have
+              requested a back-in-stock email alert for.
+            </p>
             <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
               <b>No prdocuts with alerts</b>
             </div>
           </div>
         ) : (
           <div className="card-container ">
+            <p
+              className="subtitle"
+              style={{
+                lineHeight: "22px",
+                fontSize: "14px",
+                width: "700px",
+                margin: "-8px 0 0",
+                maxWidth: "Calc(100% - 120px)",
+              }}
+            >
+              Products that are currently out of stock that customers have
+              requested a back-in-stock email alert for.
+            </p>
             {sortedArr.map((product, i) => (
               <ProductAlertItem
                 key={`${product.id}-item`}

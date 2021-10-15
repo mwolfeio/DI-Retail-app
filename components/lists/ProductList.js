@@ -43,8 +43,14 @@ export default function SpecialPage({ product, index }) {
   return (
     <Link href={`/products/${product.id}`} passHref>
       <li
-        className=""
-        style={{ animationDelay: `${animationDelayCalc(index)}s` }}
+        style={{
+          opacity: product.status !== "ACTIVE" ? "1" : "0.6 !important",
+          animationDelay: `${animationDelayCalc(index)}s`,
+          color:
+            product.inventory < 1 && product.status !== "ACTIVE"
+              ? "#fdf4e0"
+              : "",
+        }}
         key={`customer-list-item-${index}`}
       >
         <img src={src} />
@@ -56,7 +62,15 @@ export default function SpecialPage({ product, index }) {
 
         <div className="list-name flex-center-column">
           <p>{formatter.format(product.price)}</p>
-          <p className="subtitle flex-center-column">
+          <p
+            className="subtitle flex-center-column"
+            style={{
+              color:
+                product.inventory < 1 && product.status !== "ACTIVE"
+                  ? "#ffd553"
+                  : "",
+            }}
+          >
             {product.inventory} in stock
           </p>
         </div>

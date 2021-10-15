@@ -4,6 +4,10 @@ import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import Loader from "../Loader.js";
 
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
 const StatCards = ({ shop }) => {
   // const [data, loading, error] = useDocumentOnce(
   //   firestore.doc(`stores/${shop}/users/-STATS-`)
@@ -34,17 +38,18 @@ const StatCards = ({ shop }) => {
     <div className="order-page-header">
       <div className="heder-card-stat">
         <h2>Program Members</h2>
-        <p>{stats.member_count} members</p>
+        <p>{numberWithCommas(stats.member_count)} members</p>
       </div>
 
       <div className="heder-card-stat">
         <h2>Outstanding Points </h2>
-        <p>{stats.outstanding_points} Points</p>
+        <p>{numberWithCommas(stats.outstanding_points)} Points</p>
       </div>
       <div className="heder-card-stat">
         <h2>Outstanding Cupons</h2>
         <p>
-          {code.cuponsOutstanding} Cupons (${code.valueOutstanding})
+          {code.cuponsOutstanding} Cupons ($
+          {numberWithCommas(code.valueOutstanding)})
         </p>
       </div>
     </div>

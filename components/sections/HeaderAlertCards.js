@@ -18,9 +18,13 @@ const StatCards = ({ shop }) => {
 
   return (
     <div style={{ textAlign: "right" }} className="flex-right-column ">
-      <h1 style={{ fontSize: "20px" }}>{aertCount} alerts</h1>
+      <h1 style={{ fontSize: "20px" }}>
+        {aertCount} alert{aertCount === 1 ? "" : "s"}
+      </h1>
       <h2 className="subtitle" style={{ fontSize: "16px" }}>
-        <i>{productCount} different products</i>
+        <i>
+          for {productCount} product{productCount === 1 ? "" : "s"}
+        </i>
       </h2>
     </div>
   );

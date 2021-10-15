@@ -8,6 +8,7 @@ import Opportunities from "../components/sections/Opportunities.js";
 import Rewards from "../components/sections/Rewards.js";
 import ProductAlerts from "../components/sections/ProductAlerts.js";
 import HeaderCards from "../components/sections/HeaderAlertCards.js";
+import AlertSettings from "../components/sections/AlertSettings.js";
 
 const GET_SHOP = gql`
   {
@@ -61,7 +62,7 @@ const CustomerPage = () => {
             <HeaderCards shop={shop} />
           </div>
         </section>
-        <section className="disabled">Settings</section>
+        <AlertSettings />
         <ProductAlerts shop={shop} />
       </div>
     </main>
