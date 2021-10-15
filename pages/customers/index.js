@@ -189,6 +189,7 @@ const SpecialPage = ({}) => {
               address1: address1,
               address2: address2,
               company: company,
+              acceptsMarketing: cus.node.acceptsMarketing,
               totalSpent: cus.node.totalSpent,
               fieldId: fieldId,
               varified: cus.node.custoemrNumberVarified
