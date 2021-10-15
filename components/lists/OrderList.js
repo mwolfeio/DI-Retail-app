@@ -10,6 +10,7 @@ var formatter = new Intl.NumberFormat("en-US", {
 });
 
 let truncate = (str) => {
+  if (str == null || !str) return str;
   let length = str.length;
   if (length > 28) return `${str.substring(0, 25)}...`;
   else return str;
@@ -22,7 +23,6 @@ let animationDelayCalc = (index) => {
 
 const customerLink = (id, e) => {
   e.stopPropagation();
-
   window.location.href = `/customers/${id}`;
 };
 

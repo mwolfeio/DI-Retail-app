@@ -38,8 +38,6 @@ export default function SpecialPage(props) {
   let isMember = !loading && !error && doc.exists;
   if (loading) console.log("loading...");
   if (error) console.log(error);
-  if (!loading && !error) {
-  }
 
   return (
     <Link
