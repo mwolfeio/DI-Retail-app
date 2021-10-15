@@ -28,15 +28,17 @@ export default function SpecialPage(props) {
     firestore.doc(`stores/${props.shop}/users/${props.customer.email}`)
   );
 
-  console.log("route: ", `stores/${props.shop}/users/${props.customer.email}`);
+  console.log(
+    props.customer.email,
+    " accpets marketing: ",
+    props.customer.acceptsMarketing
+  );
+  console.log(props.customer);
 
-  console.log("route: ", `stores/${props.shop}/users/${props.customer.email}`);
   let isMember = !loading && !error && doc.exists;
   if (loading) console.log("loading...");
   if (error) console.log(error);
   if (!loading && !error) {
-    console.log("Customer doc", doc);
-    console.log("Customer isMember ", isMember);
   }
 
   return (

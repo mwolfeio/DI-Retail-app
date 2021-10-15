@@ -240,7 +240,9 @@ const SpecialPage = ({}) => {
         <h1>Customers</h1>
         <p className="light">
           Search, sort and select a store customer from the list below to edit
-          things like customer intersts, metafields and membership points.
+          things like customer intersts, metafields and membership points. A
+          list of members can be viewed{" "}
+          <Link href="/membership-program">here</Link>.
         </p>
         <input
           onChange={debouncedChangeHandler}
