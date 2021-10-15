@@ -3,6 +3,7 @@ import { firestore } from "../../lib/firebase";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import Loader from "../Loader.js";
+import SectionHeader from "./SectionHeader.js";
 
 const StatCards = ({ shop }) => {
   const [open, setOpen] = useState(true);
