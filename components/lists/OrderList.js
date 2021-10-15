@@ -83,13 +83,7 @@ export default function SpecialPage(props) {
           <p className="subtitle">{truncate(props.order.company)}</p>
         </div>
 
-        <ListInput
-          cusId={props.order.gid}
-          fieldId={props.order.customerNumber.id}
-          cnumb={props.order.customerNumber.value}
-          varifyId={props.order.customerNumberVarified.id}
-          varfiedValue={props.order.customerNumberVarified.value}
-        />
+        <div>placeholder</div>
 
         <div className="list-name flex-center-column">
           <p>{props.order.orders}</p>
