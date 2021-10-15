@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { firestore } from "../../lib/firebase";
 import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
