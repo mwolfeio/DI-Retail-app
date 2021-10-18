@@ -21,12 +21,12 @@ let animationDelayCalc = (index) => {
   return mod * 0.03;
 };
 
-const customerLink = (id,shop, email, e) => {
+const customerLink = (id, shop, email, e) => {
   e.stopPropagation();
   window.location.href = {
     pathname: `/customers/${id}`,
     query: {
-      email:     email,
+      email: email,
       id: id,
       shop: shop,
     },
@@ -85,7 +85,7 @@ export default function SpecialPage(props) {
 
         <div
           className="list-name inter-list-link"
-          onClick={(e) => customerLink(customerId, props.shop, props.email e)}
+          onClick={(e) => customerLink(customerId, props.shop, props.email, e)}
           style={{ justifySelf: "start" }}
         >
           <p>{props.order.name}</p>
