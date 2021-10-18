@@ -103,7 +103,9 @@ const SpecialPage = ({}) => {
     },
   });
 
-  // data = {
+  // let loading,
+  //   error = false;
+  // let data = {
   //   shop: {
   //     id: "gid://shopify/Shop/6587023382",
   //   },
