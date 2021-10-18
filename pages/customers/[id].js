@@ -156,6 +156,8 @@ const CustomerPage = () => {
       <Placeholder>{error ? error.message : firebaseError.message}</Placeholder>
     );
 
+  console.log("custoemr: ", firebaseData);
+
   let matafieldsArr = data.customer.metafields.edges;
   let ordersArr = data.customer.orders.edges;
   let interests = firebaseData.data() ? firebaseData.data().interests : {};

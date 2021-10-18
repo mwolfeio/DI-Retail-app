@@ -90,7 +90,7 @@ export default function SpecialPage(props) {
         <div
           className="list-name inter-list-link"
           onClick={(e) =>
-            customerLink(router, customerId, props.shop, props.email, e)
+            customerLink(router, customerId, props.shop, props.order.email, e)
           }
           style={{ justifySelf: "start" }}
         >
