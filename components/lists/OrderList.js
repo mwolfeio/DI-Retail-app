@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { router } from "next/router";
+import { useRouter } from "next/router";
 import moment from "moment";
 
 import CustomersIcon from "../../media/icons/Customers.js";
@@ -23,6 +23,8 @@ let animationDelayCalc = (index) => {
 };
 
 const customerLink = (id, shop, email, e) => {
+  const router = useRouter();
+
   e.stopPropagation();
   let payload = {
     pathname: `/customers/${id}`,

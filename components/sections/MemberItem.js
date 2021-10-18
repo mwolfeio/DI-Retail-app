@@ -28,17 +28,18 @@ const Section = ({ member, shop }) => {
   console.log(member.firstName, "'s id is ", member.id);
   console.log(`href = /customers/${member.id}`);
 
+  let hrefPayload = {
+    pathname: `/customers/${member.id}`,
+    query: {
+      email: member.email,
+      id: member.id,
+      shop: shop,
+    },
+  };
+  console.log("hrefPayload: ", hrefPayload);
+
   return (
-    <Link
-      href={{
-        pathname: `/customers/${member.id}`,
-        query: {
-          email: member.email,
-          id: member.id,
-          shop: shop,
-        },
-      }}
-    >
+    <Link href={hrefPayload}>
       <div className="card member-card">
         <div>
           <p style={{ whiteSpace: "nowrap", width: "100%" }}>

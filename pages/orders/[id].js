@@ -120,9 +120,11 @@ var formatter = new Intl.NumberFormat("en-US", {
 });
 
 const CustomerPage = () => {
-  const { id } = useRouter().query;
+  const { id, email, shop } = useRouter().query;
   console.log(id);
   let globalId = `gid://shopify/Order/${id}`;
+
+  console.log("email: ", email, " id: ", id, "shop: ", shop);
 
   const { loading, error, data } = useQuery(GET_ORDER, {
     fetchPolicy: "no-cache",
@@ -349,8 +351,8 @@ const CustomerPage = () => {
               billing={data.order.billingAddress}
             />
             <div>
-              <h2>Notes</h2>
-              <p>{notes ? notes.node.value : "no notes"}</p>
+              <h2>Discounts</h2>
+              <p></p>
             </div>
           </div>
           <LineItems items={lineItemArr} />
