@@ -110,6 +110,7 @@ const GET_ORDER = gql`
       }
       totalPrice
       fullyPaid
+      discountCode
     }
   }
 `;
@@ -352,7 +353,7 @@ const CustomerPage = () => {
             />
             <div>
               <h2>Discounts</h2>
-              <p></p>
+              <p>{data.order.discountCode}</p>
             </div>
           </div>
           <LineItems items={lineItemArr} />

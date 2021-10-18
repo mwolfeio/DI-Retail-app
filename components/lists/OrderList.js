@@ -22,9 +22,7 @@ let animationDelayCalc = (index) => {
   return mod * 0.03;
 };
 
-const customerLink = (id, shop, email, e) => {
-  const router = useRouter();
-
+const customerLink = (router, id, shop, email, e) => {
   e.stopPropagation();
   let payload = {
     pathname: `/customers/${id}`,
@@ -43,6 +41,7 @@ const customerLink = (id, shop, email, e) => {
 export default function SpecialPage(props) {
   console.log("orderList: ", props);
 
+  const router = useRouter();
   let currentDate = new Date();
   let date = new Date(props.order.createdAt);
   let shiptDate = props.order.shiptDate ? new Date(props.order.shiptDate) : "-";
@@ -90,7 +89,9 @@ export default function SpecialPage(props) {
 
         <div
           className="list-name inter-list-link"
-          onClick={(e) => customerLink(customerId, props.shop, props.email, e)}
+          onClick={(e) =>
+            customerLink(router, customerId, props.shop, props.email, e)
+          }
           style={{ justifySelf: "start" }}
         >
           <p>{props.order.name}</p>

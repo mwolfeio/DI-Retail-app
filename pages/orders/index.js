@@ -108,7 +108,7 @@ const SpecialPage = ({}) => {
     setLoadingMore(true);
     setLastCursor(lastCursor);
   };
-  console.log("data: ", data);
+  // console.log("data: ", data);
   let direction = (a, b) => {
     return (
       <span
