@@ -17,6 +17,9 @@ const GET_ORDERS = gql`
     $srt: OrderSortKeys!
     $rev: Boolean!
   ) {
+    shop {
+      id
+    }
     orders(
       first: $first
       after: $after
@@ -71,6 +74,16 @@ const GET_ORDERS = gql`
     }
   }
 `;
+
+const translateStore = (storeName) => {
+  let key = "id_" + storeName.replace("gid://shopify/Shop/", "");
+  let shopTranslator = {
+    id_44390383768: "design-ideas",
+    id_34498510987: "texxture-home",
+    id_56025776295: "larry-traverso",
+  };
+  return shopTranslator[key];
+};
 
 const SpecialPage = ({}) => {
   const [results, setResults] = useState([]);
@@ -161,6 +174,7 @@ const SpecialPage = ({}) => {
         return (
           <OrderList
             index={i}
+            shop={translateStore(data.shop.id)}
             order={{
               id: id,
               gid: ord.node.id,

@@ -21,9 +21,18 @@ let animationDelayCalc = (index) => {
   return mod * 0.03;
 };
 
-const customerLink = (id, e) => {
+const customerLink = (id,shop, email, e) => {
   e.stopPropagation();
-  window.location.href = `/customers/${id}`;
+  window.location.href = {
+    pathname: `/customers/${id}`,
+    query: {
+      email:     email,
+      id: id,
+      shop: shop,
+    },
+  };
+
+  // `/customers/${id}`;
 };
 
 export default function SpecialPage(props) {
@@ -76,7 +85,7 @@ export default function SpecialPage(props) {
 
         <div
           className="list-name inter-list-link"
-          onClick={(e) => customerLink(customerId, e)}
+          onClick={(e) => customerLink(customerId, props.shop, props.email e)}
           style={{ justifySelf: "start" }}
         >
           <p>{props.order.name}</p>
