@@ -83,8 +83,6 @@ export default function SpecialPage(props) {
           <p className="subtitle">{truncate(props.order.company)}</p>
         </div>
 
-        <div>placeholder</div>
-
         <div className="list-name flex-center-column">
           <p>{props.order.orders}</p>
           <p className="subtitle flex-center-column">

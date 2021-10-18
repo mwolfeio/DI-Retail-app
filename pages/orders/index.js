@@ -149,7 +149,6 @@ const SpecialPage = ({}) => {
                 4,
                 6
               )}/${ord.node.metafield_1.value.substring(6, 8)}`;
-
         let dropShip =
           ord.node.metafield_0 && ord.node.metafield_0.value === "true"
             ? true
@@ -286,7 +285,6 @@ const SpecialPage = ({}) => {
               <span>Customer</span>
               {direction("A", "Z")}
             </p>
-            <p>CN</p>
             <p>items</p>
             <p>Status</p>
           </li>
@@ -308,29 +306,3 @@ const SpecialPage = ({}) => {
   );
 };
 export default SpecialPage;
-
-// {(loading || error) && results.length < 1 ?  <Loader /> (
-//   ""
-// ) : data.orders.pageInfo.hasNextPage ? (
-//   <button onClick={loadMore}>
-//     {loading ? <Loader size="24" /> : "Load more"}
-//   </button>
-// ) : (
-//   ""
-// )
-
-// <p
-//   onClick={() => {
-//     if (sort == "FULFILLMENT_STATUS") {
-//       setReverseSort(!reverseSort);
-//     }
-//     setSort("FULFILLMENT_STATUS");
-//   }}
-//   style={{ justifySelf: "flex-end" }}
-//   className={`flex-center-right sortable ${
-//     sort == "FULFILLMENT_STATUS" ? "active-sort" : ""
-//   }`}
-// >
-//   <span>Status </span>
-//   {direction("T", "F")}
-// </p>
