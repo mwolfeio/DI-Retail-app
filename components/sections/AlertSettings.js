@@ -7,20 +7,26 @@ import SectionHeader from "./SectionHeader.js";
 
 const StatCards = ({ shop }) => {
   const [open, setOpen] = useState(true);
+  const [tempateId, setTemplateId] = useState("");
   const [data, loading, error] = useDocumentOnce(
-    firestore.doc(`stores/${shop}/alerts/-CONFIG-`)
+    firestore.doc(`stores/${shop}`)
   );
 
   //functions
-  const toggleOpen = () => {
+  const toggleOpen = () => setOpen(!open);
+
+  const submitChange = () => {
     console.log("clicked");
-    setOpen(!open);
   };
+
+  //useEffect
+  useEffect(() => {
+    if (loading || error) return;
+    setTemplateId(data.data().alert_email_template);
+  }, [data]);
 
   if (loading) return <Loader />;
   if (error) return <div>{error.message}</div>;
-
-  let config = data.data();
 
   return (
     <section>
@@ -39,7 +45,7 @@ const StatCards = ({ shop }) => {
               lineHeight: "22px",
               fontSize: "14px",
               width: "700px",
-              margin: "-8px 0 0",
+              margin: "-8px 0 20px 0",
               maxWidth: "Calc(100% - 120px)",
             }}
           >
@@ -49,6 +55,12 @@ const StatCards = ({ shop }) => {
           <div className="card-container ">
             <div className="flex-center-left">
               <p>Email Template Id:</p>
+              <input
+                type="text"
+                placeholder="Emter a Sendinblue template id..."
+                vlaue={tempateId}
+                onChange={(e) => setTemplateId(e.target.value)}
+              />
             </div>
           </div>
         </div>
