@@ -62,7 +62,7 @@ const CustomerPage = () => {
             <HeaderCards shop={shop} />
           </div>
         </section>
-        <AlertSettings />
+        <AlertSettings shop={shop} />
         <ProductAlerts shop={shop} />
       </div>
     </main>

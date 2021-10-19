@@ -8,20 +8,20 @@ import SectionHeader from "./SectionHeader.js";
 const StatCards = ({ shop }) => {
   const [open, setOpen] = useState(true);
   const [tempateId, setTemplateId] = useState("");
+  console.log("route: ", `stores/${shop}`);
   const [data, loading, error] = useDocumentOnce(
     firestore.doc(`stores/${shop}`)
   );
 
   //functions
   const toggleOpen = () => setOpen(!open);
-
   const submitChange = () => {
     console.log("clicked");
   };
 
   //useEffect
   useEffect(() => {
-    if (loading || error) return;
+    if (loading || error || data.data() == null) return;
     let docData = data.data();
     console.log("docData: ", docData);
     setTemplateId(docData.alert_email_template);
