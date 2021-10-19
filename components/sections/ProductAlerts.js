@@ -43,7 +43,7 @@ const WishlistWrapper = ({ shop }) => {
       />
       {open &&
         (productCount < 1 ? (
-          <div className="card-container">
+          <div>
             <p
               className="subtitle"
               style={{
@@ -57,12 +57,14 @@ const WishlistWrapper = ({ shop }) => {
               Products that are currently out of stock that customers have
               requested a back-in-stock email alert for.
             </p>
-            <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
-              <b>No prdocuts with alerts</b>
+            <div className="card-container">
+              <div className="flex-center-center" style={{ color: "#b0b7c3" }}>
+                <b>No prdocuts with alerts</b>
+              </div>
             </div>
           </div>
         ) : (
-          <div className="card-container ">
+          <div>
             <p
               className="subtitle"
               style={{
@@ -76,15 +78,17 @@ const WishlistWrapper = ({ shop }) => {
               Products that are currently out of stock that customers have
               requested a back-in-stock email alert for.
             </p>
-            {sortedArr.map((product, i) => (
-              <ProductAlertItem
-                key={`${product.id}-item`}
-                prodcutId={product.id}
-                index={i}
-                shop={shop}
-                count={product.value}
-              />
-            ))}
+            <div className="card-container ">
+              {sortedArr.map((product, i) => (
+                <ProductAlertItem
+                  key={`${product.id}-item`}
+                  prodcutId={product.id}
+                  index={i}
+                  shop={shop}
+                  count={product.value}
+                />
+              ))}
+            </div>
           </div>
         ))}
     </section>

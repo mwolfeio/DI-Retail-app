@@ -31,7 +31,8 @@ const StatCards = ({ shop }) => {
         title={`Email Settings`}
       />
       {open && (
-        <div className="card-container ">
+        <div>
+          {" "}
           <p
             className="subtitle"
             style={{
@@ -45,8 +46,10 @@ const StatCards = ({ shop }) => {
             Connect and edit the email template used to alert customers to
             products being back in stock.{" "}
           </p>
-          <div className="flex-center-left">
-            <p>Email Template Id:</p>
+          <div className="card-container ">
+            <div className="flex-center-left">
+              <p>Email Template Id:</p>
+            </div>
           </div>
         </div>
       )}
