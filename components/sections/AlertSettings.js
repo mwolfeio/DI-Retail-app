@@ -22,7 +22,9 @@ const StatCards = ({ shop }) => {
   //useEffect
   useEffect(() => {
     if (loading || error) return;
-    setTemplateId(data.data().alert_email_template);
+    let docData = data.data();
+    console.log("docData: ", docData);
+    setTemplateId(docData.alert_email_template);
   }, [data]);
 
   if (loading) return <Loader />;
