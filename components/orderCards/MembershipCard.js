@@ -24,10 +24,12 @@ const CustomerPage = ({
   console.log("Pointsdata: ", Pointsdata.data());
   console.log("Userdata: ", Userdata.data());
 
+  let pointsEarned = 0;
+
+  let pointsDoc = Pointsdata.data();
   if (Pointsdata.exists) {
-    let pointsDoc = Pointsdata.data();
     let pointsPercentage = parseInt((pointsDoc.value / 100).toFixed(0), 10);
-    let pointsEarned = parseInt(
+    pointsEarned = parseInt(
       Math.round((pointsPercentage * orderSubtotal * 100) / 100).toFixed(0),
       10
     );
@@ -55,7 +57,7 @@ const CustomerPage = ({
       </p>
       {Pointsdata.exists && Userdata.exists ? (
         <div className="orders-page-address-card-address-wrapper">
-          <p>Percent: {Pointsdata.data().value}%</p>
+          <p>Percent: {pointsDoc.value}%</p>
           <p>Amount: ${pointsEarned}</p>
         </div>
       ) : (
