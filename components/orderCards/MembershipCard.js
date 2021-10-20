@@ -8,6 +8,7 @@ const CustomerPage = ({
   cartDiscountAmount,
   orderSubtotal,
   email,
+  shop,
 }) => {
   const [Userdata, Userloading, Usererror] = useDocumentOnce(
     firestore.doc(`stores/${shop}/users/${email}`)
