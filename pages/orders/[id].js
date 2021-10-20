@@ -10,6 +10,7 @@ import Loader from "../../components/Loader.js";
 import MatafieldSection from "../../components/sections/Metafields.js";
 import Orders from "../../components/sections/Orders.js";
 import AddressCard from "../../components/orderCards/AddressCard.js";
+import MembershipCard from "../../components/orderCards/MembershipCard.js";
 import LineItems from "../../components/sections/LineItems.js";
 
 const GET_ORDER = gql`
@@ -26,15 +27,6 @@ const GET_ORDER = gql`
         defaultAddress {
           company
           phone
-        }
-        res_no: metafield(key: "res_no", namespace: "Resale Number") {
-          value
-        }
-        cus_no: metafield(key: "cus_no", namespace: "Customer Number") {
-          value
-        }
-        cus_var: metafield(key: "cus_var", namespace: "CN Varified") {
-          value
         }
         ordersCount
         totalSpent
@@ -111,6 +103,8 @@ const GET_ORDER = gql`
       totalPrice
       fullyPaid
       discountCode
+      cartDiscountAmount
+      subtotalPrice
     }
   }
 `;
@@ -124,8 +118,6 @@ const CustomerPage = () => {
   const { id, email, shop } = useRouter().query;
   console.log(id);
   let globalId = `gid://shopify/Order/${id}`;
-
-  console.log("email: ", email, " id: ", id, "shop: ", shop);
 
   const { loading, error, data } = useQuery(GET_ORDER, {
     fetchPolicy: "no-cache",
@@ -181,15 +173,6 @@ const CustomerPage = () => {
       )}/${rawShipDate.node.value.substring(6, 8)}`;
   let shiptDate = new Date(shiptDateStr);
   let isLate = rawShipDate && currentDate > shiptDate && data.order.fulfillable;
-
-  console.log("currentDate: ", currentDate);
-  console.log("shiptDate: ", shiptDate);
-  console.log("is late: ", isLate);
-
-  // let resaleNumberObj = matafieldsArr.find(
-  //   (o) => o.node.namespace === "Resale Number" && o.node.key === "res_no"
-  // );
-  // let cusNumb = customerNumberObj ? customerNumberObj.node.value : "";
 
   let tag = (
     <h1 style={{ marginBottom: 0, color: isDropShipping ? "#4388f8" : "" }}>
@@ -300,39 +283,28 @@ const CustomerPage = () => {
                   className="subtitle"
                   style={{ margin: "0 0 -6px", fontSize: "12px" }}
                 >
-                  Customer #
+                  Email
                 </p>
                 <div className="flex-center-left">
                   <p>
-                    {data.order.customer.cus_no
-                      ? data.order.customer.cus_no.value
+                    {data.order.customer.email
+                      ? data.order.customer.email
                       : "-"}
                   </p>
-
-                  {data.order.customer.cus_var &&
-                  data.order.customer.cus_var.value ? (
-                    ""
-                  ) : (
-                    <div
-                      style={{ marginLeft: "8px" }}
-                      className="error-tab tinny-tag flex-center-center"
-                    >
-                      Unverified
-                    </div>
-                  )}
                 </div>
                 <p
                   className="subtitle"
                   style={{ margin: "0 0 -6px", fontSize: "12px" }}
                 >
-                  Resale #
+                  Phone
                 </p>
-
-                <p>
-                  {data.order.customer.res_no
-                    ? data.order.customer.res_no.value
-                    : "-"}
-                </p>
+                {data.order.shippingAddress.phone && (
+                  <p>
+                    {data.order.shippingAddress.phone
+                      ? data.order.shippingAddress.phone
+                      : "-"}
+                  </p>
+                )}
                 <p
                   className="subtitle"
                   style={{ margin: "0 0 -6px", fontSize: "12px" }}
@@ -351,10 +323,12 @@ const CustomerPage = () => {
               shipping={data.order.shippingAddress}
               billing={data.order.billingAddress}
             />
-            <div>
-              <h2>Discounts</h2>
-              <p>{data.order.discountCode}</p>
-            </div>
+            <MembershipCard
+              orderSubtotal={data.order.subtotalPrice}
+              email={data.order.customer.email}
+              discountCode={data.order.discountCode}
+              cartDiscountAmount={data.order.cartDiscountAmount}
+            />
           </div>
           <LineItems items={lineItemArr} />
         </section>

@@ -25,11 +25,6 @@ const CustomerPage = (props) => {
           Phone:
         </p>
       )}
-      {props.address.phone && (
-        <div className="orders-page-address-card-address-wrapper">
-          <p>{props.address.phone}</p>
-        </div>
-      )}
     </div>
   );
 };

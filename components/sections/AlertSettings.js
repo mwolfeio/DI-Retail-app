@@ -88,7 +88,10 @@ const StatCards = ({ shop }) => {
                   onChange={(e) => setTemplateId(e.target.value)}
                 />
               </div>
-              <div className={`flex-center-right ${needsSaving ? "" : "hide"}`}>
+              <div
+                style={{ marginTop: "16px" }}
+                className={`flex-center-right ${needsSaving ? "" : "hide"}`}
+              >
                 <button onClick={erase} style={{ height: "36px" }}>
                   Cancel
                 </button>
