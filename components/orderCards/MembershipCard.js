@@ -28,7 +28,7 @@ const CustomerPage = ({
 
   let pointsDoc = Pointsdata.data();
   if (Pointsdata.exists) {
-    let pointsPercentage = parseInt((pointsDoc.value / 100).toFixed(0), 10);
+    let pointsPercentage = pointsDoc.value / 100;
     pointsEarned = parseInt(
       Math.round((pointsPercentage * orderSubtotal * 100) / 100).toFixed(0),
       10
@@ -48,11 +48,17 @@ const CustomerPage = ({
       </div>
 
       <p className="subtitle">Discounts:</p>
-      <div className="orders-page-address-card-address-wrapper">
-        <p>Code: {discountCode}</p>
-        <p>Amount: ${cartDiscountAmount}</p>
-      </div>
-      <p className="subtitle" style={{ margin: "8px 0px -6px;" }}>
+      {cartDiscountAmount > 0 ? (
+        <div className="orders-page-address-card-address-wrapper">
+          <p>Code: {discountCode}</p>
+          <p>Amount: ${cartDiscountAmount}</p>
+        </div>
+      ) : (
+        <div className="orders-page-address-card-address-wrapper">
+          <p className="subtitle">No discount used</p>
+        </div>
+      )}
+      <p className="subtitle" style={{ margin: "8px 0px -6px" }}>
         Points Earned:
       </p>
       {Pointsdata.exists && Userdata.exists ? (
