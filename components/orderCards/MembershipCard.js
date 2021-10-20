@@ -38,7 +38,7 @@ const CustomerPage = ({
   return (
     <div>
       <div className="flex-center-btw">
-        <h2>Mambership</h2>
+        <h2>Membership</h2>
 
         {Userdata.exists ? (
           <div className="membership-tag flex-center-center">Member</div>
