@@ -54,8 +54,8 @@ export default function SpecialPage(props) {
       href={{
         pathname: `/orders/${props.order.id}`,
         query: {
-          email: props.customer.email,
-          id: props.customer.id,
+          email: props.order.email,
+          id: props.order.id,
           shop: props.shop,
         },
       }}
