@@ -180,6 +180,11 @@ const CustomerPage = () => {
     </h1>
   );
 
+  let customerID = data.order.customer.id.replace(
+    "gid://shopify/Customer/",
+    ""
+  );
+
   return (
     <main>
       <ButtonNav
@@ -236,10 +241,14 @@ const CustomerPage = () => {
 
           <div className="order-page-header">
             <Link
-              href={`/customers/${data.order.customer.id.replace(
-                "gid://shopify/Customer/",
-                ""
-              )}`}
+              href={{
+                pathname: `/customers/${customerID}`,
+                query: {
+                  email: data.order.customer.email,
+                  id: customerID,
+                  shop: shop,
+                },
+              }}
             >
               <div className="clickable-card">
                 <div className=" flex-center-btw">

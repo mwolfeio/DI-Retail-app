@@ -17,14 +17,6 @@ const CustomerPage = (props) => {
           {props.address.country}
         </p>
       </div>
-      {props.address.phone && (
-        <p
-          className="subtitle"
-          style={{ margin: "8px 0 -6px", fontSize: "12px" }}
-        >
-          Phone:
-        </p>
-      )}
     </div>
   );
 };

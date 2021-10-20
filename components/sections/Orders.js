@@ -44,6 +44,7 @@ const Section = (props) => {
           <div className="card-container">
             {ordersArr.map((order, i) => {
               console.log(order);
+              let orderId = order.node.id.replace("gid://shopify/Order/", "");
 
               let date = new Date(order.node.createdAt);
               return (
@@ -144,11 +145,16 @@ const Section = (props) => {
                         )}
                       </div>
                     </div>
+
                     <Link
-                      href={`/orders/${order.node.id.replace(
-                        "gid://shopify/Order/",
-                        ""
-                      )}`}
+                      href={{
+                        pathname: `/orders/${orderId}`,
+                        query: {
+                          email: "",
+                          id: orderId,
+                          shop: props.shop,
+                        },
+                      }}
                     >
                       <button className="text-button" style={{ width: "100%" }}>
                         more

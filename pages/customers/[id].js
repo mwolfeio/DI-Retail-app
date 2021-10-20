@@ -269,7 +269,7 @@ const CustomerPage = () => {
             shop={shop}
           />
         )}
-        <Orders fields={ordersArr} />
+        <Orders fields={ordersArr} shop={shop} />
         <MatafieldSection
           fields={matafieldsArr}
           type="customer"
