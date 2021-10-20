@@ -1240,7 +1240,7 @@ form.input-card {
 }
 
 .hide {
-  display: none;
+  display: none !important;
 }
 
 /* FLEXBOX-------------------- */

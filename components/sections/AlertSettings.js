@@ -17,7 +17,16 @@ const StatCards = ({ shop }) => {
   //functions
   const toggleOpen = () => setOpen(!open);
   const handleSubmit = () => {
-    console.log("clicked");
+    console.log("submitting");
+    firestore
+      .doc(`stores/${shop}`)
+      .set({ alert_email_template: templateId }, { merge: true })
+      .then(() => {
+        setOldTemplateId(templateId);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   const erase = () => {
     setTemplateId(oldTemplateId);
@@ -67,27 +76,31 @@ const StatCards = ({ shop }) => {
             products being back in stock.{" "}
           </p>
           <div className="card-container ">
-            <div className="flex-center-left">
-              <p>Email Template Id:</p>
-              <input
-                type="text"
-                placeholder="Enter a Sendinblue template id..."
-                value={templateId}
-                onChange={(e) => setTemplateId(e.target.value)}
-              />
-            </div>
-            <div className={`flex-center-right ${needsSaving ? "hide" : ""}`}>
-              <button onClick={erase} style={{ height: "36px" }}>
-                Cancel
-              </button>
-              <button
-                onClick={handleSubmit}
-                className="submit-button"
-                style={{ height: "36px", marginLeft: "8px" }}
-                type="submit"
-              >
-                Save
-              </button>
+            <div>
+              <div className="flex-center-left">
+                <p style={{ whiteSpace: "nowrap", marginRight: "16px" }}>
+                  Template Id:
+                </p>
+                <input
+                  type="text"
+                  placeholder="Enter a Sendinblue template id..."
+                  value={templateId}
+                  onChange={(e) => setTemplateId(e.target.value)}
+                />
+              </div>
+              <div className={`flex-center-right ${needsSaving ? "" : "hide"}`}>
+                <button onClick={erase} style={{ height: "36px" }}>
+                  Cancel
+                </button>
+                <button
+                  onClick={handleSubmit}
+                  className="submit-button"
+                  style={{ height: "36px", marginLeft: "8px" }}
+                  type="submit"
+                >
+                  Save
+                </button>
+              </div>
             </div>
           </div>
         </div>
