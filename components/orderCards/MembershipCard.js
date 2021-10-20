@@ -20,14 +20,17 @@ const CustomerPage = ({
   if (Userloading || Pintsloading) return <Loader />;
   if (Usererror || Pointserror) return <div>There was an error</div>;
 
-  let pointsPercentage = parseInt(
-    (Pointsdata.data().value / 100).toFixed(0),
-    10
-  );
-  let pointsEarned = parseInt(
-    Math.round((pointsPercentage * orderSubtotal * 100) / 100).toFixed(0),
-    10
-  );
+  console.log("Pointsdata: ", Pointsdata.data());
+  console.log("Userdata: ", Userdata.data());
+
+  if (Pointsdata.exists) {
+    let pointsDoc = Pointsdata.data();
+    let pointsPercentage = parseInt((pointsDoc.value / 100).toFixed(0), 10);
+    let pointsEarned = parseInt(
+      Math.round((pointsPercentage * orderSubtotal * 100) / 100).toFixed(0),
+      10
+    );
+  }
 
   return (
     <div>
