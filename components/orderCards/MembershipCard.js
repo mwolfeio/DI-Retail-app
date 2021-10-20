@@ -10,6 +10,7 @@ const CustomerPage = ({
   email,
   shop,
 }) => {
+  console.log(`stores/${shop}/users/${email}`);
   const [Userdata, Userloading, Usererror] = useDocumentOnce(
     firestore.doc(`stores/${shop}/users/${email}`)
   );
@@ -49,7 +50,9 @@ const CustomerPage = ({
         <p>Code: {discountCode}</p>
         <p>Amount: ${cartDiscountAmount}</p>
       </div>
-      <p className="subtitle">Points Earned:</p>
+      <p className="subtitle" style={{ margin: "8px 0px -6px;" }}>
+        Points Earned:
+      </p>
       {Pointsdata.exists && Userdata.exists ? (
         <div className="orders-page-address-card-address-wrapper">
           <p>Percent: {Pointsdata.data().value}%</p>

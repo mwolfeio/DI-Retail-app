@@ -48,9 +48,18 @@ export default function SpecialPage(props) {
   let customerId = props.order.customerId
     ? props.order.customerId.replace("gid://shopify/Customer/", "")
     : "";
-
+  //<Link href={`/orders/${props.order.id}`} passHref>
   return (
-    <Link href={`/orders/${props.order.id}`} passHref>
+    <Link
+      href={{
+        pathname: `/orders/${props.order.id}`,
+        query: {
+          email: props.customer.email,
+          id: props.customer.id,
+          shop: props.shop,
+        },
+      }}
+    >
       <li
         className={
           currentDate > shiptDate && props.order.fulfillable
