@@ -69,9 +69,6 @@ const CustomerPage = ({ prodcutId, index, count, shop }) => {
   if (loading || !data) return <Loader />;
   if (error) return <div>{error.message}</div>;
 
-  console.log("data: ", data);
-  console.log("product: ", data.product);
-
   if (!data.product) return <div>Product does not exist</div>;
   let product = data.product;
   let variant =

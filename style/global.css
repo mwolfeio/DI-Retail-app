@@ -1239,6 +1239,10 @@ form.input-card {
   border-radius: 40px;
 }
 
+.hide {
+  display: none;
+}
+
 /* FLEXBOX-------------------- */
 .flex-center-left {
   display: flex;
