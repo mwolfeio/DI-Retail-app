@@ -324,6 +324,7 @@ const CustomerPage = () => {
               billing={data.order.billingAddress}
             />
             <MembershipCard
+              shop={shop}
               orderSubtotal={data.order.subtotalPrice}
               email={data.order.customer.email}
               discountCode={data.order.discountCode}
