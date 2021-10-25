@@ -14,6 +14,7 @@ import Membership from "../media/icons/Membership.js";
 import Orders from "../media/icons/Orders.js";
 import Reviews from "../media/icons/Reviews.js";
 import Products from "../media/icons/Products.js";
+import Marketing from "../media/icons/Marketing.js";
 
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
 
@@ -54,10 +55,10 @@ let linkMap = [
     active: true,
   },
   {
-    title: "Reviews",
-    link: "customers",
-    img: Reviews,
-    description: "Monitor customer reviews and how they appear.",
+    title: "Marketing",
+    link: "marketing",
+    img: Marketing,
+    description: "Monitor marketing emails and texts.",
     active: false,
   },
   {
