@@ -59,7 +59,7 @@ let linkMap = [
     link: "marketing",
     img: Marketing,
     description: "Monitor marketing emails and texts.",
-    active: false,
+    active: true,
   },
   {
     title: "Indexer",
