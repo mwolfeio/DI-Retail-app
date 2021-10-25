@@ -245,7 +245,8 @@ button.disabled:hover {
 /* INPUTS--------------------- */
 input[type="text"],
 input[type="email"],
-input[type="phone"] input[type="number"],
+input[type="tel"],
+input[type="number"],
 select {
   width: 100%;
   height: 48px;

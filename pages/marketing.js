@@ -39,15 +39,15 @@ const MarketingPage = () => {
   const [open2, setOpen2] = useState(true);
 
   //Query
-  // const { loading, error, data } = useQuery(GET_SHOP);
-  let loading = false;
-  let error = false;
-  let data = {
-    shop: {
-      id: "44390383768",
-      url: "test",
-    },
-  };
+  const { loading, error, data } = useQuery(GET_SHOP);
+  // let loading = false;
+  // let error = false;
+  // let data = {
+  //   shop: {
+  //     id: "44390383768",
+  //     url: "test",
+  //   },
+  // };
 
   //functions
   const sendTestEmail = () => {
@@ -144,7 +144,7 @@ const MarketingPage = () => {
                       type="email"
                       onChange={(e) => setRecipiant(e.target.value)}
                       value={recipiant}
-                      placeholder="Who sould recieve this test email?"
+                      placeholder="Who should recieve this test email?"
                     />
                   </div>
                   <div className="flex-center-btw">
@@ -210,10 +210,10 @@ const MarketingPage = () => {
                       Recipiant number
                     </p>
                     <input
-                      type="phone"
+                      type="tel"
                       onChange={(e) => setRecipiant(e.target.value)}
                       value={recipiant}
-                      placeholder="Who sould recieve this message?"
+                      placeholder="Who should recieve this message?"
                     />
                   </div>
                   <div className="flex-center-btw">
