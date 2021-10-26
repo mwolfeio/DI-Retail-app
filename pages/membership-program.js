@@ -54,7 +54,6 @@ const CustomerPage = () => {
           <div className="flex-bottom-btw underline">
             <div style={{ textAlign: "left" }}>
               <h1>Membership Program</h1>
-
               <h2 className={`subtitle `} style={{ fontSize: "16px" }}>
                 <i>manage opportunities and customer points</i>
               </h2>
@@ -77,44 +76,3 @@ const CustomerPage = () => {
   );
 };
 export default CustomerPage;
-
-// <div
-//   style={{ marginLeft: "16px" }}
-//   className={`tinny-tag flex-center-center ${
-//     !data.order.fullyPaid
-//       ? "warning-tiny-tab"
-//       : "dissabled-tiny-tab"
-//   }`}
-// >
-//   {!data.order.fullyPaid ? "Unpaid" : "Paid"}
-// </div>
-
-// <div className="flex-top-btw">
-//   <div style={{ display: "table" }}>
-//     {data.order.customer.cus_no ? (
-//       <h3>{data.order.customer.cus_no.value}</h3>
-//     ) : (
-//       ""
-//     )}
-//     {data.order.customer.res_no ? (
-//       <h3>{data.order.customer.res_no.value}</h3>
-//     ) : (
-//       ""
-//     )}
-//     <h3>Shopify id: {id}</h3>{" "}
-//     <h3>Email: {data.order.customer.email}</h3>
-//     <h3>
-//       Phone:{" "}
-//       {data.order.customer.phone
-//         ? data.order.customer.phone
-//         : data.order.customer.defaultAddress.phone}
-//     </h3>
-//   </div>
-//   <div style={{ textAlign: "right" }}>
-//     <h3 style={{ textAlign: "right" }}>
-//       {data.order.customer.ordersCount} Orders <br />
-//       <br />
-//       {data.order.customer.totalSpent} spent
-//     </h3>
-//   </div>
-// </div>

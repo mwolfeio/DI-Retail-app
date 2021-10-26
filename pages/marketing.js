@@ -16,7 +16,6 @@ const GET_SHOP = gql`
     }
   }
 `;
-//Customers who except marketing count
 
 const getId = (storeName) => {
   return storeName.replace("gid://shopify/Shop/", "");
@@ -35,24 +34,13 @@ const translateStore = (storeName) => {
 const MarketingPage = () => {
   const [recipiant, setRecipiant] = useState();
   const [user, setUser] = useState();
+  const [Smsrecipiant, SmssetRecipiant] = useState();
+  const [Smsuser, SmssetUser] = useState();
   const [open1, setOpen1] = useState(true);
   const [open2, setOpen2] = useState(true);
 
   //Query
   const { loading, error, data } = useQuery(GET_SHOP);
-  // let loading = false;
-  // let error = false;
-  // let data = {
-  //   shop: {
-  //     id: "44390383768",
-  //     url: "test",
-  //   },
-  // };
-
-  //functions
-  const sendTestEmail = () => {
-    console.log("sending test");
-  };
 
   if (loading || error) {
     return (
@@ -71,6 +59,17 @@ const MarketingPage = () => {
   let shop = translateStore(data.shop.id);
   let url = data.shop.url.replace("https://", "");
 
+  //functions
+  const sendTestEmail = async () => {
+    console.log("sending test");
+    try {
+      const res = await fetch(
+        `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/marketing/email/${recipiant}/for/${user}"`
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <main>
       <ButtonNav
@@ -118,7 +117,7 @@ const MarketingPage = () => {
                 populated with a specific customers data.
               </p>
               <div className="card-container">
-                <div>
+                <form>
                   <div
                     className="flex-center-left"
                     style={{ marginBottom: "16px" }}
@@ -127,6 +126,7 @@ const MarketingPage = () => {
                       User Email
                     </p>
                     <input
+                      required
                       type="email"
                       onChange={(e) => setUser(e.target.value)}
                       value={user}
@@ -141,6 +141,7 @@ const MarketingPage = () => {
                       Recipiant Email
                     </p>
                     <input
+                      required
                       type="email"
                       onChange={(e) => setRecipiant(e.target.value)}
                       value={recipiant}
@@ -160,12 +161,12 @@ const MarketingPage = () => {
                       Send Test
                     </button>
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           )}
         </section>
-        <section>
+        <section style={{ opacity: "0.5" }}>
           <SectionHeader
             status={open2}
             minimize={() => setOpen1(!open2)}
@@ -196,9 +197,10 @@ const MarketingPage = () => {
                       User Email
                     </p>
                     <input
+                      disabled="true"
                       type="email"
-                      onChange={(e) => setUser(e.target.value)}
-                      value={user}
+                      onChange={(e) => SmssetUser(e.target.value)}
+                      value={Smsuser}
                       placeholder="Who's data would you like to use?"
                     />
                   </div>
@@ -210,9 +212,10 @@ const MarketingPage = () => {
                       Recipiant number
                     </p>
                     <input
+                      disabled="true"
                       type="tel"
-                      onChange={(e) => setRecipiant(e.target.value)}
-                      value={recipiant}
+                      onChange={(e) => SmssetRecipiant(e.target.value)}
+                      value={Smsrecipiant}
                       placeholder="Who should recieve this message?"
                     />
                   </div>
