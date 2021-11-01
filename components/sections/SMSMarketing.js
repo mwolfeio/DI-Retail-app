@@ -26,7 +26,7 @@ const MarketingPage = ({ shop }) => {
       <SectionHeader
         status={open1}
         minimize={() => setOpen1(!open1)}
-        title="Test Text"
+        title="Personalized Texts"
       />
       {open1 && (
         <div>

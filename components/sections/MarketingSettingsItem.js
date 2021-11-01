@@ -7,8 +7,8 @@ import SectionHeader from "./SectionHeader.js";
 
 const StatCards = ({ shop, title, fieldValue }) => {
   const [open, setOpen] = useState(true);
-  const [templateId, setTemplateId] = useState("");
-  const [oldTemplateId, setOldTemplateId] = useState("");
+  const [templateId, setTemplateId] = useState(0);
+  const [oldTemplateId, setOldTemplateId] = useState(0);
   console.log("route: ", `stores/${shop}`);
   const [data, loading, error] = useDocumentOnce(
     firestore.doc(`stores/${shop}`)
@@ -60,10 +60,7 @@ const StatCards = ({ shop, title, fieldValue }) => {
           onChange={(e) => setTemplateId(e.target.value)}
         />
 
-        <div
-          style={{ marginTop: "16px" }}
-          className={`flex-center-right ${needsSaving ? "" : "hide"}`}
-        >
+        <div className={`flex-center-right ${needsSaving ? "" : "hide"}`}>
           <button onClick={erase} style={{ height: "36px", marginLeft: "8px" }}>
             Cancel
           </button>

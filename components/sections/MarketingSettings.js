@@ -68,9 +68,9 @@ const StatCards = ({ shop }) => {
             style={{
               lineHeight: "22px",
               fontSize: "14px",
-              width: "700px",
               margin: "-8px 0 20px 0",
-              maxWidth: "Calc(100% - 120px)",
+              maxWidth: "Calc(100% - 80px)",
+              display: "block",
             }}
           >
             Connect and edit the email template used when gernating personal
@@ -78,7 +78,7 @@ const StatCards = ({ shop }) => {
             two outcomes. Either the customer is eligible for discounts and the
             discount template is used or not, and the regular template is used.{" "}
             <br />
-            Template Variables:{" "}
+            Template Variables: <br />
             <b>
               first_name, last_name, email, points, profile_url, discount,
               product_name_0, product_price_0, product_discounted_price_0,
@@ -93,7 +93,7 @@ const StatCards = ({ shop }) => {
           <div className="card-container ">
             <MarketingSettingsItem
               shop={shop}
-              title="Disocunt Template Id"
+              title="Discount Template Id"
               fieldValue="discount_email_template"
             />
             <MarketingSettingsItem

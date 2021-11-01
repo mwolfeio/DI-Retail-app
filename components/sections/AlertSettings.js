@@ -7,8 +7,8 @@ import SectionHeader from "./SectionHeader.js";
 
 const StatCards = ({ shop }) => {
   const [open, setOpen] = useState(true);
-  const [templateId, setTemplateId] = useState("");
-  const [oldTemplateId, setOldTemplateId] = useState("");
+  const [templateId, setTemplateId] = useState(0);
+  const [oldTemplateId, setOldTemplateId] = useState(0);
   console.log("route: ", `stores/${shop}`);
   const [data, loading, error] = useDocumentOnce(
     firestore.doc(`stores/${shop}`)
@@ -70,11 +70,12 @@ const StatCards = ({ shop }) => {
               width: "700px",
               margin: "-8px 0 20px 0",
               maxWidth: "Calc(100% - 120px)",
+              display: "block",
             }}
           >
             Connect and edit the email template used to alert customers to
             products being back in stock.
-            <br />
+            <br /> <br />
             Template Variables: <b>
               productName, productPrice, productImg
             </b> and <b>productLink</b>.
