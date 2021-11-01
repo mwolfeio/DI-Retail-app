@@ -33,7 +33,11 @@ const CustomerPage = ({ acceptsMarketing, shop, email }) => {
         Send personalized text
       </button>
       <button
-        onClick={acceptsMarketing ? handleSubmit() : ""}
+        onClick={() => {
+          if (acceptsMarketing) {
+            handleSubmit();
+          }
+        }}
         className={` ${!acceptsMarketing ? "disabled" : "primary"}`}
         style={{ marginLeft: "8px" }}
       >
