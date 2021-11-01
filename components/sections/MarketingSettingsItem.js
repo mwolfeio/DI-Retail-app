@@ -18,7 +18,7 @@ const StatCards = ({ shop, title, fieldValue }) => {
     console.log("submitting");
     firestore
       .doc(`stores/${shop}`)
-      .set({ alert_email_template: templateId }, { merge: true })
+      .set({ [fieldValue]: Number(templateId) }, { merge: true })
       .then(() => {
         setOldTemplateId(templateId);
       })
