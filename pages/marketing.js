@@ -5,6 +5,7 @@ import { gql } from "apollo-boost";
 //components
 import ButtonNav from "../components/ButtonNav.js";
 import Loader from "../components/Loader.js";
+import Templates from "../components/sections/MarketingSettings.js";
 import MarketingSection from "../components/sections/MarketingSection.js";
 import SMSMarketing from "../components/sections/SMSMarketing.js";
 
@@ -85,6 +86,7 @@ const MarketingPage = () => {
             </div>
           </div>
         </section>
+        <Templates shop={shop} />
         <MarketingSection shop={shop} />
         <SMSMarketing shop={shop} />
       </div>

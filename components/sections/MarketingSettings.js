@@ -4,6 +4,7 @@ import { useDocumentOnce } from "react-firebase-hooks/firestore";
 
 import Loader from "../Loader.js";
 import SectionHeader from "./SectionHeader.js";
+import MarketingSettingsItem from "./MarketingSettingsItem.js";
 
 const StatCards = ({ shop }) => {
   const [open, setOpen] = useState(true);
@@ -72,43 +73,34 @@ const StatCards = ({ shop }) => {
               maxWidth: "Calc(100% - 120px)",
             }}
           >
-            Connect and edit the email template used to alert customers to
-            products being back in stock.
+            Connect and edit the email template used when gernating personal
+            marketing emails. When Generating personalized emails, there can be
+            two outcomes. Either the customer is eligible for discounts and the
+            discount template is used or not, and the regular template is used.{" "}
             <br />
-            Template Variables: <b>
-              productName, productPrice, productImg
-            </b> and <b>productLink</b>.
+            Template Variables:{" "}
+            <b>
+              first_name, last_name, email, points, profile_url, discount,
+              product_name_0, product_price_0, product_discounted_price_0,
+              product_url_0, image_url_0, product_name_1, product_price_1,
+              product_discounted_price_1, product_url_1, image_url_1,
+              product_name_2, product_price_2, product_discounted_price_2,
+              product_url_2, image_url_2, product_name_3, product_price_3,
+              product_discounted_price_3, product_url_3
+            </b>{" "}
+            and <b>image_url_3</b>.
           </p>
           <div className="card-container ">
-            <div>
-              <div className="flex-center-left">
-                <p style={{ whiteSpace: "nowrap", marginRight: "16px" }}>
-                  Template Id:
-                </p>
-                <input
-                  type="number"
-                  placeholder="Enter a Sendinblue template id..."
-                  value={templateId}
-                  onChange={(e) => setTemplateId(e.target.value)}
-                />
-              </div>
-              <div
-                style={{ marginTop: "16px" }}
-                className={`flex-center-right ${needsSaving ? "" : "hide"}`}
-              >
-                <button onClick={erase} style={{ height: "36px" }}>
-                  Cancel
-                </button>
-                <button
-                  onClick={handleSubmit}
-                  className="submit-button"
-                  style={{ height: "36px", marginLeft: "8px" }}
-                  type="submit"
-                >
-                  Save
-                </button>
-              </div>
-            </div>
+            <MarketingSettingsItem
+              shop={shop}
+              title="Disocunt Template Id"
+              fieldValue="discount_email_template"
+            />
+            <MarketingSettingsItem
+              shop={shop}
+              title="Regular Template Id"
+              fieldValue="regular_email_template"
+            />
           </div>
         </div>
       )}

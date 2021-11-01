@@ -22,7 +22,7 @@ const MarketingPage = ({ shop }) => {
   //   }
   // };
   return (
-    < style={{ opacity: "0.5" }}>
+    <section style={{ opacity: "0.5" }}>
       <SectionHeader
         status={open1}
         minimize={() => setOpen1(!open1)}

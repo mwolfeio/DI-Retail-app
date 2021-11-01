@@ -7,6 +7,7 @@ import Products from "../media/icons/Products.js";
 import Orders from "../media/icons/Orders.js";
 import Membership from "../media/icons/Membership.js";
 import Alerts from "../media/icons/Alerts.js";
+import Marketing from "../media/icons/Marketing.js";
 import MoreButton from "./MoreButton.js";
 import CustomerNumber from "./CustomerNumber.js";
 import { useRouter } from "next/router";
@@ -51,6 +52,11 @@ export default function SpecialPage({ cnumb, dropDown }) {
         <Link href="/alerts">
           <button className="icon" style={{ marginRight: "8px" }}>
             <Alerts />
+          </button>
+        </Link>
+        <Link href="/marketing">
+          <button className="icon" style={{ marginRight: "8px" }}>
+            <Marketing />
           </button>
         </Link>
       </div>
