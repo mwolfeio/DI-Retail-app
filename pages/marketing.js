@@ -5,7 +5,8 @@ import { gql } from "apollo-boost";
 //components
 import ButtonNav from "../components/ButtonNav.js";
 import Loader from "../components/Loader.js";
-import SectionHeader from "../components/sections/SectionHeader.js";
+import MarketingSection from "../components/sections/MarketingSection.js";
+import SMSMarketing from "../components/sections/SMSMarketing.js";
 
 //gql query
 const GET_SHOP = gql`
@@ -32,15 +33,15 @@ const translateStore = (storeName) => {
 
 //component
 const MarketingPage = () => {
-  const [recipiant, setRecipiant] = useState();
-  const [user, setUser] = useState();
-  const [Smsrecipiant, SmssetRecipiant] = useState();
-  const [Smsuser, SmssetUser] = useState();
-  const [open1, setOpen1] = useState(true);
-  const [open2, setOpen2] = useState(true);
-
   //Query
-  const { loading, error, data } = useQuery(GET_SHOP);
+  // const { loading, error, data } = useQuery(GET_SHOP);
+  const loading = false;
+  const error = false;
+  const data = {
+    shop: {
+      id: "gid://shopify/Shop/44390383768",
+    },
+  };
 
   if (loading || error) {
     return (
@@ -57,19 +58,8 @@ const MarketingPage = () => {
   }
 
   let shop = translateStore(data.shop.id);
-  let url = data.shop.url.replace("https://", "");
+  // let url = data.shop.url.replace("https://", "");
 
-  //functions
-  const sendTestEmail = async () => {
-    console.log("sending test");
-    try {
-      const res = await fetch(
-        `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/marketing/email/${recipiant}/for/${user}"`
-      );
-    } catch (err) {
-      console.log(err);
-    }
-  };
   return (
     <main>
       <ButtonNav
@@ -95,148 +85,8 @@ const MarketingPage = () => {
             </div>
           </div>
         </section>
-        <section>
-          <SectionHeader
-            status={open1}
-            minimize={() => setOpen1(!open1)}
-            title="Test Email"
-          />
-          {open1 && (
-            <div>
-              <p
-                className="subtitle"
-                style={{
-                  lineHeight: "22px",
-                  fontSize: "14px",
-                  width: "700px",
-                  margin: "-8px 0 20px",
-                  maxWidth: "Calc(100% - 120px)",
-                }}
-              >
-                Send a test mrketing email to a designated email address
-                populated with a specific customers data.
-              </p>
-              <div className="card-container">
-                <form>
-                  <div
-                    className="flex-center-left"
-                    style={{ marginBottom: "16px" }}
-                  >
-                    <p style={{ whiteSpace: "nowrap", marginRight: "16px" }}>
-                      User Email
-                    </p>
-                    <input
-                      required
-                      type="email"
-                      onChange={(e) => setUser(e.target.value)}
-                      value={user}
-                      placeholder="Who's data would you like to use?"
-                    />
-                  </div>
-                  <div
-                    className="flex-center-left"
-                    style={{ marginBottom: "16px" }}
-                  >
-                    <p style={{ whiteSpace: "nowrap", marginRight: "16px" }}>
-                      Recipiant Email
-                    </p>
-                    <input
-                      required
-                      type="email"
-                      onChange={(e) => setRecipiant(e.target.value)}
-                      value={recipiant}
-                      placeholder="Who should recieve this test email?"
-                    />
-                  </div>
-                  <div className="flex-center-btw">
-                    <a href="">
-                      <button>Edit Template</button>
-                    </a>
-                    <button
-                      className="submit-button"
-                      disabled={recipiant && user ? false : true}
-                      style={{ opacity: recipiant && user ? 1 : 0.5 }}
-                      onClick={sendTestEmail}
-                    >
-                      Send Test
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          )}
-        </section>
-        <section style={{ opacity: "0.5" }}>
-          <SectionHeader
-            status={open2}
-            minimize={() => setOpen1(!open2)}
-            title="Test Message"
-          />
-          {open2 && (
-            <div>
-              <p
-                className="subtitle"
-                style={{
-                  lineHeight: "22px",
-                  fontSize: "14px",
-                  width: "700px",
-                  margin: "-8px 0 20px",
-                  maxWidth: "Calc(100% - 120px)",
-                }}
-              >
-                Send a test mrketing text to a designated number populated with
-                a specific customers data.
-              </p>
-              <div className="card-container">
-                <div>
-                  <div
-                    className="flex-center-left"
-                    style={{ marginBottom: "16px" }}
-                  >
-                    <p style={{ whiteSpace: "nowrap", marginRight: "16px" }}>
-                      User Email
-                    </p>
-                    <input
-                      disabled="true"
-                      type="email"
-                      onChange={(e) => SmssetUser(e.target.value)}
-                      value={Smsuser}
-                      placeholder="Who's data would you like to use?"
-                    />
-                  </div>
-                  <div
-                    className="flex-center-left"
-                    style={{ marginBottom: "16px" }}
-                  >
-                    <p style={{ whiteSpace: "nowrap", marginRight: "16px" }}>
-                      Recipiant number
-                    </p>
-                    <input
-                      disabled="true"
-                      type="tel"
-                      onChange={(e) => SmssetRecipiant(e.target.value)}
-                      value={Smsrecipiant}
-                      placeholder="Who should recieve this message?"
-                    />
-                  </div>
-                  <div className="flex-center-btw">
-                    <a href="">
-                      <button>Edit sms</button>
-                    </a>
-                    <button
-                      className="submit-button"
-                      disabled={recipiant && user ? false : true}
-                      style={{ opacity: recipiant && user ? 1 : 0.5 }}
-                      onClick={sendTestEmail}
-                    >
-                      Send Test
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </section>
+        <MarketingSection shop={shop} />
+        <SMSMarketing shop={shop} />
       </div>
     </main>
   );
