@@ -1,7 +1,6 @@
 const CustomerPage = ({ acceptsMarketing, shop, email }) => {
   //functions
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     console.log("sending test");
     try {
       const res = await fetch(
