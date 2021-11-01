@@ -9,6 +9,8 @@ module.exports = {
     MESSAGINGSENDERID: process.env.MESSAGINGSENDERID,
     APPID: process.env.APPID,
     MEASUREMENTID: process.env.MEASUREMENTID,
+    FBAUTHEMAIL: process.env.FBAUTHEMAIL,
+    FBAUTHPASS: process.env.FBAUTHPASS,
   },
 
   async redirects() {

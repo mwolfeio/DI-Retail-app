@@ -9,6 +9,8 @@ import "@shopify/polaris/dist/styles.css";
 import translations from "@shopify/polaris/locales/en.json";
 import ClientRouter from "../components/ClientRouter";
 
+import { auth } from "../lib/firebase";
+
 import "../style/global.css";
 
 const client = new ApolloClient({
@@ -25,6 +27,20 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     const shopOrigin = pageProps.shopOrigin ?? Cookies.get("shopOrigin");
+
+    //sign in the user
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        console.log("App unauthenticated");
+        auth.signInWithEmailAndPassword(
+          process.env.FBAUTHEMAIL,
+          process.env.FBAUTHPASS
+        );
+      } else {
+        console.log("App authenticated");
+      }
+    });
+
     console.log("shopOrigin: ", shopOrigin);
     return (
       <AppProvider i18n={translations}>
