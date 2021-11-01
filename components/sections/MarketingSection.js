@@ -18,6 +18,10 @@ const MarketingPage = ({ shop }) => {
       const res = await fetch(
         `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/marketing/email/${recipiant}/for/${user}"`
       );
+      console.log(res);
+      console.log("email sent");
+      setRecipiant("");
+      setUser("");
     } catch (err) {
       console.log(err);
     }
