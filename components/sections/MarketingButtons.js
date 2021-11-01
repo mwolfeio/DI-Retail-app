@@ -1,8 +1,12 @@
+import { useState } from "react";
+
 const CustomerPage = ({ acceptsMarketing, shop, email }) => {
+  const [loading, setLoading] = useState(false);
   //functions
   const handleSubmit = async () => {
     console.log("sending test");
     try {
+      setLoading(true);
       const res = await fetch(
         `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/marketing/email/${email}/for/${email}`,
         {
@@ -13,10 +17,10 @@ const CustomerPage = ({ acceptsMarketing, shop, email }) => {
         }
       );
       let response = await res.json();
+      console.log("Sent to shop: ", shop);
       console.log(response);
       console.log("email sent");
-      setRecipiant("");
-      setUser("");
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -40,7 +44,7 @@ const CustomerPage = ({ acceptsMarketing, shop, email }) => {
         className={` ${!acceptsMarketing ? "disabled" : "primary"}`}
         style={{ marginLeft: "8px" }}
       >
-        Send personalized email
+        {loading ? "Sending..." : `Send personalized email`}
       </button>
     </div>
   );
