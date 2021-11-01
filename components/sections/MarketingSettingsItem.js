@@ -52,7 +52,17 @@ const StatCards = ({ shop, title, fieldValue }) => {
   return (
     <div>
       <div className="flex-center-left">
-        <p style={{ whiteSpace: "nowrap", marginRight: "16px" }}>{title}:</p>
+        <div>
+          <p style={{ whiteSpace: "nowrap", marginRight: "16px" }}>{title}:</p>
+          <a
+            target="_blank"
+            href={`https://my.sendinblue.com/camp/template/${templateId}/message-setup/app-smtp`}
+          >
+            <p style={{ color: "#4388F8" }} className="subtitle">
+              Edit template{" "}
+            </p>
+          </a>
+        </div>
         <input
           type="number"
           placeholder="Enter a Sendinblue template id..."
