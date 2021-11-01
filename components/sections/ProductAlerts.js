@@ -50,7 +50,7 @@ const WishlistWrapper = ({ shop }) => {
                 lineHeight: "22px",
                 fontSize: "14px",
                 width: "700px",
-                margin: "-8px 0 20px 0",
+                margin: "-8px 0px 20px",
                 maxWidth: "Calc(100% - 120px)",
               }}
             >

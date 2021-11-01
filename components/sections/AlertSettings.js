@@ -82,7 +82,7 @@ const StatCards = ({ shop }) => {
                   Template Id:
                 </p>
                 <input
-                  type="text"
+                  type="number"
                   placeholder="Enter a Sendinblue template id..."
                   value={templateId}
                   onChange={(e) => setTemplateId(e.target.value)}
