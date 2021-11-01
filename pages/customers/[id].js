@@ -16,6 +16,7 @@ import Discounts from "../../components/sections/Discounts.js";
 import Placeholder from "../../components/Placeholder.js";
 import Alerts from "../../components/sections/Alerts.js";
 import Membership from "../../components/sections/Membership.js";
+import MarketingButtons from "../../components/sections/MarketingButtons.js";
 
 const GET_CUSTOMER = gql`
   query getCustomer($id: ID!) {
@@ -238,23 +239,11 @@ const CustomerPage = () => {
                 </svg>
               )}
             </div>
-            <div className="flex-center-right">
-              <button
-                className={`disabled`}
-                disabled={data.customer.acceptsMarketing ? true : false}
-                style={{ marginLeft: "8px" }}
-              >
-                Send personalized text
-              </button>
-              <button
-                className={` ${
-                  !data.customer.acceptsMarketing ? "disabled" : "primary"
-                }`}
-                style={{ marginLeft: "8px" }}
-              >
-                Send personalized email
-              </button>
-            </div>
+            <MarketingButtons
+              acceptsMarketing={data.customer.acceptsMarketing}
+              shop={shop}
+              email={email}
+            />
           </div>
         </section>
 

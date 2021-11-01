@@ -16,7 +16,7 @@ const MarketingPage = ({ shop }) => {
     console.log("sending test");
     try {
       const res = await fetch(
-        `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/code/${codeToRemove[0].docId}`,
+        `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/marketing/email/${recipiant}/for/${user}`,
         {
           method: "GET",
           headers: {
@@ -24,7 +24,8 @@ const MarketingPage = ({ shop }) => {
           },
         }
       );
-      console.log(res);
+      let response = await res.json();
+      console.log(response);
       console.log("email sent");
       setRecipiant("");
       setUser("");
