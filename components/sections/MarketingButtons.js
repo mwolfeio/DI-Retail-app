@@ -30,7 +30,7 @@ const CustomerPage = ({ acceptsMarketing, shop, email }) => {
     <div className="flex-center-right">
       <button
         className={`disabled`}
-        disabled={acceptsMarketing ? true : false}
+        disabled={acceptsMarketing && email ? true : false}
         style={{ marginLeft: "8px" }}
       >
         Send personalized text
