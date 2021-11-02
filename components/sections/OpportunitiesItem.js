@@ -51,22 +51,24 @@ const Section = ({ opp, add, remove }) => {
     <div
       className={`card opportunity-card ${active ? "" : "not-active-opp-card"}`}
     >
-      <div className="flex-center-left">
-        <div className="toggle">
-          {opp.in_development ? (
-            <div className="rfd-tag">Requires Further Development</div>
-          ) : (
+      {" "}
+      {opp.in_development ? (
+        <div className="rfd-tag">Requires Further Development</div>
+      ) : (
+        <div className="flex-center-left">
+          <div className="toggle">
             <input
               type="checkbox"
               checked={active}
               onChange={() => setActive(!active)}
               className="check"
             />
-          )}
-          <b className="b switch"></b>
-          <b className="b track"></b>
+
+            <b className="b switch"></b>
+            <b className="b track"></b>
+          </div>
         </div>
-      </div>
+      )}
       <div className="flex-center-left">
         <div className="opp-icon-wrapper flex-center-center">
           <img src={`data:image/svg+xml;utf8,${opp.icon}`} />
@@ -95,7 +97,6 @@ const Section = ({ opp, add, remove }) => {
           />
         </div>
       </div>
-
       <div className="flex-center-column">
         <div className="flex-center-center">
           <input
@@ -117,7 +118,6 @@ const Section = ({ opp, add, remove }) => {
           {opp.value_type}
         </p>
       </div>
-
       <div className="flex-center-column">
         <input
           className={`opp-input lrg-opp-txt ${
