@@ -143,7 +143,7 @@ const CustomerPage = () => {
 
   //Firebase Query
   const [firebaseData, firebaseLoading, firebaseError] = useDocumentOnce(
-    firestore.doc(`stores/${shop}/users/${email}`)
+    firestore.doc(`stores/${shop}/users/${email ? email : "no_email"}`)
   );
 
   if (loading || firebaseLoading)
