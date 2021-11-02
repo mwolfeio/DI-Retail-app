@@ -51,7 +51,6 @@ const Section = ({ opp, add, remove }) => {
     <div
       className={`card opportunity-card ${active ? "" : "not-active-opp-card"}`}
     >
-      {" "}
       {opp.in_development ? (
         <div className="rfd-tag">Requires Development</div>
       ) : (
