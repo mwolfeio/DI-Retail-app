@@ -53,12 +53,16 @@ const Section = ({ opp, add, remove }) => {
     >
       <div className="flex-center-left">
         <div className="toggle">
-          <input
-            type="checkbox"
-            checked={active}
-            onChange={() => setActive(!active)}
-            className="check"
-          />
+          {opp.in_development ? (
+            <div className="rfd-tag">Requires Further Development</div>
+          ) : (
+            <input
+              type="checkbox"
+              checked={active}
+              onChange={() => setActive(!active)}
+              className="check"
+            />
+          )}
           <b className="b switch"></b>
           <b className="b track"></b>
         </div>

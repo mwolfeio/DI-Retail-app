@@ -1244,7 +1244,18 @@ form.input-card {
 .hide {
   display: none !important;
 }
-
+.rfd-tag {
+  border-radius: 24px;
+  height: 32px;
+  font-size: 14px;
+  transform: rotate(90deg);
+  background: #fafbfc;
+  color: #b0b7c3;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 /* FLEXBOX-------------------- */
 .flex-center-left {
   display: flex;
