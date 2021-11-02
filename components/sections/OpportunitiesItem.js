@@ -53,7 +53,7 @@ const Section = ({ opp, add, remove }) => {
     >
       {" "}
       {opp.in_development ? (
-        <div className="rfd-tag">Requires Further Development</div>
+        <div className="rfd-tag">Requires Development</div>
       ) : (
         <div className="flex-center-left">
           <div className="toggle">
