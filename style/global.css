@@ -1260,6 +1260,7 @@ form.input-card {
   font-style: normal;
   font-weight: 500;
   opacity: 0.6;
+  cursor: default;
 }
 /* FLEXBOX-------------------- */
 .flex-center-left {
