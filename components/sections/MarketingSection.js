@@ -12,6 +12,10 @@ const MarketingPage = ({ shop }) => {
 
   //functions
   const handleSubmit = async (e) => {
+    console.log(
+      "sending email: ",
+      `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/marketing/email/${recipiant}/for/${user}`
+    );
     e.preventDefault();
     console.log("sending test");
     try {
