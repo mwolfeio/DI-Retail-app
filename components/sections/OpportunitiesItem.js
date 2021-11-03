@@ -17,9 +17,9 @@ const Section = ({ opp, add, remove }) => {
     let payload = {
       name: name,
       description: description,
-      value: value,
+      value: Number(value),
       value_type: value_type,
-      limit: limit,
+      limit: Number(limit),
       active: active,
     };
 
