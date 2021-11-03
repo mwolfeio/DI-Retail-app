@@ -16,9 +16,8 @@ const StatCards = ({ shop }) => {
   console.log("alertsStats: ", alertsStats);
   let productCount = Object.keys(alertsStats).length;
   console.log("productCount: ", productCount);
-  let aertCount = data.exists
-    ? Object.values(alertsStats).reduce((a, b) => a + b)
-    : 0;
+  let aertCount =
+    productCount > 0 ? Object.values(alertsStats).reduce((a, b) => a + b) : 0;
   console.log("aertCount: ", aertCount);
 
   return (
