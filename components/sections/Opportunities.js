@@ -11,7 +11,6 @@ const Section = ({ shop }) => {
   const [activeOportunites, setActiveOportunites] = useState([]);
   const [Opportunites, setOpportunites] = useState([]);
   const [loading, setLoading] = useState(false);
-
   //handlers
   const toggleOpen = () => {
     setOpen(!open);
