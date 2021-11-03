@@ -27,7 +27,7 @@ const Section = ({ data }) => {
 
     await firestore
       .doc(`stores/${shop}/users/${email}`)
-      .update({ points: points });
+      .update({ points: Number(points) });
 
     setOldPoints(points);
     setLoading(false);
