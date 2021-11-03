@@ -49,11 +49,14 @@ const WishlistWrapper = ({ email, shop }) => {
 
   //useEffect
   useEffect(() => {
-    if (loading || error) return;
+    if (loading || error || snapshot.empty) return;
+
     snapshot.forEach((doc) => {
       if (doc.exists) {
         let snapshotObject = doc.data();
         snapshotObject.id = doc.id;
+        console.log("snapshotObject: ", snapshotObject);
+
         setIdArr((idArr) => [...idArr, snapshotObject]);
       }
     });
