@@ -52,6 +52,21 @@ const CustomerPage = () => {
           display: false,
         }}
       />
+      <div style={{ width: "100%" }}>
+        <section className="clear" style={{ marginBottom: "0" }}>
+          <div className="flex-bottom-btw underline">
+            <div style={{ textAlign: "left" }}>
+              <h1>Inventory Alerts</h1>
+              <h2 className={`subtitle `} style={{ fontSize: "16px" }}>
+                <i>Manage alert settings</i>
+              </h2>
+            </div>
+            <HeaderCards shop={shop} />
+          </div>
+        </section>
+        <AlertSettings shop={shop} />
+        <ProductAlerts shop={shop} />
+      </div>
     </main>
   );
 };

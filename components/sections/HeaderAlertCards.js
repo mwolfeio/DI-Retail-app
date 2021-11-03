@@ -14,7 +14,9 @@ const StatCards = ({ shop }) => {
 
   let alertsStats = data.data();
   let productCount = Object.keys(alertsStats).length;
-  let aertCount = Object.values(alertsStats).reduce((a, b) => a + b);
+  let aertCount = productCount
+    ? Object.values(alertsStats).reduce((a, b) => a + b)
+    : 0;
 
   return (
     <div style={{ textAlign: "right" }} className="flex-right-column ">
