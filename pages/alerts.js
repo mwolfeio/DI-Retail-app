@@ -62,7 +62,8 @@ const CustomerPage = () => {
             <HeaderCards shop={shop} />
           </div>
         </section>
-        <AlertSettings shop={shop} />
+        // <AlertSettings shop={shop} />
+        // <ProductAlerts shop={shop} />
       </div>
     </main>
   );
