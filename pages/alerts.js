@@ -10,6 +10,7 @@ import ProductAlerts from "../components/sections/ProductAlerts.js";
 import HeaderCards from "../components/sections/HeaderAlertCards.js";
 import AlertSettings from "../components/sections/AlertSettings.js";
 
+//gql query
 const GET_SHOP = gql`
   {
     shop {
@@ -20,6 +21,7 @@ const GET_SHOP = gql`
 `;
 
 const getId = (storeName) => {
+  console.log("running getId");
   return storeName.replace("gid://shopify/Shop/", "");
 };
 const translateStore = (storeName) => {
@@ -40,7 +42,7 @@ const CustomerPage = () => {
   if (error) return <div>{error.message}</div>;
 
   let shop = translateStore(data.shop.id);
-  let url = data.shop.url.replace("https://", "");
+  // let url = data.shop.url.replace("https://", "");
 
   return (
     <main>
@@ -50,19 +52,6 @@ const CustomerPage = () => {
           display: false,
         }}
       />
-      <div style={{ width: "100%" }}>
-        <section className="clear" style={{ marginBottom: "0" }}>
-          <div className="flex-bottom-btw underline">
-            <div style={{ textAlign: "left" }}>
-              <h1>Inventory Alerts</h1>
-              <h2 className={`subtitle `} style={{ fontSize: "16px" }}>
-                <i>Manage alert settings</i>
-              </h2>
-            </div>
-            <HeaderCards shop={shop} />
-          </div>
-        </section>
-      </div>
     </main>
   );
 };

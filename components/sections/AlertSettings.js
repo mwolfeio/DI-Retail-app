@@ -36,6 +36,7 @@ const StatCards = ({ shop }) => {
   useEffect(() => {
     console.log("running useEffect");
     if (loading || error || data.data() == null) return;
+    console.log("not null");
     let docData = data.data();
     let tempId = docData.alert_email_template;
     console.log("docData: ", docData);

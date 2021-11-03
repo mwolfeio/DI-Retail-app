@@ -36,13 +36,6 @@ const translateStore = (storeName) => {
 const MarketingPage = () => {
   //Query
   const { loading, error, data } = useQuery(GET_SHOP);
-  // const loading = false;
-  // const error = false;
-  // const data = {
-  //   shop: {
-  //     id: "gid://shopify/Shop/44390383768",
-  //   },
-  // };
 
   if (loading || error) {
     return (
