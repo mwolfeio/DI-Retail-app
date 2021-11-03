@@ -63,7 +63,6 @@ const CustomerPage = () => {
           </div>
         </section>
         <AlertSettings shop={shop} />
-        <ProductAlerts shop={shop} />
       </div>
     </main>
   );
