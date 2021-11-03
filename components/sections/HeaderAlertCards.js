@@ -13,10 +13,13 @@ const StatCards = ({ shop }) => {
   if (error) return <div>{error.message}</div>;
 
   let alertsStats = data.data();
+  console.log("alertsStats: ", alertsStats);
   let productCount = Object.keys(alertsStats).length;
-  let aertCount = productCount
+  console.log("productCount: ", productCount);
+  let aertCount = data.exists
     ? Object.values(alertsStats).reduce((a, b) => a + b)
     : 0;
+  console.log("aertCount: ", aertCount);
 
   return (
     <div style={{ textAlign: "right" }} className="flex-right-column ">
