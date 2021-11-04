@@ -239,7 +239,7 @@ const SpecialPage = ({}) => {
       <ButtonNav />
       <section>
         <h1>Customers</h1>
-        <p className="light">
+        <p className="light" style={{ display: "block" }}>
           Search, sort and select a store customer from the list below to edit
           things like customer intersts, metafields and membership points. A
           list of members can be viewed{" "}
