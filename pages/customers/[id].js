@@ -17,6 +17,7 @@ import Placeholder from "../../components/Placeholder.js";
 import Alerts from "../../components/sections/Alerts.js";
 import Membership from "../../components/sections/Membership.js";
 import MarketingButtons from "../../components/sections/MarketingButtons.js";
+import LinkIcon from "../../components/LinkIcon.js";
 
 const GET_CUSTOMER = gql`
   query getCustomer($id: ID!) {
@@ -165,6 +166,7 @@ const CustomerPage = () => {
   let points = firebaseData.data() ? firebaseData.data().points : "";
   let isMember = firebaseData.exists;
   let oppArr = firebaseData.data() ? firebaseData.data().opportunities : [];
+  let customerIRL = `/admin/customers/${id}`;
 
   return (
     <main>
@@ -185,6 +187,7 @@ const CustomerPage = () => {
                 <h1 style={{ marginRight: "8px" }}>
                   {data.customer.firstName} {data.customer.lastName}
                 </h1>
+                <LinkIcon link={customerIRL} shop={shop} />
                 {isMember && (
                   <div className="tinny-tag active-tiny-tab flex-center-center">
                     Member

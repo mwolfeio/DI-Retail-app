@@ -64,7 +64,7 @@ const CustomerPage = ({
       {Pointsdata.exists && Userdata.exists ? (
         <div className="orders-page-address-card-address-wrapper">
           <p>Percent: {pointsDoc.value}%</p>
-          <p>Amount: ${pointsEarned}</p>
+          <p>Amount: {pointsEarned}</p>
         </div>
       ) : (
         <div className="orders-page-address-card-address-wrapper">

@@ -9,9 +9,11 @@ const Section = ({ opp, add, remove }) => {
   const [value_type, setvalue_type] = useState(opp.value_type);
   const [limit, setlimit] = useState(opp.limit);
   const [active, setActive] = useState(opp.active);
+  const [sending, setSending] = useState(false);
 
   const toggleActive = () => {};
   const handleSubmit = (e) => {
+    setSending(true);
     let id = opp.id;
     if (!active) return remove(id);
     let payload = {
@@ -24,6 +26,8 @@ const Section = ({ opp, add, remove }) => {
     };
 
     add(id, payload);
+
+    setSending(false);
   };
   const resetValues = () => {
     setname(opp.name);
@@ -142,7 +146,7 @@ const Section = ({ opp, add, remove }) => {
           Clear
         </button>
         <button className="submit-button" onClick={() => handleSubmit()}>
-          Save
+          {sending ? "Saving..." : "Save"}
         </button>
       </div>
     </div>

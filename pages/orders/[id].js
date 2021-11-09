@@ -12,6 +12,7 @@ import Orders from "../../components/sections/Orders.js";
 import AddressCard from "../../components/orderCards/AddressCard.js";
 import MembershipCard from "../../components/orderCards/MembershipCard.js";
 import LineItems from "../../components/sections/LineItems.js";
+import LinkIcon from "../../components/LinkIcon.js";
 
 const GET_ORDER = gql`
   query getOrder($id: ID!) {
@@ -185,6 +186,8 @@ const CustomerPage = () => {
     ""
   );
 
+  let orderURL = `/admin/orders/${id}`;
+
   return (
     <main>
       <ButtonNav
@@ -201,6 +204,7 @@ const CustomerPage = () => {
             <div style={{ textAlign: "left" }}>
               <div className="flex-center-left">
                 <h1>{data.order.name}</h1>
+                <LinkIcon link={orderURL} shop={shop} />
 
                 <div
                   style={{ marginLeft: "8px" }}

@@ -9,6 +9,7 @@ const MarketingPage = ({ shop }) => {
   const [recipiant, setRecipiant] = useState();
   const [user, setUser] = useState();
   const [open1, setOpen1] = useState(true);
+  const [sending, setSending] = useState(false);
 
   //functions
   const handleSubmit = async (e) => {
@@ -17,6 +18,7 @@ const MarketingPage = ({ shop }) => {
       `https://us-central1-${process.env.PROJECTID}.cloudfunctions.net/api/${shop}/marketing/email/${recipiant}/for/${user}`
     );
     e.preventDefault();
+    setSending(true);
     console.log("sending test");
     try {
       const res = await fetch(
@@ -36,6 +38,7 @@ const MarketingPage = ({ shop }) => {
     } catch (err) {
       console.log(err);
     }
+    setSending(false);
   };
   return (
     <section>
@@ -101,7 +104,7 @@ const MarketingPage = ({ shop }) => {
                   style={{ opacity: recipiant && user ? 1 : 0.5 }}
                   submit
                 >
-                  Send Test
+                  {sending ? "Sending..." : "Send Test"}
                 </button>
               </div>
             </form>

@@ -48,7 +48,7 @@ let linkMap = [
     active: true,
   },
   {
-    title: "Alert Settings",
+    title: "Inventory Alerts",
     link: "alerts",
     img: Alerts,
     description: "Adjust alert cadence and triggers.",

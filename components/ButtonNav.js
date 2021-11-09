@@ -12,7 +12,7 @@ import MoreButton from "./MoreButton.js";
 import CustomerNumber from "./CustomerNumber.js";
 import { useRouter } from "next/router";
 
-export default function SpecialPage({ cnumb, dropDown }) {
+export default function SpecialPage({ cnumb, dropDown, button }) {
   // let link = back ? `/${back}` : "/";
   const router = useRouter();
 
