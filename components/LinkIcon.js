@@ -1,15 +1,18 @@
 import React from "react";
 
 function Icon({ link, shop }) {
+  console.log("link, ", link);
+  console.log("shop, ", shop);
+  console.log("router, ", router[shop.replace("-", "")]);
   let router = {
     texxturehome: "texture-home",
     designideas: "designideasltd",
     larrytraverso: "larry-traverso-store",
   };
 
-  let fullLink = `https://${router(
-    shop.replace("-", "")
-  )}.myshopify.com/${link}`;
+  let fullLink = `https://${
+    router[shop.replace("-", "")]
+  }.myshopify.com/${link}`;
 
   return (
     <a
@@ -43,3 +46,5 @@ function Icon({ link, shop }) {
 }
 
 export default Icon;
+
+YCS, CROC, EUO, ZSL, GLL, KOLD, SCO, PST, TBT, EWV, FXP, BZQ, EPV, EEV, EFU;
