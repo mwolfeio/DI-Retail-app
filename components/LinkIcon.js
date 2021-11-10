@@ -13,7 +13,7 @@ const Icon = ({ link, shop }) => {
 
   let fullLink = `https://${
     router[shop.replace("-", "")]
-  }.myshopify.com/${link}`;
+  }.myshopify.com${link}`;
 
   return (
     <a
@@ -47,3 +47,6 @@ const Icon = ({ link, shop }) => {
 };
 
 export default Icon;
+
+// ("https://texture-home.myshopify.com//admin/customers/5467137769611");
+// ("https://texture-home.myshopify.com/admin/customers/5467137769611");
