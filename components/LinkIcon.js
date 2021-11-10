@@ -1,14 +1,15 @@
 import React from "react";
 
 const Icon = ({ link, shop }) => {
-  console.log("link, ", link);
-  console.log("shop, ", shop);
-  console.log("router, ", router[shop.replace("-", "")]);
   let router = {
     texxturehome: "texture-home",
     designideas: "designideasltd",
     larrytraverso: "larry-traverso-store",
   };
+
+  console.log("link, ", link);
+  console.log("shop, ", shop);
+  console.log("router, ", router[shop.replace("-", "")]);
 
   let fullLink = `https://${
     router[shop.replace("-", "")]
