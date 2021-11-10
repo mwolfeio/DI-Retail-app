@@ -1,6 +1,6 @@
 import React from "react";
 
-function Icon({ link, shop }) {
+const Icon = ({ link, shop }) => {
   console.log("link, ", link);
   console.log("shop, ", shop);
   console.log("router, ", router[shop.replace("-", "")]);
@@ -43,8 +43,6 @@ function Icon({ link, shop }) {
       </svg>
     </a>
   );
-}
+};
 
 export default Icon;
-
-YCS, CROC, EUO, ZSL, GLL, KOLD, SCO, PST, TBT, EWV, FXP, BZQ, EPV, EEV, EFU;
