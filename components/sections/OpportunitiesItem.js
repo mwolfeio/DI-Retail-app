@@ -55,7 +55,7 @@ const Section = ({ opp, add, remove }) => {
     value_type !== opp.value_type ||
     limit !== opp.limit ||
     active !== opp.active ||
-    (opp.url && url !== opp.url);
+    (url && url !== opp.url);
 
   return (
     <div
