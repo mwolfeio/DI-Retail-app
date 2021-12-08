@@ -55,7 +55,7 @@ const Section = ({ opp, add, remove }) => {
     value_type !== opp.value_type ||
     limit !== opp.limit ||
     active !== opp.active ||
-    url !== opp.url;
+    (opp.url && url !== opp.url);
 
   return (
     <div
@@ -100,7 +100,7 @@ const Section = ({ opp, add, remove }) => {
                 description !== opp.description ? "opp-input-chnged" : ""
               }`}
               style={{ color: "#b0b7c3", margin: "-8px", fontSize: "14px" }}
-              placeholder="Prodile URL..."
+              placeholder="Profile URL..."
               type="text"
               disabled={active ? "" : "disabled"}
               value={active ? url : ""}
