@@ -96,15 +96,15 @@ const Section = ({ opp, add, remove }) => {
           />
           {opp.id.includes("follow") && (
             <input
-              className={`opp-input lrg-opp-txt ${
+              className={`opp-input subtitle ${
                 description !== opp.description ? "opp-input-chnged" : ""
               }`}
-              style={{ color: "#4e5d78" }}
-              placeholder="URL..."
+              style={{ color: "#b0b7c3", margin: "-8px", fontSize: "14px" }}
+              placeholder="Prodile URL..."
               type="text"
               disabled={active ? "" : "disabled"}
-              value={active ? name : opp.name}
-              onChange={(e) => setname(e.target.value)}
+              value={active ? url : ""}
+              onChange={(e) => setUrl(e.target.value)}
             />
           )}
           <textarea
