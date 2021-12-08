@@ -10,6 +10,7 @@ const Section = ({ opp, add, remove }) => {
   const [limit, setlimit] = useState(opp.limit);
   const [active, setActive] = useState(opp.active);
   const [sending, setSending] = useState(false);
+  const [url, setUrl] = useState(opp.url ? opp.url : "");
 
   const toggleActive = () => {};
   const handleSubmit = (e) => {
@@ -24,6 +25,9 @@ const Section = ({ opp, add, remove }) => {
       limit: Number(limit),
       active: active,
     };
+    if (opp.id.includes("follow")) {
+      payload.url = url;
+    }
 
     add(id, payload);
 
@@ -36,6 +40,7 @@ const Section = ({ opp, add, remove }) => {
     setvalue_type(opp.value_type);
     setlimit(opp.limit);
     setActive(opp.active);
+    setUrl("");
   };
 
   useEffect(() => {
@@ -49,7 +54,8 @@ const Section = ({ opp, add, remove }) => {
     value !== opp.value ||
     value_type !== opp.value_type ||
     limit !== opp.limit ||
-    active !== opp.active;
+    active !== opp.active ||
+    url !== opp.url;
 
   return (
     <div
@@ -88,6 +94,19 @@ const Section = ({ opp, add, remove }) => {
             value={active ? name : opp.name}
             onChange={(e) => setname(e.target.value)}
           />
+          {opp.id.includes("follow") && (
+            <input
+              className={`opp-input lrg-opp-txt ${
+                description !== opp.description ? "opp-input-chnged" : ""
+              }`}
+              style={{ color: "#4e5d78" }}
+              placeholder="URL..."
+              type="text"
+              disabled={active ? "" : "disabled"}
+              value={active ? name : opp.name}
+              onChange={(e) => setname(e.target.value)}
+            />
+          )}
           <textarea
             className={`opp-input lrg-opp-txt ${
               description !== opp.description ? "opp-input-chnged" : ""
