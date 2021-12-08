@@ -12,7 +12,6 @@ const Section = ({ opp, add, remove }) => {
   const [sending, setSending] = useState(false);
   const [url, setUrl] = useState(opp.url ? opp.url : "");
 
-  const toggleActive = () => {};
   const handleSubmit = (e) => {
     setSending(true);
     let id = opp.id;
@@ -25,7 +24,9 @@ const Section = ({ opp, add, remove }) => {
       limit: Number(limit),
       active: active,
     };
-    if (opp.id.includes("follow")) {
+    console.log("id: ", id);
+    if (id.includes("follow")) {
+      console.log(id, " incudes follow");
       payload.url = url;
     }
 
@@ -40,7 +41,7 @@ const Section = ({ opp, add, remove }) => {
     setvalue_type(opp.value_type);
     setlimit(opp.limit);
     setActive(opp.active);
-    setUrl("");
+    setUrl(opp.url);
   };
 
   useEffect(() => {
