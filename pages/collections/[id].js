@@ -159,9 +159,10 @@ const ProductPage = () => {
               </div>
             </div>
           </div>
+          <p>{collection.description}</p>
         </section>
-        <CollectionImage />
-        <CollectionDescription />
+        <CollectionImage id={id} />
+        <CollectionDescription id={id} />
       </div>
     </main>
   );
