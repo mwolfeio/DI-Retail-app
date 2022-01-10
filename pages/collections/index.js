@@ -111,10 +111,9 @@ const SpecialPage = ({}) => {
             product={{
               id: id,
               title: prod.node.title,
-              description: prod.node.description
+              description: prod.node.description,
               imgSrc: prod.node.image.src,
               productsCount: prod.node.productsCount,
-
             }}
           />
         );
