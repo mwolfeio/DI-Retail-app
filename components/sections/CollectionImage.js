@@ -3,7 +3,6 @@ import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
 import SectionHeader from "./SectionHeader.js";
-import MetafieldInput from "./MetafieldInput.js";
 
 import MoreButton from "../MoreButton.js";
 

@@ -117,12 +117,7 @@ const ProductPage = () => {
 
   return (
     <main>
-      <ButtonNav
-        cnumb={{
-          display: false,
-          globalId: globalId,
-        }}
-      />
+      <ButtonNav />
       <div style={{ width: "100%" }}>
         <section className="clear">
           <div className="flex-bottom-btw underline">
