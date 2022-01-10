@@ -15,6 +15,7 @@ import Orders from "../media/icons/Orders.js";
 import Reviews from "../media/icons/Reviews.js";
 import Products from "../media/icons/Products.js";
 import Marketing from "../media/icons/Marketing.js";
+import collections from "../media/icons/collections.js";
 
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
 
@@ -38,6 +39,13 @@ let linkMap = [
     link: "products",
     img: Products,
     description: "Read and edit products and their metafields.",
+    active: true,
+  },
+  {
+    title: "Collections",
+    link: "collections",
+    img: collections,
+    description: "Change collection titles, text, and shoppable images.",
     active: true,
   },
   {

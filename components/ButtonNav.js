@@ -7,6 +7,7 @@ import Products from "../media/icons/Products.js";
 import Orders from "../media/icons/Orders.js";
 import Membership from "../media/icons/Membership.js";
 import Alerts from "../media/icons/Alerts.js";
+import Collections from "../media/icons/Collections.js";
 import Marketing from "../media/icons/Marketing.js";
 import MoreButton from "./MoreButton.js";
 import CustomerNumber from "./CustomerNumber.js";
@@ -42,6 +43,11 @@ export default function SpecialPage({ cnumb, dropDown, button }) {
         <Link href="/products">
           <button className="icon" style={{ marginRight: "8px" }}>
             <Products />
+          </button>
+        </Link>
+        <Link href="/collections">
+          <button className="icon" style={{ marginRight: "8px" }}>
+            <Collections />
           </button>
         </Link>
         <Link href="/membership-program">
