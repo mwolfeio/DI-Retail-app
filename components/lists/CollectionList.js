@@ -5,7 +5,7 @@ import ListInput from "./InterlistInput.js";
 
 let truncate = (str) => {
   let length = str.length;
-  if (length > 28) return `${str.substring(0, 25)}...`;
+  if (length > 50) return `${str.substring(0, 25)}...`;
   else return str;
 };
 let animationDelayCalc = (index) => {
@@ -42,10 +42,6 @@ export default function SpecialPage({ product, index }) {
         <div className="list-name flex-center-column">
           <p>{product.productsCount}</p>
           <p className="subtitle flex-center-column">Products</p>
-        </div>
-
-        <div className="list-name">
-          <p>{product.type}</p>
         </div>
 
         <span className="svg-container flex-center-center">

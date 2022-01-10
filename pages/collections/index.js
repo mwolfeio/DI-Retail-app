@@ -103,13 +103,14 @@ const SpecialPage = ({}) => {
       `Error! ${error.message}`
     ) : results.length ? (
       results.map((prod, i) => {
-        let id = prod.node.id.replace("gid://shopify/Product/", "");
+        let id = prod.node.id.replace("gid://shopify/Collection/", "");
 
         return (
           <ProductList
             index={i}
             product={{
               id: id,
+              gid: prod.node.id,
               title: prod.node.title,
               description: prod.node.description,
               imgSrc: prod.node.image

@@ -560,9 +560,9 @@ ul.order-list li {
   grid-template-columns: 1fr 1fr 1fr 1.5fr 1fr 76px;
 }
 ul.collection-list li {
-  grid-template-columns: 56px 2fr 1fr 1fr;
+  grid-template-columns: 75px 2fr 1fr 1fr;
 }
-ul.product-list li img {
+ul.collection-list li img {
   height: 56px;
   width: 75px;
   border-radius: 10px;
@@ -572,7 +572,7 @@ ul.product-list li img {
 ul.product-list li {
   grid-template-columns: 56px 2fr 1fr 1fr 1fr 1fr;
 }
-ul.collection-list li img {
+ul.product-list li img {
   height: 58px;
   width: 58px;
   border-radius: 10px;
