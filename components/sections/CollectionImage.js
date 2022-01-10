@@ -6,26 +6,6 @@ import SectionHeader from "./SectionHeader.js";
 
 import MoreButton from "../MoreButton.js";
 
-//graphql
-// const UPDATE_COLLECTION = gql`
-//   mutation collectionUpdate($input: CollectionInput!) {
-//     collectionUpdate(input: $input) {
-//       collection {
-//         metafield(namespace: "Search Terms", key: "srch_trm") {
-//           id
-//           namespace
-//           key
-//           value
-//         }
-//       }
-//       userErrors {
-//         field
-//         message
-//       }
-//     }
-//   }
-// `;
-
 const Section = ({ arr, id, globalId }) => {
   return (
     <section>

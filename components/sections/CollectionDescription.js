@@ -3,34 +3,17 @@ import { useMutation } from "react-apollo";
 import { gql } from "apollo-boost";
 
 import SectionHeader from "./SectionHeader.js";
-import MetafieldInput from "./MetafieldInput.js";
 
 import MoreButton from "../MoreButton.js";
-
-//graphql
-// const UPDATE_COLLECTION = gql`
-//   mutation collectionUpdate($input: CollectionInput!) {
-//     collectionUpdate(input: $input) {
-//       collection {
-//         metafield(namespace: "Search Terms", key: "srch_trm") {
-//           id
-//           namespace
-//           key
-//           value
-//         }
-//       }
-//       userErrors {
-//         field
-//         message
-//       }
-//     }
-//   }
-// `;
 
 const Section = ({ arr, id, globalId }) => {
   return (
     <section>
-      <SectionHeader status={open} minimize={toggleOpen} title={`SEO`} />
+      <SectionHeader
+        status={open}
+        minimize={toggleOpen}
+        title={`Shoppible Image`}
+      />
       {open && (
         <div>
           <p
@@ -43,7 +26,7 @@ const Section = ({ arr, id, globalId }) => {
               maxWidth: "Calc(100% - 120px)",
             }}
           >
-            Edit how the collection appears to Google.
+            Edit the shoppable images for each collection.
           </p>
         </div>
       )}
