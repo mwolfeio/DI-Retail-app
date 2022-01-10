@@ -112,7 +112,7 @@ const SpecialPage = ({}) => {
               id: id,
               title: prod.node.title,
               description: prod.node.description,
-              imgSrc: prod.node.image.src
+              imgSrc: prod.node.image
                 ? prod.node.image.src
                 : "https://cdn11.bigcommerce.com/s-7i4g8cpydv/stencil/fb578d50-303a-0138-4ab9-0242ac11000d/e/8222ecd0-3e4e-013a-ceda-322a12975137/icons/icon-no-image.svg",
               productsCount: prod.node.productsCount,
