@@ -15,7 +15,7 @@ import Orders from "../media/icons/Orders.js";
 import Reviews from "../media/icons/Reviews.js";
 import Products from "../media/icons/Products.js";
 import Marketing from "../media/icons/Marketing.js";
-import collections from "../media/icons/collections.js";
+import collections from "../media/icons/Collections.js";
 
 const img = "https://cdn.shopify.com/s/files/1/0757/9955/files/empty-state.svg";
 
