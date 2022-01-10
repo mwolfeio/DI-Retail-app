@@ -10,14 +10,14 @@ import Loader from "../../components/Loader.js";
 import ProductList from "../../components/lists/CollectionList.js";
 
 const GET_CUSTOMENTS = gql`
-  query getProducts(
+  query getCollections(
     $first: Int = 50
     $after: String = null
     $srch: String!
     $srt: CollectionSortKeys!
     $rev: Boolean!
   ) {
-    products(
+    collections(
       first: $first
       after: $after
       query: $srch
@@ -145,11 +145,11 @@ const SpecialPage = ({}) => {
     if (loading || !data) return;
     if (loadingMore) {
       console.log("loading more to resutls");
-      setResults([...results, ...data.products.edges]);
+      setResults([...results, ...data.collections.edges]);
       setLoadingMore(false);
     } else {
       console.log("resetting resutls");
-      setResults(data.products.edges);
+      setResults(data.collections.edges);
     }
   }, [data]);
 
@@ -196,7 +196,7 @@ const SpecialPage = ({}) => {
             ""
           ) : loading || error ? (
             <Loader />
-          ) : data.products.pageInfo.hasNextPage ? (
+          ) : data.collections.pageInfo.hasNextPage ? (
             <button onClick={loadMore}>Load more</button>
           ) : (
             ""

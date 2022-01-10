@@ -544,7 +544,8 @@ li p.sortable:hover {
 /* CUSTOEMR PAGE-------------- */
 ul.customer-list li,
 ul.order-list li,
-ul.product-list li {
+ul.product-list li,
+ul.collection-list li {
   display: grid;
   width: 100%;
   grid-column-gap: 8px;
