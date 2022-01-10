@@ -25,7 +25,10 @@ const GET_COLLECTION = gql`
         id
         value
       }
-      desktopProducts: metafield(key: "desk_prod", namespace: "Desktop Products") {
+      desktopProducts: metafield(
+        key: "desk_prod"
+        namespace: "Desktop Products"
+      ) {
         id
         value
       }
@@ -51,7 +54,6 @@ const GET_COLLECTION = gql`
         title
       }
     }
-  }
     shop {
       id
       url
