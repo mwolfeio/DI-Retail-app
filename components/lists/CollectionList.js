@@ -20,7 +20,7 @@ export default function SpecialPage({ product, index }) {
 
   console.log("ProductList: ", product);
   return (
-    <Link href={`/products/${product.id}`} passHref>
+    <Link href={`/collections/${product.id}`} passHref>
       <li
         style={{
           opacity: product.status !== "ACTIVE" ? "1" : "0.6 !important",

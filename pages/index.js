@@ -42,13 +42,6 @@ let linkMap = [
     active: true,
   },
   {
-    title: "Collections",
-    link: "collections",
-    img: collections,
-    description: "Change collection titles, text, and shoppable images.",
-    active: true,
-  },
-  {
     title: "Membership Program",
     link: "membership-program",
     img: Membership,
@@ -68,6 +61,13 @@ let linkMap = [
     img: Marketing,
     description: "Monitor marketing emails and texts.",
     active: true,
+  },
+  {
+    title: "Collections",
+    link: "collections",
+    img: collections,
+    description: "Change collection titles, text, and shoppable images.",
+    active: false,
   },
   {
     title: "Indexer",
