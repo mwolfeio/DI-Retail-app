@@ -7,6 +7,11 @@ import SectionHeader from "./SectionHeader.js";
 import MoreButton from "../MoreButton.js";
 
 const Section = ({ arr, id, globalId }) => {
+  //handlers
+  const toggleOpen = () => {
+    setOpen(!open);
+  };
+
   return (
     <section>
       <SectionHeader
